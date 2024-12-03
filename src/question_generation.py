@@ -1,8 +1,12 @@
 import os
 import openai
 from dotenv import load_dotenv
-from constants import QUESTION_GENERATION_SYSTEM_PROMPT
-
+from constants import (
+    QUESTION_GENERATION_SYSTEM_PROMPT,
+    TEMPERATURE,
+    MAX_TOKENS,
+    GPT_MODEL,
+)
 
 load_dotenv()
 
@@ -26,26 +30,49 @@ def user_prompt(
     """
 
 
-# TODO: Add retry mechanism for 3 max attrmpts
-def generate_questions(user_query):
+def __generate_questions(user_query: str):
     """
     Generates a list of questions based on the provided prompt using OpenAI's GPT API.
     """
     # construct the input for the API
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model=GPT_MODEL,
         messages=[
             {"role": "system", "content": QUESTION_GENERATION_SYSTEM_PROMPT},
             {"role": "user", "content": user_query},
         ],
-        temperature=0.2,  # reduce creativity for strict adherence
-        max_tokens=1500,  # adjust to allow for full responses
+        temperature=TEMPERATURE,  # reduce creativity for strict adherence
+        max_tokens=MAX_TOKENS,  # adjust to allow for full responses
     )
     # parse the response
     content = response.choices[0].message["content"].strip()
-
     # convert to dict if JSON-like
     return eval(content)
+
+
+def __retry_mechanism(func: __generate_questions, arguments, retry: int = 3):
+    print(f"➡ ############# func:{func}")
+    print(f"➡ ############# arguments:{arguments}")
+    print(f"➡ ############# Current Retry:{retry}")
+
+    if retry == 0:
+        raise Exception("Error in Generating Questions")
+
+    try:
+        data = func(arguments)
+        print("➡ ###################### Request Completed")
+        print(f"➡ ###################### data: {data}")
+        return data
+    except Exception as e:
+        print(f"➡ ###################### Error Occured: {e} \n\n\n\n")
+        return __retry_mechanism(func, arguments, retry=retry - 1)
+
+
+def generate_questions(user_query: str):
+    """
+    Generates a list of questions based on the provided prompt using OpenAI's GPT API.
+    """
+    return __retry_mechanism(__generate_questions, user_query)
 
 
 if __name__ == "__main__":

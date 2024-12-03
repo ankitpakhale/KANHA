@@ -1,23 +1,31 @@
-from bottle import route, run
+from bottle import Bottle, response
 from question_generation import (
     user_prompt as __user_prompt,
     generate_questions as __generate_questions,
 )
 from functools import lru_cache
 
+app = Bottle()
+
 
 def handle_response(func):
     def wrapper(*args, **kwargs):
         try:
             result = func(*args, **kwargs)
+            __status_code = result.get("status_code", 200)
+            __payload = result.get("payload")
+            __message = result.get("message")
+
+            response.status = __status_code
             return {
                 "status": True,
-                "payload": result.get("payload"),
-                "message": result.get("message"),
-                "status_code": result.get("status_code"),
+                "payload": __payload,
+                "message": __message,
+                "status_code": __status_code,
             }
         except Exception as e:
-            raise {
+            response.status = 500
+            return {
                 "status": False,
                 "payload": {},
                 "message": str(e),
@@ -27,21 +35,21 @@ def handle_response(func):
     return wrapper
 
 
-@route("/ping")
+@app.route("/ping")
 @handle_response
 @lru_cache()
 def ping():
     return {"payload": {}, "message": "PONG", "status_code": 200}
 
 
-@route("/generate-questions/<difficulty_level>/<programming_language>/<topics>")
+@app.route("/generate-questions/<difficulty_level>/<programming_language>/<topics>")
 @handle_response
 @lru_cache()
 def generate_questions(difficulty_level, programming_language, topics):
     # TODO: convert this into form data and post request
     questions = __generate_questions(
         user_query=__user_prompt(
-            num_questions=2,  # remove this in PROD code
+            # num_questions=2,  # remove this in PROD code
             difficulty_level=difficulty_level,
             programming_language=programming_language,
             topics=topics,
@@ -55,4 +63,4 @@ def generate_questions(difficulty_level, programming_language, topics):
 
 
 if __name__ == "__main__":
-    run(host="localhost", port=8080)
+    app.run(host="localhost", port=8080)
