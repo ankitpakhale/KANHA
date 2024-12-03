@@ -1,4 +1,5 @@
-from bottle import Bottle, response
+from bottle import Bottle, request, response
+
 from question_generation import (
     user_prompt as __user_prompt,
     generate_questions as __generate_questions,
@@ -42,11 +43,16 @@ def ping():
     return {"payload": {}, "message": "PONG", "status_code": 200}
 
 
-@app.route("/generate-questions/<difficulty_level>/<programming_language>/<topics>")
+@app.route("/generate-questions", method="POST")
 @handle_response
 @lru_cache()
-def generate_questions(difficulty_level, programming_language, topics):
-    # TODO: convert this into form data and post request
+def generate_questions():
+    # get form data from the request
+    difficulty_level = request.forms.get("difficulty_level")
+    programming_language = request.forms.get("programming_language")
+    topics = request.forms.get("topics")
+
+    # generate questions using the provided form data
     questions = __generate_questions(
         user_query=__user_prompt(
             # num_questions=2,  # remove this in PROD code
