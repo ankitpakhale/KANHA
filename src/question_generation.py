@@ -3,6 +3,7 @@ import openai
 from dotenv import load_dotenv
 from constants import QUESTION_GENERATION_SYSTEM_PROMPT
 
+
 load_dotenv()
 
 # set your OpenAI API key
@@ -25,33 +26,28 @@ def user_prompt(
     """
 
 
+# TODO: Add retry mechanism for 3 max attrmpts
 def generate_questions(user_query):
     """
     Generates a list of questions based on the provided prompt using OpenAI's GPT API.
     """
-    try:
-        # construct the input for the API
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": QUESTION_GENERATION_SYSTEM_PROMPT},
-                {"role": "user", "content": user_query},
-            ],
-            temperature=0.2,  # reduce creativity for strict adherence
-            max_tokens=1500,  # adjust to allow for full responses
-        )
-        # parse the response
-        content = response.choices[0].message["content"].strip()
+    # construct the input for the API
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": QUESTION_GENERATION_SYSTEM_PROMPT},
+            {"role": "user", "content": user_query},
+        ],
+        temperature=0.2,  # reduce creativity for strict adherence
+        max_tokens=1500,  # adjust to allow for full responses
+    )
+    # parse the response
+    content = response.choices[0].message["content"].strip()
 
-        # convert to dict if JSON-like
-        return eval(content)
-
-    except openai.APIError as e:
-        print("➡ error occurred: {e}:")
-        return e
+    # convert to dict if JSON-like
+    return eval(content)
 
 
-# example usage
 if __name__ == "__main__":
     questions = generate_questions(
         user_query=user_prompt(
