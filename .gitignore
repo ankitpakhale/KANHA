@@ -47,6 +47,11 @@ zookeeper-data/
 # Ignore package dependencies
 node_modules/
 
+# Caching files (e.g., from various tools)
+.kanha_cache/
+.cache/
+*.cache/
+*.tgz
 
 # Others
 docs.txt
