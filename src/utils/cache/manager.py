@@ -61,12 +61,14 @@ def __cache(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         # generate a cache key based on function arguments
+        # FIXME: fix the generation of cache key
         cache_key = (
             f"{func.__name__}-"
             + "-".join(str(arg) for arg in args)
             + "-"
             + "-".join(f"{k}={v}" for k, v in kwargs.items())
         )
+        print("➡ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> cache_key:", cache_key)
 
         # check if the result is cached
         cached_result = cache_manager.get(cache_key)

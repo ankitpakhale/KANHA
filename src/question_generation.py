@@ -2,11 +2,11 @@ import os
 import openai
 from dotenv import load_dotenv
 from constants import (
-    QUESTION_GENERATION_SYSTEM_PROMPT,
     TEMPERATURE,
     MAX_TOKENS,
     GPT_MODEL,
 )
+from prompts import question_generation_system_prompt, answer_evaluation_prompt
 
 load_dotenv()
 
@@ -38,7 +38,7 @@ def __generate_questions(user_query: str):
     response = openai.ChatCompletion.create(
         model=GPT_MODEL,
         messages=[
-            {"role": "system", "content": QUESTION_GENERATION_SYSTEM_PROMPT},
+            {"role": "system", "content": question_generation_system_prompt},
             {"role": "user", "content": user_query},
         ],
         temperature=TEMPERATURE,  # reduce creativity for strict adherence
