@@ -98,7 +98,7 @@ def generate_questions():
     try:
         questions = __generate_questions(
             user_query=__user_prompt(
-                num_questions=1,
+                num_questions=2,
                 difficulty_level=difficulty_level,
                 programming_language=programming_language,
                 topics=topics,
