@@ -1,10 +1,9 @@
 from framework import App
-from routes.question_routes import QuestionRoutes
+from routes.question_routes import question_routes_obj
 
 
 # register question routes
-question_routes = QuestionRoutes()
-question_routes.register()
+question_routes_obj.register()
 
 
 if __name__ == "__main__":

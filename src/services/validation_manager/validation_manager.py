@@ -64,10 +64,13 @@ class ValidationManager:
         ...
 
 
-def validation_manager_obj(
+def validation_payload_manager_obj(
     difficulty_level: str, programming_language: str, topics: str
 ):
     validation_manager_result = ValidationManager(
         difficulty_level, programming_language, topics
     ).validate_payload()
     return validation_manager_result
+
+
+def validation_response_manager_obj(response: dict): ...
