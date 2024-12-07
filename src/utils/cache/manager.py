@@ -53,7 +53,7 @@ class CacheManager:
 cache_manager = CacheManager()
 
 
-def __cache(func):
+def cache(func):
     """
     Custom decorator to cache the result using CacheManager.
     """
@@ -87,11 +87,11 @@ def __cache(func):
     return wrapper
 
 
-def __delete_cache(_key):
+def delete_cache(_key):
     cache_manager.delete(_key)
     __logger.debug(f"Cache deleted for key '{_key}'!!!")
 
 
-def __clear_cache():
+def clear_cache():
     cache_manager.clear()
     __logger.debug("Deleted all caches!!!")
