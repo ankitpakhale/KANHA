@@ -1,38 +1,42 @@
-# Python specific files
+# python specific files
 *.pyc
 *.pyo
 *.pyd
 __pycache__/
 *.env
 
-# Jupyter Notebook checkpoints
+# jupyter notebook checkpoints
 .ipynb_checkpoints/
 
-# Virtual environment
+# virtual environment
 env/
 venv/
 ENV/
 .venv/
 
-# AWS credentials and config
+# aws credentials and config
 .aws/
+*.aws/
 
-# Logs
+# aws cli and cloudformation cache
+.awscli/
+
+# logs
 *.log
 *.out
 *.err
 
-# Operating system files
+# operating system files
 .DS_Store
 Thumbs.db
 
-# IDE/Editor specific files
+# ide/editor specific files
 .vscode/
 .idea/
 *.sublime-project
 *.sublime-workspace
 
-# Kafka related files
+# kafka related files
 logs/
 tmp/
 *.pid
@@ -41,19 +45,34 @@ zookeeper-logs/
 kafka-data/
 zookeeper-data/
 
-# Ignore S3 cache or local sync
+# ignore s3 cache or local sync
 .s3/
 
-# Ignore package dependencies
+# ignore package dependencies
 node_modules/
 
-# Caching files (e.g., from various tools)
+# caching files (e.g., from various tools)
 .kanha_cache/
 .cache/
 *.cache/
 *.tgz
 
-# Others
+# openai and model-specific files
+openai_cache/
+openai_api_keys.json
+openai_secrets/
+
+# ruff (python linter) cache
+.ruff_cache/
+
+# mypy (python type checker) cache
+.mypy_cache/
+
+# others
 docs.txt
 EC2
 *.pem
+
+# temporary files
+*.swp
+*.swo
