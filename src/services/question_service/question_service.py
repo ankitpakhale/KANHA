@@ -1,3 +1,10 @@
+# TODO:
+"""
+get question generator from .env (OPENAI, AWS BedRock)
+get model from .env
+"""
+
+
 class QuestionService:
     def __init__(self, difficulty_level: str, programming_language: str, topics: str):
         self.difficulty_level = difficulty_level
