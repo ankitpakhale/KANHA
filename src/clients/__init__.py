@@ -1,2 +1,16 @@
 from .bedrock_client import AWSBedrockClient
-from .openai_client import question_generation_client, answer_evaluation_client
+from .openai_client import (
+    OpenAIBaseClient,
+    OpenAIStrategy,
+    GenerateQuestionsStrategy,
+    EvaluateAnswersStrategy,
+)
+
+
+__all__ = [
+    "AWSBedrockClient",
+    "OpenAIBaseClient",
+    "OpenAIStrategy",
+    "GenerateQuestionsStrategy",
+    "EvaluateAnswersStrategy",
+]

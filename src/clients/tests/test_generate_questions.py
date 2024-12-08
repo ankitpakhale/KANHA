@@ -1,7 +1,15 @@
-from clients.openai_client import question_generation_client
+import sys
+from pathlib import Path
+
+# Add the `src` directory to sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+
+from clients.openai_client import OpenAIBaseClient, GenerateQuestionsStrategy
 
 # instantiate OpenAIClient with GenerateQuestionsStrategy
-questions = question_generation_client.execute(
+client = OpenAIBaseClient(GenerateQuestionsStrategy())
+
+questions = client.execute(
     num_questions=2,
     difficulty_level="easy",
     programming_language="python",
