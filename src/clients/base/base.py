@@ -13,7 +13,7 @@ class Prompt:
         programming_language: str,
         topics: str,
         num_questions: Optional[int] = 20,
-    ) -> str:
+    ):
         question_generation_system_prompt = prompt_factory.create_prompt(
             prompt_type=QUESTION_GENERATION,
             difficulty_level=difficulty_level,
@@ -29,7 +29,7 @@ class Prompt:
         programming_language: str,
         topics: str,
         num_questions: Optional[str] = 20,
-    ) -> str:
+    ):
         question_generation_user_prompt = prompt_factory.create_prompt(
             prompt_type=QUESTION_GENERATION,
             difficulty_level=difficulty_level,
@@ -40,7 +40,7 @@ class Prompt:
         return question_generation_user_prompt
 
     @staticmethod
-    def get_answer_evaluation_system_prompt(user_code: Dict[str, str]) -> str:
+    def get_answer_evaluation_system_prompt(user_code: Dict[str, str]):
         answer_evaluation_system_prompt = prompt_factory.create_prompt(
             prompt_type=ANSWER_EVALUATION,
             user_code=user_code,
@@ -48,7 +48,7 @@ class Prompt:
         return answer_evaluation_system_prompt
 
     @staticmethod
-    def get_answer_evaluation_user_prompt(user_code: Dict[str, str]) -> str:
+    def get_answer_evaluation_user_prompt(user_code: Dict[str, str]):
         answer_evaluation_user_prompt = prompt_factory.create_prompt(
             prompt_type=ANSWER_EVALUATION,
             user_code=user_code,

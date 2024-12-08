@@ -10,7 +10,7 @@ from clients.openai_client import OpenAIBaseClient, GenerateQuestionsStrategy
 client = OpenAIBaseClient(GenerateQuestionsStrategy())
 
 questions = client.execute(
-    num_questions=2,
+    num_questions=3,
     difficulty_level="easy",
     programming_language="python",
     topics=["loops", "functions"],

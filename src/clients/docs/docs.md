@@ -25,6 +25,14 @@
   - test_evaluate_answers.py
 ```
 
+---
+
+### Client Package Architecture Diagram
+
+![Client Package Architecture Diagram](ClientPackageArchitectureDiagram.png)
+
+---
+
 ### Evaluate Answer Schema
 
 ```json

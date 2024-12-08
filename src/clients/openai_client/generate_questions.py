@@ -1,7 +1,7 @@
 from typing import List, Dict, Optional
 import openai
-from .openai_strategy import OpenAIStrategy
-from .base import Prompt
+from clients import Prompt
+from .openai_base import OpenAIStrategy
 
 QUESTION_GENERATION = "question_generation"
 
