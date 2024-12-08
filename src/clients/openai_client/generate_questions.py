@@ -3,8 +3,6 @@ import openai
 from clients import Prompt
 from .openai_base import OpenAIStrategy
 
-QUESTION_GENERATION = "question_generation"
-
 
 class GenerateQuestionsStrategy(OpenAIStrategy, Prompt):
     """
