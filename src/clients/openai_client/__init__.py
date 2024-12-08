@@ -1,6 +1,5 @@
 from .openai_base import OpenAIBaseClient, OpenAIStrategy
-from .generate_questions import GenerateQuestionsStrategy
-from .evaluate_answers import EvaluateAnswersStrategy
+from .strategy import GenerateQuestionsStrategy, EvaluateAnswersStrategy
 
 __all__ = [
     "OpenAIBaseClient",

@@ -1,7 +1,7 @@
 from typing import Dict
 import openai
 from clients import Prompt
-from .openai_base import OpenAIStrategy
+from ..openai_base import OpenAIStrategy
 
 
 class EvaluateAnswersStrategy(OpenAIStrategy, Prompt):

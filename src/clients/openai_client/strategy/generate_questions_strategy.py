@@ -1,7 +1,7 @@
 from typing import List, Dict, Optional
 import openai
 from clients import Prompt
-from .openai_base import OpenAIStrategy
+from ..openai_base import OpenAIStrategy
 
 
 class GenerateQuestionsStrategy(OpenAIStrategy, Prompt):
