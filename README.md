@@ -1,5 +1,82 @@
 ## **KANHA** – **Kustomized Assessment & NLP-based Hyperpersonalized Assessments**
 
+### **Project Structure**
+
+```
+KANHA
+	src/
+	├── prompts/
+	│   ├── __init__.py                           # Initializes the prompts package
+	│   ├── question_generation/                  # Subpackage for question generation prompts
+	│   │   ├── __init__.py                       # Initializes the subpackage
+	│   │   ├── user_prompts.py                   # User input prompts for question generation
+	│   │   ├── system_prompts.py                 # System prompts for question generation
+	│   ├── answer_evaluation/                    # Subpackage for answer evaluation prompts
+	│   │   ├── __init__.py                       # Initializes the subpackage
+	│   │   ├── user_prompts.py                   # User input prompts for answer evaluation
+	│   │   ├── system_prompts.py                 # System prompts for answer evaluation
+	│   └── prompt_manager.py                     # Centralized logic for managing prompts (Factory and logic)
+	│
+	├── clients/                                  # Clients for external APIs
+	│   ├── bedrock_client/                       # Bedrock package (question generation + evaluation)
+	│   │	├── __init__.py                       # Bedrock constructor
+	│   │	├── base.py                   		  # Bedrock base clients
+	│	│   └── bedrock_client.py                 # Bedrock client for question generation + evaluation
+	│   │
+	│   ├── openai_client/                        # OpenAI package (question generation + evaluation)
+	│   │	├── __init__.py                       # OpenAI constructor
+	│   │	├── base.py                           # OpenAI base clients
+	│	│   └── openai_client.py                  # OpenAI client for question generation + evaluation
+	│   │
+	├── clients/                                  # Clients for external APIs
+	│   ├── openai_client.py                      # Handles OpenAI API calls (question generation + evaluation)
+	│   ├── bedrock_client.py                     # Handles Bedrock API calls (question generation + evaluation)
+	│   └── __init__.py                           # Makes clients a Python package
+	│
+	├── config/                                   # Configuration files
+	│   ├── aws_config.py                         # AWS configurations (Bedrock, RDS, S3, etc.)
+	│   ├── base_config.py                        # Base configurations
+	│   ├── env_config.py                         # Environments configurations
+	│   ├── general_config.py                     # General configurations
+	│   ├── openai_config.py                      # OpenAI API configurations
+	│   └── __init__.py                           # Makes config a Python package
+	│
+	├── framework/                                # Web framework files
+	│   ├── __init__.py                           # Initializes the framework package
+	│   └── bottle_app.py                         # Encapsulates Bottle-specific components
+	│
+	├── repository/                               # Database interaction layer
+	│   ├── question_repo.py                      # Handles CRUD operations for questions
+	│   ├── evaluation_repo.py                    # Handles CRUD operations for evaluation results
+	│   └── __init__.py                           # Makes repository a Python package
+	│
+	├── routes/                                   # API endpoints (controllers)
+	│   ├── question_routes.py                    # Routes for question generation
+	│   ├── evaluation_routes.py                  # Routes for answer evaluation
+	│   └── __init__.py                           # Makes routes a Python package
+	│
+	├── services/                                 # Business logic layer
+	│   ├── question_service/                     # Core logic for question generation
+	│   │   ├── __init__.py                       # Main service logic
+	│   ├── evaluation_service/                   # Core logic for answer evaluation
+	│   │   ├── __init__.py                       # Main service logic
+	│   ├── validation_manager/                   # Payload validation logic
+	│   │   ├── __init__.py                       # Main validation logic
+	│   └── __init__.py                           # Makes services a Python package
+	│
+	├── utils/                                    # Utilities for reusable logic
+	│   ├── logging_manager/                      # Handles logging for the project
+	│   │   ├── __init__.py                       # Main logging logic
+	│   ├── cache_manager/                        # Handles caching for the project
+	│   │   ├── __init__.py                       # Main cache logic
+	│   ├── __init__.py                           # Makes utils a Python package
+	│   │
+	├── main.py                                   # Application entry point
+	│
+	└── start_application.sh                      # Bash file to run main entry point
+
+```
+
 ### **Project Overview**
 
 **KANHA** is a cutting-edge, AI-driven platform designed to provide highly personalized programming assessments and evaluate user submissions with precision. By leveraging NLP (Natural Language Processing) and AI, KANHA delivers customized question sets tailored to individual user requirements, ensuring a unique and efficient learning or assessment experience. The system focuses on two key processes: generating questions based on user inputs and evaluating answers with meaningful feedback. The platform awards points for programming questions based on initial code quality and provides optimized solutions for improvement.

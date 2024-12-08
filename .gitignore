@@ -21,6 +21,12 @@ ENV/
 # aws cli and cloudformation cache
 .awscli/
 
+# AWS RDS, Bedrock, S3, Lambda related files
+.rds/
+.bedrock/
+.s3/
+lambda/
+
 # logs
 *.log
 *.out
@@ -44,9 +50,6 @@ kafka-logs/
 zookeeper-logs/
 kafka-data/
 zookeeper-data/
-
-# ignore s3 cache or local sync
-.s3/
 
 # ignore package dependencies
 node_modules/
@@ -76,3 +79,10 @@ EC2
 # temporary files
 *.swp
 *.swo
+
+# egg files
+*.egg
+*.egg-info
+
+# kanha egg-info
+kanha.egg-info/

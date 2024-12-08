@@ -1,10 +1,10 @@
 from typing import Optional
 from abc import ABC, abstractmethod
-from answer_evaluation import (
+from .answer_evaluation import (
     ANSWER_EVALUATION_SYSTEM_PROMPT,
     ANSWER_EVALUATION_USER_PROMPT,
 )
-from question_generation import (
+from .question_generation import (
     QUESTION_GENERATION_SYSTEM_PROMPT,
     QUESTION_GENERATION_USER_PROMPT,
 )
