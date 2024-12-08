@@ -86,3 +86,6 @@ EC2
 
 # kanha egg-info
 kanha.egg-info/
+
+# builds
+build
