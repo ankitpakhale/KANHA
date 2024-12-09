@@ -21,6 +21,9 @@ class AWSConfig(BaseConfig):
     BEDROCK_MODEL = os.getenv(
         "BEDROCK_MODEL", "amazon.titan-tg1-large"
     )  # default bedrock model
+    BEDROCK_MAX_TOKENS = int(
+        os.getenv("BEDROCK_MAX_TOKENS", 4096)
+    )  # default max tokens for responses
 
     # rds-specific settings
     RDS_HOST = os.getenv("RDS_HOST", "localhost")  # default RDS host

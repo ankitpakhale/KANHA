@@ -6,74 +6,98 @@
 KANHA
 	src/
 	├── prompts/
-	│   ├── __init__.py                           # Initializes the prompts package
-	│   ├── question_generation/                  # Subpackage for question generation prompts
-	│   │   ├── __init__.py                       # Initializes the subpackage
-	│   │   ├── user_prompts.py                   # User input prompts for question generation
-	│   │   ├── system_prompts.py                 # System prompts for question generation
-	│   ├── answer_evaluation/                    # Subpackage for answer evaluation prompts
-	│   │   ├── __init__.py                       # Initializes the subpackage
-	│   │   ├── user_prompts.py                   # User input prompts for answer evaluation
-	│   │   ├── system_prompts.py                 # System prompts for answer evaluation
-	│   └── prompt_manager.py                     # Centralized logic for managing prompts (Factory and logic)
+	│   ├── __init__.py                               # initializes the prompts package
+	│   ├── question_generation/                      # subpackage for question generation prompts
+	│   │   ├── __init__.py                           # initializes the subpackage
+	│   │   ├── user_prompts.py                       # user input prompts for question generation
+	│   │   ├── system_prompts.py                     # system prompts for question generation
+	│   ├── answer_evaluation/                        # subpackage for answer evaluation prompts
+	│   │   ├── __init__.py                           # initializes the subpackage
+	│   │   ├── user_prompts.py                       # user input prompts for answer evaluation
+	│   │   ├── system_prompts.py                     # system prompts for answer evaluation
+	│   └── prompt_manager.py                         # centralized logic for managing prompts (Factory and logic)
 	│
-	├── clients/                                  # Clients for external APIs
-	│   ├── bedrock_client/                       # Bedrock package (question generation + evaluation)
-	│   │	├── __init__.py                       # Bedrock constructor
-	│   │	├── base.py                   		  # Bedrock base clients
-	│	│   └── bedrock_client.py                 # Bedrock client for question generation + evaluation
+	├── clients/  									  # all client-related modules and subpackages
+	│   ├── __init__.py  							  # constructor for the clients package
 	│   │
-	│   ├── openai_client/                        # OpenAI package (question generation + evaluation)
-	│   │	├── __init__.py                       # OpenAI constructor
-	│   │	├── base.py                           # OpenAI base clients
-	│	│   └── openai_client.py                  # OpenAI client for question generation + evaluation
+	│   ├── base/  									  # base subpackage under clients
+	│   │   ├── __init__.py
+	│   │   └── base.py  							  # shared logic for clients like prompt generation
 	│   │
-	├── clients/                                  # Clients for external APIs
-	│   ├── openai_client.py                      # Handles OpenAI API calls (question generation + evaluation)
-	│   ├── bedrock_client.py                     # Handles Bedrock API calls (question generation + evaluation)
-	│   └── __init__.py                           # Makes clients a Python package
-	│
-	├── config/                                   # Configuration files
-	│   ├── aws_config.py                         # AWS configurations (Bedrock, RDS, S3, etc.)
-	│   ├── base_config.py                        # Base configurations
-	│   ├── env_config.py                         # Environments configurations
-	│   ├── general_config.py                     # General configurations
-	│   ├── openai_config.py                      # OpenAI API configurations
-	│   └── __init__.py                           # Makes config a Python package
-	│
-	├── framework/                                # Web framework files
-	│   ├── __init__.py                           # Initializes the framework package
-	│   └── bottle_app.py                         # Encapsulates Bottle-specific components
-	│
-	├── repository/                               # Database interaction layer
-	│   ├── question_repo.py                      # Handles CRUD operations for questions
-	│   ├── evaluation_repo.py                    # Handles CRUD operations for evaluation results
-	│   └── __init__.py                           # Makes repository a Python package
-	│
-	├── routes/                                   # API endpoints (controllers)
-	│   ├── question_routes.py                    # Routes for question generation
-	│   ├── evaluation_routes.py                  # Routes for answer evaluation
-	│   └── __init__.py                           # Makes routes a Python package
-	│
-	├── services/                                 # Business logic layer
-	│   ├── question_service/                     # Core logic for question generation
-	│   │   ├── __init__.py                       # Main service logic
-	│   ├── evaluation_service/                   # Core logic for answer evaluation
-	│   │   ├── __init__.py                       # Main service logic
-	│   ├── validation_manager/                   # Payload validation logic
-	│   │   ├── __init__.py                       # Main validation logic
-	│   └── __init__.py                           # Makes services a Python package
-	│
-	├── utils/                                    # Utilities for reusable logic
-	│   ├── logging_manager/                      # Handles logging for the project
-	│   │   ├── __init__.py                       # Main logging logic
-	│   ├── cache_manager/                        # Handles caching for the project
-	│   │   ├── __init__.py                       # Main cache logic
-	│   ├── __init__.py                           # Makes utils a Python package
+	│   ├── bedrock_client/  						  # subpackage for AWS Bedrock-specific client
+	│   │   ├── __init__.py
+	│   │   ├── bedrock_client.py  					  # main client logic for interacting with Bedrock
+	│   │   ├── base/  								  # Bedrock-specific base functionality
+	│   │   │   ├── __init__.py
+	│   │   │
+	│   │   └── strategy/  							  # Bedrock-specific strategies
+	│   │       ├── __init__.py
 	│   │
-	├── main.py                                   # Application entry point
+	│   ├── openai_client/  						  # OpenAI-specific client
+	│   │   ├── __init__.py
+	│   │   ├── openai_base/  						  # base OpenAI-related functionality
+	│   │   │   ├── __init__.py
+	│   │   │   ├── openai_base_client.py  			  # base OpenAI client
+	│   │   │   └── openai_strategy.py  			  # strategy implementation for OpenAI
+	│   │   │
+	│   │   └── strategy/  							  # subpackage for OpenAI-specific strategies
+	│   │       ├── __init__.py
+	│   │       ├── evaluate_answers_strategy.py      # strategy for evaluating answers
+	│   │       └── generate_questions_strategy.py    # strategy for generating questions
+	│   │
+	│   ├── docs/  									  # documentation for the clients package
+	│   │   ├── ClientPackageArchitectureDiagram.png  # architecture diagram
+	│   │   └── docs.md  							  # documentation for the client package structure and usage
+	│   │
+	│   ├── response_examples/   					  # sample response directory
+	│   │   ├── evaluate_answers.json   			  # sample response for answer evaluation
+	│   │   └── generate_questions.json 			  # sample response for question generation
+	│   │
+	│   └── tests/  								  # tests for all clients functionality
+	│       ├── test_evaluate_answers.py    		  # tests for answer evaluation functionality
+	│       └── test_generate_questions.py  		  # tests for question generation functionality
 	│
-	└── start_application.sh                      # Bash file to run main entry point
+	├── config/                                       # configuration files
+	│   ├── aws_config.py                             # AWS configurations (Bedrock, RDS, S3, etc.)
+	│   ├── base_config.py                            # base configurations
+	│   ├── env_config.py                             # environments configurations
+	│   ├── general_config.py                         # general configurations
+	│   ├── openai_config.py                          # OpenAI API configurations
+	│   └── __init__.py                               # makes config a Python package
+	│
+	├── framework/                                    # web framework files
+	│   ├── __init__.py                               # initializes the framework package
+	│   └── bottle_app.py                             # encapsulates Bottle-specific components
+	│
+	├── repository/                                   # database interaction layer
+	│   ├── question_repo.py                          # handles CRUD operations for questions
+	│   ├── evaluation_repo.py                        # handles CRUD operations for evaluation results
+	│   └── __init__.py                               # makes repository a Python package
+	│
+	├── routes/                                       # API endpoints (controllers)
+	│   ├── question_routes.py                        # routes for question generation
+	│   ├── evaluation_routes.py                      # routes for answer evaluation
+	│   └── __init__.py                               # makes routes a Python package
+	│
+	├── services/                                     # business logic layer
+	│   ├── question_service/                         # core logic for question generation
+	│   │   ├── __init__.py                           # main service logic
+	│   ├── evaluation_service/                       # core logic for answer evaluation
+	│   │   ├── __init__.py                           # main service logic
+	│   ├── validation_manager/                       # Payload validation logic
+	│   │   ├── __init__.py                           # main validation logic
+	│   └── __init__.py                               # makes services a Python package
+	│
+	├── utils/                                        # utilities for reusable logic
+	│   ├── logging_manager/                          # handles logging for the project
+	│   │   ├── __init__.py                           # main logging logic
+	│   ├── cache_manager/                            # handles caching for the project
+	│   │   ├── __init__.py                           # main cache logic
+	│   ├── __init__.py                               # makes utils a Python package
+	│   │
+	├── main.py                                       # application entry point
+	│
+	└── start_application.sh                          # bash file to run main entry point
 
 ```
 

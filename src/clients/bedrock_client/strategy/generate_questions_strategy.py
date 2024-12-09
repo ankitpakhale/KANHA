@@ -1,8 +1,14 @@
-from ..base import BedrockBaseStrategy
 from typing import Any, Dict
+import boto3
+import json
+from clients import Prompt
+from ..base import BedrockBaseStrategy
+import requests
+from botocore.auth import SigV4Auth
+from botocore.awsrequest import AWSRequest
 
 
-class GenerateQuestionsStrategy(BedrockBaseStrategy):
+class GenerateQuestionsStrategy(BedrockBaseStrategy, Prompt):
     """
     Strategy to generate programming questions using AWS Bedrock.
     """
@@ -11,35 +17,25 @@ class GenerateQuestionsStrategy(BedrockBaseStrategy):
     def execute(self, client: "BedrockBaseClient", **kwargs: Any) -> Dict:
         """
         Generate programming questions using Bedrock API.
-
-        Args:
-            client (BedrockBaseClient): The Bedrock client.
-            kwargs (dict): Arguments such as `num_questions`, `difficulty_level`,
-                           `programming_language`, and `topics`.
-
-        Returns:
-            dict: Generated questions and metadata.
         """
-        num_questions = kwargs.get("num_questions", 5)
-        difficulty_level = kwargs.get("difficulty_level", "medium")
-        programming_language = kwargs.get("programming_language", "python")
-        topics = kwargs.get("topics", [])
-
-        # Simulate Bedrock API request and response
-        response = {
-            "questions": [
-                {
-                    "id": f"Q{i + 1}",
-                    "text": f"Sample question {i + 1} on {', '.join(topics)} in {programming_language} ({difficulty_level})",
-                }
-                for i in range(num_questions)
-            ],
-            "metadata": {
-                "model": client.model,
-                "num_questions": num_questions,
-                "difficulty_level": difficulty_level,
-                "programming_language": programming_language,
-                "topics": topics,
+        # TODO: Add actual logic to get data from Amazon Bedrock
+        response_body = [
+            {
+                "q_type": "MCQ",
+                "question": "In Python, which loop is used when the number of iterations is known?",
+                "options": ["for loop", "while loop", "do-while loop", "foreach loop"],
+                "correct_answer": "for loop",
             },
-        }
-        return response
+            {
+                "q_type": "MCQ",
+                "question": "What is the purpose of a return statement in Python functions?",
+                "options": [
+                    "To terminate the function execution",
+                    "To skip the current iteration",
+                    "To print a value to the console",
+                    "To define a new variable",
+                ],
+                "correct_answer": "To terminate the function execution",
+            },
+        ]
+        return response_body
