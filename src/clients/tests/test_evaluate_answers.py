@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-# Add the `src` directory to sys.path
+# add the src directory to sys.path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from clients.openai_client import OpenAIBaseClient, EvaluateAnswersStrategy

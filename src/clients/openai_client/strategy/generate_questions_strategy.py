@@ -1,10 +1,10 @@
 from typing import List, Dict, Optional
 import openai
 from clients import Prompt
-from ..openai_base import OpenAIStrategy
+from ..base import OpenAIBaseStrategy
 
 
-class GenerateQuestionsStrategy(OpenAIStrategy, Prompt):
+class GenerateQuestionsStrategy(OpenAIBaseStrategy, Prompt):
     """
     Strategy to generate programming questions using OpenAI API.
     """

@@ -1,9 +1,9 @@
-from .openai_base import OpenAIBaseClient, OpenAIStrategy
+from .base import OpenAIBaseClient, OpenAIBaseStrategy
 from .strategy import GenerateQuestionsStrategy, EvaluateAnswersStrategy
 
 __all__ = [
     "OpenAIBaseClient",
-    "OpenAIStrategy",
+    "OpenAIBaseStrategy",
     "GenerateQuestionsStrategy",
     "EvaluateAnswersStrategy",
 ]

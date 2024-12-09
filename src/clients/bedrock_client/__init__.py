@@ -1,3 +1,10 @@
-from .bedrock_client import AWSBedrockClient
+from .base import BedrockBaseClient, BedrockBaseStrategy
+from .strategy import EvaluateAnswersStrategy, GenerateQuestionsStrategy
 
-__all__ = ["AWSBedrockClient"]
+
+__all__ = [
+    "BedrockBaseClient",
+    "BedrockBaseStrategy",
+    "EvaluateAnswersStrategy",
+    "GenerateQuestionsStrategy",
+]

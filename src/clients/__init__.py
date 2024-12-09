@@ -1,8 +1,8 @@
 from .base import Prompt, QUESTION_GENERATION, ANSWER_EVALUATION
-from .bedrock_client import AWSBedrockClient
+from .bedrock_client import BedrockBaseClient, BedrockBaseStrategy
 from .openai_client import (
     OpenAIBaseClient,
-    OpenAIStrategy,
+    OpenAIBaseStrategy,
     GenerateQuestionsStrategy,
     EvaluateAnswersStrategy,
 )
@@ -11,9 +11,10 @@ __all__ = [
     "Prompt",
     "QUESTION_GENERATION",
     "ANSWER_EVALUATION",
-    "AWSBedrockClient",
+    "BedrockBaseClient",
+    "BedrockBaseStrategy",
     "OpenAIBaseClient",
-    "OpenAIStrategy",
+    "OpenAIBaseStrategy",
     "GenerateQuestionsStrategy",
     "EvaluateAnswersStrategy",
 ]

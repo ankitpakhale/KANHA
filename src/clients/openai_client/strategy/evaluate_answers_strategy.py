@@ -1,10 +1,10 @@
 from typing import Dict
 import openai
 from clients import Prompt
-from ..openai_base import OpenAIStrategy
+from ..base import OpenAIBaseStrategy
 
 
-class EvaluateAnswersStrategy(OpenAIStrategy, Prompt):
+class EvaluateAnswersStrategy(OpenAIBaseStrategy, Prompt):
     """
     Strategy to evaluate programming answers using OpenAI API.
     """

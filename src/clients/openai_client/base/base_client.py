@@ -1,5 +1,5 @@
 from typing import Any
-from .openai_strategy import OpenAIStrategy
+from .base_strategy import OpenAIBaseStrategy
 from config import OpenAIConfig
 import openai
 
@@ -9,7 +9,7 @@ class OpenAIBaseClient:
     Base client to interact with OpenAI API using a strategy pattern.
     """
 
-    def __init__(self, strategy: OpenAIStrategy) -> None:
+    def __init__(self, strategy: OpenAIBaseStrategy) -> None:
         """
         Initialize OpenAIBaseClient with a specific strategy.
         """

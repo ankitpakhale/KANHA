@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 
-class OpenAIStrategy(ABC):
+class OpenAIBaseStrategy(ABC):
     """
     Abstract base class for OpenAI strategies.
     """
