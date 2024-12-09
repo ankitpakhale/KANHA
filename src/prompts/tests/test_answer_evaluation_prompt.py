@@ -1,10 +1,10 @@
 import sys
-import os
+from pathlib import Path
 
-# add the root directory of your project to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# Add the `src` directory to sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
-from prompt_manager import prompt_factory
+from prompts import prompt_factory
 
 answer_evaluation_obj = prompt_factory.create_prompt(
     prompt_type="answer_evaluation",
