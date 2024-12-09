@@ -1,23 +1,15 @@
-from bedrock_client import BaseClient
-from bedrock_client.strategy.generate_questions_strategy import (
-    GenerateQuestionsStrategy,
-)
-from bedrock_client.strategy.evaluate_answers_strategy import EvaluateAnswersStrategy
+import sys
+from pathlib import Path
 
-# Initialize strategies
-generate_strategy = GenerateQuestionsStrategy()
-evaluate_strategy = EvaluateAnswersStrategy()
+# add the src directory to sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
-# Generate questions
-bedrock_client = BaseClient(strategy=generate_strategy)
-response = bedrock_client.execute(
-    model_id="your-model-id", input_text="Generate questions on Python loops."
-)
-print(response)
+from clients.bedrock_client import BedrockBaseClient, EvaluateAnswersStrategy
 
-# Evaluate answers
-bedrock_client.strategy = evaluate_strategy
-response = bedrock_client.execute(
-    model_id="your-model-id", input_text="Evaluate this answer: '...'"
+# instantiate BedrockClient with EvaluateAnswersStrategy
+client = BedrockBaseClient(EvaluateAnswersStrategy())
+
+evaluation = client.execute(
+    user_code={"Q1": "def example(): pass", "Q2": "for i in range(5): print(i)"}
 )
-print(response)
+print("➡ evaluation:", evaluation)

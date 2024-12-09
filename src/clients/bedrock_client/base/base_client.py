@@ -1,22 +1,23 @@
-import boto3
 from typing import Any
+from .base_strategy import BedrockBaseStrategy
 from config import AWSConfig
+import openai
 
 
 class BedrockBaseClient:
     """
-    Core client for interacting with AWS Bedrock.
+    Base client to interact with OpenAI API using a strategy pattern.
     """
 
-    # flake8: noqa: F821
-    def __init__(self, strategy: "BedrockStrategy"):
+    def __init__(self, strategy: BedrockBaseStrategy) -> None:
+        """
+        Initialize BedrockBaseClient with a specific strategy.
+        """
         self.strategy = strategy
-        self.client = boto3.client("bedrock")  # AWS Bedrock client initialization
-
         self.model = AWSConfig.BEDROCK_MODEL
 
-    def execute(self, *args: Any, **kwargs: Any) -> Any:
+    def execute(self, **kwargs: Any) -> Any:
         """
-        Executes the strategy.
+        Execute the selected strategy with the provided arguments.
         """
-        return self.strategy.execute(self.client, *args, **kwargs)
+        return self.strategy.execute(client=self, **kwargs)

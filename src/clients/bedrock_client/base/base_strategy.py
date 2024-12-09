@@ -1,15 +1,16 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class BedrockBaseStrategy(ABC):
     """
-    Abstract base class for Bedrock strategies.
-    Defines methods that specific strategies must implement.
+    Abstract base class for OpenAI strategies.
     """
 
     @abstractmethod
-    def execute(self, *args, **kwargs) -> dict:
+    # flake8: noqa: F821
+    def execute(self, client: "BedrockBaseClient", **kwargs: Any) -> Any:
         """
-        Executes the Bedrock operation.
+        Execute the strategy logic.
         """
-        pass
+        raise NotImplementedError("Subclasses must implement the `execute` method.")

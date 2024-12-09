@@ -1,20 +1,42 @@
 from ..base import BedrockBaseStrategy
-from typing import Any
+from typing import Any, Dict
 
 
 class EvaluateAnswersStrategy(BedrockBaseStrategy):
     """
-    Strategy to evaluate answers using AWS Bedrock.
+    Strategy to evaluate user answers using AWS Bedrock.
     """
 
-    def execute(self, client: Any, model_id: str, input_text: str) -> Any:
+    # flake8: noqa: F821
+    def execute(self, client: "BedrockBaseClient", **kwargs: Any) -> Dict:
         """
-        Executes answer evaluation using Bedrock.
+        Evaluate user answers using Bedrock API.
+
+        Args:
+            client (BedrockBaseClient): The Bedrock client.
+            kwargs (dict): Arguments such as `user_code`.
+
+        Returns:
+            dict: Evaluation results for each question.
         """
-        response = client.invoke_model(
-            modelId=self.model,
-            contentType="application/json",
-            body={"prompt": input_text, "maxTokens": 50},
-        )
-        print("➡ EvaluateAnswersStrategy:", response["body"])
-        return response["body"]
+        user_code = kwargs.get("user_code", {})
+
+        # Simulate Bedrock API request and response
+        response = {
+            "evaluations": [
+                {
+                    "question_id": question_id,
+                    "feedback": (
+                        f"Code for {question_id} is valid."
+                        if "def" in code
+                        else f"Code for {question_id} is incomplete."
+                    ),
+                }
+                for question_id, code in user_code.items()
+            ],
+            "metadata": {
+                "model": client.model,
+                "total_questions": len(user_code),
+            },
+        }
+        return response

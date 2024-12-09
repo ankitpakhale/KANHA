@@ -1,16 +1,18 @@
-from bedrock_client import BaseClient
-from bedrock_client.strategy.generate_questions_strategy import (
-    GenerateQuestionsStrategy,
-)
-from bedrock_client.strategy.evaluate_answers_strategy import EvaluateAnswersStrategy
+import sys
+from pathlib import Path
 
-# Initialize strategies
-generate_strategy = GenerateQuestionsStrategy()
-evaluate_strategy = EvaluateAnswersStrategy()
+# add the src directory to sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
-# Generate questions
-bedrock_client = BaseClient(strategy=generate_strategy)
-response = bedrock_client.execute(
-    model_id="your-model-id", input_text="Generate questions on Python loops."
+from clients.bedrock_client import BedrockBaseClient, GenerateQuestionsStrategy
+
+# instantiate OpenAIClient with GenerateQuestionsStrategy
+client = BedrockBaseClient(GenerateQuestionsStrategy())
+
+questions = client.execute(
+    num_questions=2,
+    difficulty_level="easy",
+    programming_language="python",
+    topics=["loops", "functions"],
 )
-print(response)
+print("➡ questions:", questions)

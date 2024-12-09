@@ -79,6 +79,7 @@ EC2
 # temporary files
 *.swp
 *.swo
+__bedrock_client
 
 # egg files
 *.egg
