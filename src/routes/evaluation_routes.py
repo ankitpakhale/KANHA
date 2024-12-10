@@ -1,5 +1,5 @@
 from framework import App, Request
-from services.evaluation_service import evaluation_service_obj
+from services import evaluation_service_obj
 from services.validation_manager import validation_response_manager_obj
 from utils import __logger, ResponseManager
 
@@ -20,7 +20,6 @@ class EvaluationRoutes:
         """
         Initialize the Validation Manager and Answer Service.
         """
-        self.validation_manager = validation_response_manager_obj
         self.answer_service = evaluation_service_obj
 
     @ResponseManager.handle_response
@@ -32,16 +31,6 @@ class EvaluationRoutes:
         difficulty_level = Request.forms.get("difficulty_level")
         programming_language = Request.forms.get("programming_language")
         topics = Request.forms.get("topics")
-
-        # validate the payload
-        validation_result = self.validation_manager(
-            difficulty_level,
-            programming_language,
-            topics,
-        )
-        print(f">>>>>>>>>>>>>>>>>>> validation_result: {validation_result}")
-        if not validation_result:
-            raise "Error occured during validation"
 
         # generate questions using the service
         questions = self.question_service(

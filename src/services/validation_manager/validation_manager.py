@@ -1,4 +1,4 @@
-from utils.logging import __logger
+from utils import __logger
 
 
 class ValidationManager:
@@ -6,16 +6,31 @@ class ValidationManager:
     Validation Manager for validating payload and response
     """
 
-    def __init__(self, difficulty_level: str, programming_language: str, topics: str):
-        self.difficulty_level = difficulty_level
-        self.programming_language = programming_language
-        self.topics = topics
+    # TODO: use some design pattern to validate the data based on request_type
+
+    def __init__(self, **kwargs):
+        self.user_code = kwargs.get("user_code")
+        self.num_questions = kwargs.get("num_questions")
+        self.difficulty_level = kwargs.get("difficulty_level")
+        self.programming_language = kwargs.get("programming_language")
+        self.topics = kwargs.get("topics")
+        # __logger.info(">>>>>>>>>>>>>>>>>>> Validation Manager Initialized")
         print(">>>>>>>>>>>>>>>>>>> Validation Manager Initialized")
 
     def __validate_types(self):
         """
         Validates the datatype of the payloads
         """
+        if self.num_questions:
+            assert isinstance(
+                self.num_questions, int
+            ), f"num_questions is not integer: {self.num_questions}"
+
+        if self.user_code:
+            assert isinstance(
+                self.user_code, dict
+            ), f"user_code is not dictionary: {self.user_code}"
+
         assert isinstance(
             self.difficulty_level, str
         ), f"difficulty_level is not string: {self.difficulty_level}"
@@ -64,12 +79,8 @@ class ValidationManager:
         ...
 
 
-def validation_payload_manager_obj(
-    difficulty_level: str, programming_language: str, topics: dict
-):
-    validation_manager_result = ValidationManager(
-        difficulty_level, programming_language, topics
-    ).validate_payload()
+def validation_payload_manager_obj(**kwargs):
+    validation_manager_result = ValidationManager(**kwargs).validate_payload()
     return validation_manager_result
 
 
