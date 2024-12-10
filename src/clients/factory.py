@@ -1,9 +1,9 @@
 from typing import Optional, Any
 from config import GeneralConfig
-from .client_list import Bedrock, OpenAI
+from .client_types import Bedrock, OpenAI
 
 
-class Factory:
+class Client:
     def __init__(self, client_type: Optional[Any] = GeneralConfig.ACTIVE_CLIENT) -> Any:
         __client_type = OpenAI if client_type == OpenAI.__name__ else Bedrock
         self.client_type = __client_type()
