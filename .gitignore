@@ -79,7 +79,12 @@ EC2
 # temporary files
 *.swp
 *.swo
+
+# depricated packages
 __bedrock_client
+
+# depricated files
+__base.py
 
 # egg files
 *.egg
