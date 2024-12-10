@@ -1,7 +1,8 @@
-from typing import Optional
+from typing import Optional, List, Dict
 from clients import Base
 import openai
 from config import OpenAIConfig
+from typeguard import typechecked
 
 
 class OpenAI(Base):
@@ -11,6 +12,7 @@ class OpenAI(Base):
         self.temperature = OpenAIConfig.OPENAI_TEMPERATURE
         self.max_tokens = OpenAIConfig.OPENAI_MAX_TOKENS
 
+    @typechecked
     def generate_questions(
         self,
         difficulty_level: str,
@@ -47,18 +49,15 @@ class OpenAI(Base):
         # extract and return the generated questions
         __generation = __response["choices"][0]["message"]["content"]
         # __logger.info(f"Received generated response from OpenAI API: {evaluation}")
-        print(f"Received generated response from OpenAI API: {__generation}")
         return __generation
 
-    def evaluate_answers(self, user_code: dict):
+    @typechecked
+    def evaluate_answers(self, user_code: List[Dict[str, str]]):
         """
         Core logic to evaluate users answer using OpenAI client
         """
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)
-
-        print("➡ OpenAI evaluate_answers __system_prompt:", __system_prompt)
-        print("➡ OpenAI evaluate_answers __user_prompt:", __user_prompt)
 
         __response = openai.ChatCompletion.create(
             model=self.model,

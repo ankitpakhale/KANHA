@@ -26,14 +26,13 @@ class QuestionRoutes:
         questions_payload = dict(
             difficulty_level=Request.forms.get("difficulty_level"),
             programming_language=Request.forms.get("programming_language"),
-            # topics=literal_eval(Request.forms.get("topics")),
-            topics=Request.forms.get("topics"),
+            topics=literal_eval(Request.forms.get("topics")),
         )
         # generate questions using the service
-        questions = question_service_obj(**questions_payload)
-        print("Questions successfully generated")
+        response = question_service_obj(**questions_payload)
+        print("Response successfully generated")
         return {
-            "payload": questions,
+            "payload": response,
             "message": "Questions Generated Successfully",
             "status_code": 200,
         }

@@ -1,5 +1,6 @@
 from prompts import ANSWER_EVALUATION_SYSTEM_PROMPT, ANSWER_EVALUATION_USER_PROMPT
 from .base_prompt import BasePrompt
+from typing import Dict, List
 
 
 class AnswerEvaluationPrompt(BasePrompt):
@@ -7,7 +8,7 @@ class AnswerEvaluationPrompt(BasePrompt):
     Class to handle answer evaluation prompts.
     """
 
-    def __init__(self, user_code: str):
+    def __init__(self, user_code: Dict[List[str, str]]):
         self.user_code = user_code
 
     @staticmethod

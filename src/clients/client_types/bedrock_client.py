@@ -1,6 +1,7 @@
-from typing import Optional
+from typing import Optional, List, Dict
 from ..base import Base
 from config import AWSConfig
+from typeguard import typechecked
 
 
 class Bedrock(Base):
@@ -10,6 +11,7 @@ class Bedrock(Base):
         self.temperature = AWSConfig.BEDROCK_TEMPERATURE
         self.max_tokens = AWSConfig.BEDROCK_MAX_TOKENS
 
+    @typechecked
     def generate_questions(
         self,
         difficulty_level: str,
@@ -222,10 +224,14 @@ class Bedrock(Base):
 
         return __generation
 
-    def evaluate_answers(self, user_code: dict):
+    @typechecked
+    def evaluate_answers(self, user_code: List[Dict[str, str]]):
         """
         Core logic to evaluate users answer using OpenAI client
         """
+        print("➡ $$$$$$$$$$$$$$$$$$$$$$$$$$$$ evaluate_answers:", user_code)
+        print("➡ $$$$$$$$$$$$$$$$$$$$$$$$$$$$ type(evaluate_answers):", type(user_code))
+
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)
 

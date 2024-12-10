@@ -1,7 +1,7 @@
 from framework import App, Request
 from services import evaluation_service_obj
-from services.validation_manager import validation_response_manager_obj
 from utils import __logger, ResponseManager
+import json
 
 
 class EvaluationRoutes:
@@ -16,31 +16,19 @@ class EvaluationRoutes:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def __init__(self):
-        """
-        Initialize the Validation Manager and Answer Service.
-        """
-        self.answer_service = evaluation_service_obj
-
     @ResponseManager.handle_response
     def __evaluate_answer(self):
         """
         Handle the evaluation of answers based on the payload.
         """
         # retrieve data from request
-        difficulty_level = Request.forms.get("difficulty_level")
-        programming_language = Request.forms.get("programming_language")
-        topics = Request.forms.get("topics")
+        answers_payload = dict(user_code=json.loads(Request.forms.get("user_code")))
 
         # generate questions using the service
-        questions = self.question_service(
-            difficulty_level,
-            programming_language,
-            topics,
-        )
-        print(f"Questions successfully generated: {questions}")
+        response = evaluation_service_obj(**answers_payload)
+        print("Response successfully generated")
         return {
-            "payload": questions,
+            "payload": response,
             "message": "Questions Generated Successfully",
             "status_code": 200,
         }

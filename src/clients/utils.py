@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 from utils import __logger
 from prompts import prompt_factory
 
@@ -40,7 +40,7 @@ class Prompt:
         return question_generation_user_prompt
 
     @staticmethod
-    def get_answer_evaluation_system_prompt(user_code: Dict[str, str]):
+    def get_answer_evaluation_system_prompt(user_code: List[Dict[str, str]]):
         answer_evaluation_system_prompt = prompt_factory.create_prompt(
             prompt_type=ANSWER_EVALUATION,
             user_code=user_code,
@@ -48,7 +48,7 @@ class Prompt:
         return answer_evaluation_system_prompt
 
     @staticmethod
-    def get_answer_evaluation_user_prompt(user_code: Dict[str, str]):
+    def get_answer_evaluation_user_prompt(user_code: List[Dict[str, str]]):
         answer_evaluation_user_prompt = prompt_factory.create_prompt(
             prompt_type=ANSWER_EVALUATION,
             user_code=user_code,
