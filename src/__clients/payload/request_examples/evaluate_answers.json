@@ -1,6 +1,6 @@
 [
     {
-        "q_type": "problem_solving",
+        "q_id": "psq01223211122",
         "problem_description": "Write a Python function that takes a list of integers and returns the maximum product of three numbers from the list. The function should handle both positive and negative integers.",
         "input_format": "Input consists of a list of integers.",
         "output_format": "Output should be an integer representing the maximum product of three numbers.",
@@ -24,7 +24,7 @@
         "user_code": "def max_product(nums):\n    nums.sort()\n    return max(nums[0]*nums[1]*nums[-1], nums[-1]*nums[-2]*nums[-3])"
     },
     {
-        "q_type": "problem_solving",
+        "q_id": "psq01293211122",
         "problem_description": "Implement a Python function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string.",
         "input_format": "Input consists of an array of strings.",
         "output_format": "Output should be a string representing the longest common prefix.",

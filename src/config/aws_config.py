@@ -24,6 +24,9 @@ class AWSConfig(BaseConfig):
     BEDROCK_MAX_TOKENS = int(
         os.getenv("BEDROCK_MAX_TOKENS", 4096)
     )  # default max tokens for responses
+    BEDROCK_TEMPERATURE = float(
+        os.getenv("BEDROCK_TEMPERATURE", 0.3)
+    )  # default bedrock temperature
 
     # rds-specific settings
     RDS_HOST = os.getenv("RDS_HOST", "localhost")  # default RDS host

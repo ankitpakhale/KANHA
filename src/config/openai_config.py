@@ -7,7 +7,9 @@ class OpenAIConfig(BaseConfig):
 
     # general openai api settings
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-    OPENAI_TEMPERATURE = os.getenv("OPENAI_TEMPERATURE", 0.2)  # default temperature
+    OPENAI_TEMPERATURE = float(
+        os.getenv("OPENAI_TEMPERATURE", 0.2)
+    )  # default temperature
 
     # model-specific settings
     OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4")  # default model

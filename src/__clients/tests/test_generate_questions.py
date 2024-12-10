@@ -4,12 +4,12 @@ from pathlib import Path
 # add the src directory to sys.path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
+from clients.openai_client import OpenAIBaseClient, GenerateQuestionsStrategy
 
-from clients import ClientFactory, OpenAI, Bedrock
+# instantiate OpenAIClient with GenerateQuestionsStrategy
+client = OpenAIBaseClient(GenerateQuestionsStrategy())
 
-# create the client
-client = ClientFactory(client_type=OpenAI())
-questions = client.generate_questions(
+questions = client.execute(
     num_questions=2,
     difficulty_level="easy",
     programming_language="python",
