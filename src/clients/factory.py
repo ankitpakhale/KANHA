@@ -1,9 +1,12 @@
-from typing import Any
+from typing import Optional, Any
+from config import GeneralConfig
+from .client_list import Bedrock, OpenAI
 
 
-class ClientFactory:
-    def __init__(self, client_type: Any) -> Any:
-        self.client_type = client_type
+class Factory:
+    def __init__(self, client_type: Optional[Any] = GeneralConfig.ACTIVE_CLIENT) -> Any:
+        __client_type = OpenAI if client_type == OpenAI.__name__ else Bedrock
+        self.client_type = __client_type()
 
     def generate_questions(self, **kwargs):
         return self.client_type.generate_questions(**kwargs)

@@ -2,15 +2,18 @@ import os
 from config import BaseConfig
 
 
+CLIENT_LIST = ["OpenAI", "Bedrock"]
+
+
 class GeneralConfig(BaseConfig):
     ENV = os.getenv("ENV", "local")
     PORT = int(os.getenv("PORT", 8080))  # convert to integer
-    Q_GENERATOR = os.getenv(
-        "Q_GENERATOR", "OpenAIClient"
-    )  # default Q_GENERATOR is OpenAIClient
+    ACTIVE_CLIENT = os.getenv(
+        "ACTIVE_CLIENT", "OpenAI"
+    )  # default ACTIVE_CLIENT is OpenAI
 
-    # validation: Ensure Q_GENERATOR can only be "OpenAIClient" or "AWSBedrockClient"
-    if Q_GENERATOR not in ["OpenAIClient", "AWSBedrockClient"]:
+    # validation: Ensure ACTIVE_CLIENT can only be "OpenAI" or "Bedrock"
+    if ACTIVE_CLIENT not in CLIENT_LIST:
         raise ValueError(
-            f"Invalid Q_GENERATOR value: {Q_GENERATOR}. Must be 'OpenAIClient' or 'AWSBedrockClient'."
+            f"Invalid ACTIVE_CLIENT value: {ACTIVE_CLIENT}. Must be {', '.join(CLIENT_LIST)}."
         )

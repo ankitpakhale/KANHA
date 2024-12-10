@@ -5,10 +5,10 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 
-from clients import ClientFactory, OpenAI, Bedrock
+from clients import Factory, OpenAI, Bedrock
 
 # create the client
-client = ClientFactory(client_type=OpenAI())
+client = Factory(client_type=Bedrock.__name__)
 questions = client.generate_questions(
     num_questions=2,
     difficulty_level="easy",

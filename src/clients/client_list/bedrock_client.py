@@ -1,9 +1,9 @@
-from typing import Any, Optional
-from .base import BaseClient
+from typing import Optional
+from ..base import Base
 from config import AWSConfig
 
 
-class Bedrock(BaseClient):
+class Bedrock(Base):
     def __init__(self) -> None:
         # config data
         self.model = AWSConfig.BEDROCK_MODEL
@@ -32,8 +32,6 @@ class Bedrock(BaseClient):
             topics=topics,
             num_questions=num_questions,
         )
-        print("➡ Bedrock generate_questions __system_prompt:", __system_prompt)
-        print("➡ Bedrock generate_questions __user_prompt:", __user_prompt)
         __generation = [
             {
                 "q_type": "MCQ",
@@ -230,9 +228,6 @@ class Bedrock(BaseClient):
         """
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)
-
-        print("➡ Bedrock evaluate_answers __system_prompt:", __system_prompt)
-        print("➡ Bedrock evaluate_answers __user_prompt:", __user_prompt)
 
         __evaluation = [
             {

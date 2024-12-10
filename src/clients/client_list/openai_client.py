@@ -1,10 +1,10 @@
-from typing import Any, Optional
-from .base import BaseClient
+from typing import Optional
+from clients import Base
 import openai
 from config import OpenAIConfig
 
 
-class OpenAI(BaseClient):
+class OpenAI(Base):
     def __init__(self) -> None:
         # config data
         self.model = OpenAIConfig.OPENAI_MODEL
@@ -24,13 +24,13 @@ class OpenAI(BaseClient):
         __system_prompt = self.get_question_generation_system_prompt(
             difficulty_level=difficulty_level,
             programming_language=programming_language,
-            topics=topics,
+            topics=", ".join(topics),
             num_questions=num_questions,
         )
         __user_prompt = self.get_question_generation_user_prompt(
             difficulty_level=difficulty_level,
             programming_language=programming_language,
-            topics=topics,
+            topics=", ".join(topics),
             num_questions=num_questions,
         )
 
@@ -73,5 +73,4 @@ class OpenAI(BaseClient):
         # extract and return the evaluation results
         __evaluation = __response["choices"][0]["message"]["content"]
         # __logger.info(f"Received evaluation response from OpenAI API: {evaluation}")
-        print(f"Received evaluation response from OpenAI API: {__evaluation}")
         return __evaluation

@@ -24,7 +24,7 @@ class ValidationManager:
             self.programming_language, str
         ), f"programming_language is not string: {self.programming_language}"
 
-        assert isinstance(self.topics, str), f"topics is not string: {self.topics}"
+        assert isinstance(self.topics, list), f"topics is not list: {self.topics}"
 
     def __validate_required(self):
         """
@@ -65,7 +65,7 @@ class ValidationManager:
 
 
 def validation_payload_manager_obj(
-    difficulty_level: str, programming_language: str, topics: str
+    difficulty_level: str, programming_language: str, topics: dict
 ):
     validation_manager_result = ValidationManager(
         difficulty_level, programming_language, topics

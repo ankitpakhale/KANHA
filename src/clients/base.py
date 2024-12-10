@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from .utils import Prompt
 
 
-class BaseClient(ABC, Prompt):
+class Base(ABC, Prompt):
     @abstractmethod
     def generate_questions():
         pass

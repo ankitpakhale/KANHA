@@ -12,7 +12,7 @@ class QuestionGenerationPrompt(BasePrompt):
         self,
         difficulty_level: str,
         programming_language: str,
-        topics: str,
+        topics: list,
         num_questions: Optional[str] = 20,
     ):
         self.num_questions = num_questions
