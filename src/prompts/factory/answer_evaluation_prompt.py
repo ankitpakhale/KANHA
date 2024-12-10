@@ -8,7 +8,7 @@ class AnswerEvaluationPrompt(BasePrompt):
     Class to handle answer evaluation prompts.
     """
 
-    def __init__(self, user_code: Dict[List[str, str]]):
+    def __init__(self, user_code: Dict):
         self.user_code = user_code
 
     @staticmethod
