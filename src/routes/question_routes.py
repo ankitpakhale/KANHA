@@ -1,7 +1,8 @@
 from framework import App, Request
-from services.question_service import question_service_obj
+from services import question_service_obj
 from services.validation_manager import validation_payload_manager_obj
 from utils import __logger, ResponseManager
+from ast import literal_eval
 
 
 class QuestionRoutes:
@@ -16,39 +17,20 @@ class QuestionRoutes:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def __init__(self):
-        """
-        Initialize the Validation Manager and Question Service.
-        """
-        self.validation_manager = validation_payload_manager_obj
-        self.question_service = question_service_obj
-
     @ResponseManager.handle_response
     def __generate_questions(self):
         """
         Handle the generation of questions based on the payload.
         """
-        # retrieve data from request
-        difficulty_level = Request.forms.get("difficulty_level")
-        programming_language = Request.forms.get("programming_language")
-        topics = Request.forms.get("topics")
-
-        # validate the payload
-        validation_result = self.validation_manager(
-            difficulty_level,
-            programming_language,
-            topics,
+        # retrieve data from request and make a dictionary object
+        questions_payload = dict(
+            difficulty_level=Request.forms.get("difficulty_level"),
+            programming_language=Request.forms.get("programming_language"),
+            # topics=literal_eval(Request.forms.get("topics")),
+            topics=Request.forms.get("topics"),
         )
-        print(f">>>>>>>>>>>>>>>>>>> validation_result: {validation_result}")
-        if not validation_result:
-            raise "Error occured during validation"
-
         # generate questions using the service
-        questions = self.question_service(
-            difficulty_level,
-            programming_language,
-            topics,
-        )
+        questions = question_service_obj(**questions_payload)
         print("Questions successfully generated")
         return {
             "payload": questions,

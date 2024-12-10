@@ -35,9 +35,25 @@ class ResponseManager:
                     "message": message,
                     "status_code": status_code,
                 }
+            except AssertionError as ae:
+                # log the exception details
+                # __logger.critical(f"Assertion Error in processing request: {str(ae)}", exc_info=True)
+                print(f"Assertion Error in processing request: {str(ae)}")
+
+                # set the HTTP response status to 500 (Internal Server Error)
+                Response.status = 403
+
+                # return an error response in the standardized format
+                return {
+                    "status": False,
+                    "payload": {},
+                    "message": f"Validation Error: {str(ae)}",
+                    "status_code": 500,
+                }
             except Exception as e:
                 # log the exception details
-                print(f"Error in processing request: {str(e)}", exc_info=True)
+                # __logger.critical(f"Error in processing request: {str(e)}", exc_info=True)
+                print(f"Error in processing request: {str(e)}")
 
                 # set the HTTP response status to 500 (Internal Server Error)
                 Response.status = 500

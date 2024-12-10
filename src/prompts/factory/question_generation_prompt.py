@@ -8,6 +8,7 @@ class QuestionGenerationPrompt(BasePrompt):
     Class to handle question generation prompts.
     """
 
+    # TODO: remove this init and directly pass these data in specific method using **kwargs
     def __init__(
         self,
         difficulty_level: str,
