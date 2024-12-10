@@ -16,6 +16,24 @@ class ResponseManager:
         """
 
         def wrapper(*args, **kwargs):
+            # execute the decorated function
+            result = func(*args, **kwargs)
+
+            # extract response details
+            status_code = result.get("status_code", 200)
+            payload = result.get("payload", {})
+            message = result.get("message", "Success")
+
+            # set the response status code
+            Response.status = status_code
+
+            # return the standardized response
+            return {
+                "status": True,
+                "payload": payload,
+                "message": message,
+                "status_code": status_code,
+            }
             try:
                 # execute the decorated function
                 result = func(*args, **kwargs)

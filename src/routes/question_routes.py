@@ -1,6 +1,5 @@
-from framework import App, Request
+from framework import App, Request, Response
 from services import question_service_obj
-from services.validation_manager import validation_payload_manager_obj
 from utils import __logger, ResponseManager
 from ast import literal_eval
 
@@ -20,20 +19,34 @@ class QuestionRoutes:
     @ResponseManager.handle_response
     def __generate_questions(self):
         """
-        Handle the generation of questions based on the payload.
+        handle the generation of questions based on the payload.
         """
         # retrieve data from request and make a dictionary object
+        print(
+            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> difficulty_level",
+            Request.forms.get("difficulty_level"),
+        )
+        print(
+            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> programming_language",
+            Request.forms.get("programming_language"),
+        )
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> topics", Request.forms.get("topics"))
+
+        # parse the 'topics' field which was sent as a json string
+        topics = literal_eval(Request.forms.get("topics"))
+
         questions_payload = dict(
             difficulty_level=Request.forms.get("difficulty_level"),
             programming_language=Request.forms.get("programming_language"),
-            topics=literal_eval(Request.forms.get("topics")),
+            topics=topics,
         )
+
         # generate questions using the service
         response = question_service_obj(**questions_payload)
-        print("Response successfully generated")
+        print("response successfully generated")
         return {
             "payload": response,
-            "message": "Questions Generated Successfully",
+            "message": "questions generated successfully",
             "status_code": 200,
         }
 
