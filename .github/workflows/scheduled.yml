@@ -1,14 +1,6 @@
 name: ci workflow
 
 on:
-  push:
-    branches:
-      - master
-      - dev
-  pull_request:
-    branches:
-      - master
-      - dev
   # schedule to run daily at 12:37 AM IST
   schedule:
     - cron: '18 19 * * *'  # Runs at 7:07 PM UTC, which is 12:37 AM IST
