@@ -4,7 +4,7 @@ from utils import __logger, ResponseManager
 from ast import literal_eval
 
 
-class QuestionRoutes:
+class QuestionRoute:
     """
     Singleton class to handle and register routes for question generation.
     """
@@ -59,5 +59,5 @@ class QuestionRoutes:
         )
 
 
-# singleton instance of QuestionRoutes
-question_routes_obj = QuestionRoutes()
+# singleton instance of QuestionRoute
+question_route_obj = QuestionRoute()

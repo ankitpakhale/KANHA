@@ -4,7 +4,7 @@ from utils import __logger, ResponseManager
 import json
 
 
-class EvaluationRoutes:
+class EvaluationRoute:
     """
     Singleton class to handle and register routes for answer evaluation.
     """
@@ -40,5 +40,5 @@ class EvaluationRoutes:
         App.route("/answer-evaluation", method="POST", callback=self.__evaluate_answer)
 
 
-# singleton instance of EvaluationRoutes
-evaluation_routes_obj = EvaluationRoutes()
+# singleton instance of EvaluationRoute
+evaluation_route_obj = EvaluationRoute()
