@@ -1,1 +1,1 @@
-ignore = ["F401"]  # Ignore the "unused import" rule (F401)
+ignore = ["F401"] # Ignore the "unused import" rule (F401)

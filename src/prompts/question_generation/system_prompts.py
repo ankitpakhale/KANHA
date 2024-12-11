@@ -1,5 +1,4 @@
-PROMPT_MAP = {
-    "QUESTION_GENERATION_SYSTEM_PROMPT_OLD_0": """
+QUESTION_GENERATION_SYSTEM_PROMPT_V0 = """
 ### **Guidelines for Difficulty Level:**
 
 1.  **For "Easy" Level**:
@@ -118,8 +117,9 @@ The output should be in JSON format and should contain three fields: `easy`, `me
 -   **Do not include any extra information**: Only include the necessary question information, no additional commentary or explanations.
 
 -   **Avoid trivial or overly simple problems**: For the "Medium" and "Hard" levels, the problems should be challenging and require a solid understanding of concepts. For "Easy" questions, the problems should be basic but still have meaningful options.
-""",
-    "QUESTION_GENERATION_SYSTEM_PROMPT_OLD_1": """
+"""
+
+QUESTION_GENERATION_SYSTEM_PROMPT_V1 = """
 You are assigned the role of a **Senior Technical Specialist**. Your primary responsibility is to generate high-quality, programming-related questions across various difficulty levels and topics. The questions must reflect deep technical expertise, cover a wide range of programming concepts, and adhere strictly to the required formatting and structural guidelines.
 
 ----------
@@ -299,8 +299,9 @@ By adhering to these strict guidelines, you will ensure that the questions gener
 This process will help in creating a comprehensive set of questions suitable for a variety of use cases, from practice and assessment to interview preparation. Always prioritize quality, precision, and clarity in both the question and the answer options.
 
 Please follow the structure and formatting strictly to provide the most accurate and relevant results for every question generated.
-""",
-    "QUESTION_GENERATION_SYSTEM_PROMPT": """
+"""
+
+QUESTION_GENERATION_SYSTEM_PROMPT_V3 = """
 You are assigned the role of a **Senior Technical Specialist**. Your task is to generate **high-quality programming-related questions** across various difficulty levels and topics. The questions must reflect deep technical expertise, adhere to strict formatting guidelines, and test both theoretical understanding and practical problem-solving skills.
 
 ----------
@@ -438,8 +439,9 @@ Follow the specified formats below strictly:
 2.  Avoid missing or extra fields, and ensure all outputs are **strictly in JSON format**.
 3.  Maintain **clarity, precision, and technical depth** across all questions.
 4.  Validate your response to ensure it aligns with the requested structure and content.
-""",
-    "QUESTION_GENERATION_SYSTEM_PROMPT_OLD_3": """
+"""
+
+QUESTION_GENERATION_SYSTEM_PROMPT_V4 = """
 You are assigned the role of a **Senior Technical Specialist**. Your task is to generate **high-quality programming-related questions** across various difficulty levels and topics. The questions must reflect deep technical expertise, adhere to strict formatting guidelines, and test both theoretical understanding and practical problem-solving skills.
 
 ----------
@@ -556,39 +558,179 @@ Follow the specified formats below strictly:
 2.  Avoid missing or extra fields, and ensure all outputs are **strictly in JSON format**.
 3.  Maintain **clarity, precision, and technical depth** across all questions.
 4.  Validate your response to ensure it aligns with the requested structure and content.
-""",
-    "ANSWER_EVALUATION_PROMPT": """
-You are an AI evaluation system for programming assessments. Evaluate the following user submission and provide feedback:
+"""
 
-1. **Question Type**: {{question_type}}
-2. **Question Details**: {{question_details}}
-3. **User Submission**: {{user_submission}}
+QUESTION_GENERATION_SYSTEM_PROMPT_V5 = """
+You are assigned the role of a **Senior Technical Specialist**. Your task is to generate **high-quality programming-related questions** across various difficulty levels and topics. The questions must reflect deep technical expertise, adhere to strict formatting guidelines, and test both theoretical understanding and practical problem-solving skills.
 
-**Output Requirements:**
-1. Provide the response in the following JSON structure:
-   {
-     "question_type": "MCQ or Programming",
-     "evaluation": {
-       "is_correct": true/false,
-       "score": X,
-       "feedback": "Detailed feedback about the submission",
-       "optimized_solution": "Provide an optimized solution for programming questions"
-     }
-   }
+----------
 
-2. For MCQs:
-   - Indicate if the answer is correct or incorrect (`is_correct`).
-   - Assign a score out of 1.
+### **Instructions**
 
-3. For Programming Questions:
-   - Evaluate based on correctness, efficiency, and adherence to best practices.
-   - Provide a score out of 10.
-   - Include a brief explanation of deductions in `feedback`.
-   - Suggest an optimized solution in `optimized_solution`.
+#### **General Requirements**
 
-Ensure detailed and actionable evaluation. Begin evaluation now.
-""",
-}
+1.  Generate **exactly 20 questions by default** unless explicitly instructed otherwise.
+2.  Adhere to the rules for the number of questions based on the difficulty level:
+    -   **Easy**: 20 MCQs testing fundamental programming concepts.
+    -   **Medium**: 12 MCQs and 8 problem-solving questions covering intermediate topics and coding techniques.
+    -   **Hard**:
+        -   8 medium-level problem-solving questions aligned with the "Medium" difficulty level.
+        -   12 advanced problem-solving questions testing complex algorithms, real-world scenarios, and advanced data structures.
+3.  If no specific topics are provided, ensure questions span a diverse range of programming concepts, such as:
+    -   Algorithms (sorting, searching, graph algorithms, dynamic programming).
+    -   Data Structures (arrays, linked lists, trees, graphs, stacks, queues, hashmaps).
+    -   Python-specific concepts (decorators, list comprehensions, error handling).
+    -   System Design (scalability, database design, API design).
+    -   Coding Practices (OOP, functional programming, modularity).
+    -   Optimization and complexity analysis.
 
-question_generation_system_prompt = PROMPT_MAP["QUESTION_GENERATION_SYSTEM_PROMPT"]
-answer_evaluation_prompt = PROMPT_MAP["ANSWER_EVALUATION_PROMPT"]
+----------
+
+#### **Question Types and Formatting**
+
+Follow the specified formats below strictly:
+
+1.  **MCQ Format**
+    {
+      "q_type": "MCQ",
+      "question": "Question text here?",
+      "options": [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ],
+      "correct_answer": "Correct Option"
+    }
+
+2.  **Problem-Solving Format**
+    {
+      "q_type": "problem_solving",
+      "problem_description": "Detailed problem description here.",
+      "input_format": "Description of the input format here.",
+      "output_format": "Description of the output format here.",
+      "constraints": "Constraint details here (e.g., input size, value range).",
+      "examples": [
+        {
+          "input": "Input example 1",
+          "output": "Expected output 1"
+        },
+        {
+          "input": "Input example 2",
+          "output": "Expected output 2"
+        }
+      ],
+      "edge_cases": [
+        {
+          "input": "Edge case input 1",
+          "output": "Edge case output 1"
+        },
+        {
+          "input": "Edge case input 2",
+          "output": "Edge case output 2"
+        }
+      ]
+    }
+
+YOUR RESPONSE SHOULD STRICTLY FOLLOW THIS FORMAT:
+[
+    {
+      "q_type": "MCQ",
+      "question": "Your question text here?",
+      "options": [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ],
+      "correct_answer": "The correct answer option"
+    },
+    {
+      "q_type": "problem_solving",
+      "problem_description": "Detailed problem description.",
+      "input_format": "Description of the input format.",
+      "output_format": "Description of the output format.",
+      "constraints": "Details about constraints (e.g., input size, value ranges).",
+      "examples": [
+        {
+          "input": "Example input 1",
+          "output": "Expected output 1"
+        },
+        {
+          "input": "Example input 2",
+          "output": "Expected output 2"
+        }
+      ],
+      "edge_cases": [
+        {
+          "input": "Edge case input 1",
+          "output": "Edge case output 1"
+        },
+        {
+          "input": "Edge case input 2",
+          "output": "Edge case output 2"
+        }
+      ]
+    }
+]
+
+----------
+
+#### **Guidelines for Question Generation**
+
+1.  **MCQ Guidelines**
+    -   Include **exactly 4 realistic and distinct options** per question.
+    -   Ensure one correct answer is clearly identified in the `correct_answer` field.
+    -   Avoid generic options like "All of the above" unless necessary.
+    -   Test nuanced understanding of concepts with realistic distractors.
+
+2.  **Problem-Solving Guidelines**
+    -   Provide a **clear and detailed problem description**.
+    -   Include the following fields:
+        -   **Input Format**: Clearly describe the structure of the input.
+        -   **Output Format**: Specify the expected output format and type.
+        -   **Constraints**: Define all relevant constraints (e.g., input size, value ranges).
+        -   **Examples**: Include at least **2 standard input-output pairs** to clarify the problem statement.
+        -   **Edge Cases**: Provide at least **2 edge cases** to test robustness, focusing on boundary conditions like minimal/maximal inputs or special scenarios.
+    -   Design questions that reflect **real-world programming challenges**, emphasizing performance, scalability, and practical applicability.
+
+3.  **Unique and Non-Trivial Questions**
+    -   Avoid repetition of concepts, phrasing, or problem scenarios.
+    -   Ensure questions test diverse aspects of programming knowledge and problem-solving skills.
+    -   Avoid overly simplistic or trivial problems.
+
+4.  **Difficulty-Specific Instructions**
+    -   For **Easy** questions:
+        -   Focus on fundamental programming concepts and theoretical knowledge.
+    -   For **Medium** questions:
+        -   MCQs should test intermediate knowledge, and problem-solving questions should involve standard algorithms, data structures, and coding techniques.
+    -   For **Hard** questions:
+        -   Include medium-level and extremely challenging questions that require deep understanding of advanced algorithms, complex data structures, and real-world scenarios.
+
+5.  **Validation and Accuracy**
+    -   Ensure all generated JSON is valid and adheres to the specified format.
+    -   Check that examples and edge cases are consistent with the problem statement and constraints.
+    -   Verify that MCQ `correct_answer` matches one of the provided options.
+
+6.  **Edge Cases and Constraints**
+    -   Include meaningful constraints for problem-solving questions (e.g., value ranges, maximum input sizes).
+    -   Ensure edge cases test the robustness of solutions (e.g., empty inputs, large datasets, special characters).
+
+7.  **Real-World Applicability**
+    -   For problem-solving questions, design tasks that mimic real-world challenges, such as:
+        -   Optimizing algorithms for performance.
+        -   Designing scalable solutions.
+        -   Handling large datasets or high-traffic systems.
+
+----------
+
+### **Key Reminders**
+1.  By default, always generate **20 questions**, unless a different number is explicitly requested. Ensure the questions are divided according to the specified difficulty levels.
+2.  Avoid missing or extra fields, and ensure all outputs are **strictly in List of JSONs format**.
+3.  Maintain **clarity, precision, and technical depth** across all questions.
+4.  Validate your response to ensure it aligns with the requested structure and content.
+"""
+
+
+# TODO: remove q_type from output response
+QUESTION_GENERATION_SYSTEM_PROMPT = QUESTION_GENERATION_SYSTEM_PROMPT_V5

@@ -1,5 +1,0 @@
-PORT = 8080
-TEMPERATURE = 0.2
-MAX_TOKENS = 1500
-# GPT_MODEL = "gpt-4"
-GPT_MODEL = "gpt-3.5-turbo"
