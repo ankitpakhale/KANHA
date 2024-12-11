@@ -1,9 +1,9 @@
-name: ci workflow
+name: scheduled
 
 on:
   # schedule to run daily at 12:37 AM IST
   schedule:
-    - cron: '18 19 * * *'  # Runs at 7:07 PM UTC, which is 12:37 AM IST
+    - cron: '30 22 * * *'  # Runs at 10:30 PM UTC, which is 4:00 AM IST
 
 jobs:
   # job for formatting checks
