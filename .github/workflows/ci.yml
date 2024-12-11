@@ -33,7 +33,7 @@ jobs:
       # run pre-commit hooks to check formatting
       - name: run pre-commit hooks for formatting
         run: |
-          pre-commit run --all-files --hook-type formatting
+          pre-commit run --all-files
 
   # job for linting checks
   linting:
@@ -58,12 +58,12 @@ jobs:
       # run pre-commit hooks for linting
       - name: run pre-commit hooks for linting
         run: |
-          pre-commit run --all-files --hook-type lint
+          pre-commit run --all-files
 
   # job for server healthcheck
   healthcheck:
     runs-on: ubuntu-latest
-    needs: [formatting, linting]  # ensure healthcheck runs after both formatting and linting
+    # needs: [formatting, linting]  # ensure healthcheck runs after both formatting and linting
     steps:
       # checkout the code from the repository
       - name: checkout code
