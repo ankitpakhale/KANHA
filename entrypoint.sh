@@ -9,7 +9,5 @@ cd src || { echo "src directory not found!"; exit 1; }
 # set default port to 8080 if APP_PORT is not provided
 PORT=${APP_PORT:-8080}
 
-echo "Starting server..."
-
 # execute the main.py file with the specified port
 python3 main.py --port "$PORT"
