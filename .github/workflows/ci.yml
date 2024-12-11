@@ -1,0 +1,45 @@
+name: ci workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      # checkout the code from the repository
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      # set up python environment
+      - name: set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # install dependencies from requirements.txt
+      - name: install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+
+      # run pre-commit hooks to check formatting
+      - name: run pre-commit hooks
+        run: |
+          pre-commit run --all-files
+
+      # start the server in the background
+      - name: start server
+        run: |
+          bash entrypoint.sh &
+          sleep 10  # wait for the server to start
+
+      # check the healthcheck endpoint to ensure the server is up
+      - name: check healthcheck
+        run: |
+          curl --fail http://localhost:8080/ping
