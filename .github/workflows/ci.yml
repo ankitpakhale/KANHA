@@ -11,7 +11,7 @@ on:
       - dev
   # schedule to run daily at 4 AM IST
   schedule:
-    - cron: '5 18 * * *'  # Runs at 6:35 PM UTC, which is 12:05 AM IST
+    - cron: '45 18 * * *'
     # - cron: '30 22 * * *'  # Runs at 10:30 PM UTC, which is 4:00 AM IST
     # note: GitHub Actions uses UTC for cron scheduling, so adjust accordingly.
 
