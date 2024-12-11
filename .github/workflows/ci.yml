@@ -3,15 +3,22 @@ name: ci workflow
 on:
   push:
     branches:
-      - main
+      - master
+      - dev
   pull_request:
     branches:
-      - main
+      - master
+      - dev
+  # schedule to run daily at 4 AM IST
+  schedule:
+    - cron: '30 18 * * *'  # Runs at 6:30 PM UTC, which is 12:00 AM IST
+    # - cron: '30 22 * * *'  # Runs at 10:30 PM UTC, which is 4:00 AM IST
+    # note: GitHub Actions uses UTC for cron scheduling, so adjust accordingly.
 
 jobs:
-  ci:
+  # job for formatting checks
+  formatting:
     runs-on: ubuntu-latest
-
     steps:
       # checkout the code from the repository
       - name: checkout code
@@ -29,17 +36,62 @@ jobs:
           pip install --no-cache-dir -r requirements.txt
 
       # run pre-commit hooks to check formatting
-      - name: run pre-commit hooks
+      - name: run pre-commit hooks for formatting
         run: |
           pre-commit run --all-files
+
+  # job for linting checks
+  linting:
+    runs-on: ubuntu-latest
+    needs: formatting  # ensure linting only runs after formatting
+    steps:
+      # checkout the code from the repository
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      # set up python environment
+      - name: set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # install dependencies from requirements.txt
+      - name: install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+
+      # run pre-commit hooks for linting
+      - name: run pre-commit hooks for linting
+        run: |
+          pre-commit run --all-files
+
+  # job for server healthcheck
+  healthcheck:
+    runs-on: ubuntu-latest
+    needs: [formatting, linting]  # ensure healthcheck runs after both formatting and linting
+    steps:
+      # checkout the code from the repository
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      # set up python environment
+      - name: set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # install dependencies from requirements.txt
+      - name: install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
 
       # start the server in the background
       - name: start server
         run: |
           bash entrypoint.sh &
-          sleep 10  # wait for the server to start
+          sleep 10  # wait for the server to start (adjust if needed)
 
-      # check the healthcheck endpoint to ensure the server is up
-      - name: check healthcheck
+      # check the /ping endpoint to ensure the server is up
+      - name: check ping endpoint
         run: |
           curl --fail http://localhost:8080/ping
