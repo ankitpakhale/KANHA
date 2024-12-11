@@ -9,10 +9,14 @@ on:
     branches:
       - master
       - dev
+  # schedule to run daily at 4 AM IST
+  schedule:
+    - cron: '30 22 * * *'  # Runs at 10:30 PM UTC, which is 4:00 AM IST
+    # note: GitHub Actions uses UTC for cron scheduling, so adjust accordingly.
 
 jobs:
   # job for formatting checks
-  Formatting:
+  formatting:
     runs-on: ubuntu-latest
     steps:
       # checkout the code from the repository
@@ -36,7 +40,7 @@ jobs:
           pre-commit run --all-files
 
   # job for linting checks
-  Linting:
+  linting:
     runs-on: ubuntu-latest
     needs: formatting  # ensure linting only runs after formatting
     steps:
@@ -61,7 +65,7 @@ jobs:
           pre-commit run --all-files
 
   # job for server healthcheck
-  Healthcheck:
+  healthcheck:
     runs-on: ubuntu-latest
     needs: [formatting, linting]  # ensure healthcheck runs after both formatting and linting
     steps:
