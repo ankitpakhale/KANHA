@@ -1,4 +1,4 @@
-## **KANHA** – **Kustomized Assessment & NLP-based Hyperpersonalized Assessments**
+## **KANHA** – **Kustomized Assessment & NLP-based Hyperpersonalized Audit**
 
 ### **Project Structure**
 
