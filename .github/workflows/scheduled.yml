@@ -1,4 +1,4 @@
-name: scheduled
+name: Scheduled
 
 on:
   # schedule to run daily at 12:37 AM IST
