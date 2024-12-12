@@ -90,3 +90,29 @@ jobs:
       - name: check ping endpoint
         run: |
           curl --fail http://localhost:8080/ping
+
+
+  # # job for sending email
+  # notify:
+  #   runs-on: ubuntu-latest
+  #   needs: [formatting, linting, healthcheck]
+  #   steps:
+  #     # send email notification
+  #     - name: send email notification
+  #       uses: dawidd6/action-send-mail@v3
+  #       with:
+  #         server_address: smtp.gmail.com
+  #         server_port: 587
+  #         username: ${{ secrets.GMAIL_USERNAME }}
+  #         password: ${{ secrets.GMAIL_APP_PASSWORD }}
+  #         subject: "ci workflow result: ${{ job.status }}"
+  #         to: "akp3067@gmail.com.com" # replace with your email or a list of emails separated by commas
+  #         from: "${{ secrets.GMAIL_USERNAME }}"
+  #         body: |
+  #           ci workflow has completed.
+
+  #           job status: ${{ job.status }}
+
+  #           formatting job: ${{ needs.formatting.result }}
+  #           linting job: ${{ needs.linting.result }}
+  #           healthcheck job: ${{ needs.healthcheck.result }}
