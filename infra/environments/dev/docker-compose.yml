@@ -3,13 +3,13 @@ version: "3.9"
 services:
   kanha-backend:
     build:
-      context: ../../ # set the context to the root directory of the project
-      dockerfile: infra/dev/Dockerfile # specify the path to the Dockerfile
+      context: ../../../ # set the context to the root directory of the project
+      dockerfile: infra/environments/dev/Dockerfile # specify the path to the Dockerfile
     container_name: kanha_container
     environment:
       - APP_PORT=7010 # set the application port to 7010
     ports:
       - "7010:7010" # map container port 7010 to host port 7010
     volumes:
-      - ../../:/app # mount the root directory to /app in the container
+      - ../../../:/app # mount the root directory to /app in the container
     command: python3 src/main.py --port 7010 # use python command to start the server
