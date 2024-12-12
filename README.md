@@ -237,7 +237,7 @@ KANHA
 
 ### **Conclusion**
 
-**KANHA** is a powerful, AI-driven assessment platform designed to deliver tailored learning and evaluation experiences. It offers two key services:
+**KANHA** is a powerful, AI-driven assessment platform designed to deliver tailored evaluation experiences. It offers two key services:
 
 - **Question Generation**
 - **Answer Evaluation**
@@ -249,5 +249,8 @@ The platform’s robust technology stack, coupled with its scalable design, make
 - **Education**
 - **Training**
 - **Recruitment**
+- **Other**
 
-I hope **KANHA** helps you achieve your evaluation goals! For more information or to provide feedback, visit at [https://ankitpakhale.netlify.app](https://https://ankitpakhale.netlify.app). I’d love to hear from you!
+---
+
+I hope **KANHA** helps you achieve your evaluation goals! For more information or to provide feedback, visit at [https://ankitpakhale.netlify.app](https://ankitpakhale.netlify.app). I’d love to hear from you!
