@@ -1,7 +1,5 @@
-from framework import App, Request
+from . import dependencies
 from services import evaluation_service_obj
-from utils import __logger, ResponseManager
-import json
 
 
 class EvaluationRoute:
@@ -16,17 +14,22 @@ class EvaluationRoute:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    @ResponseManager.handle_response
+    @dependencies.ResponseManager.handle_response
     def __evaluate_answer(self):
         """
         Handle the evaluation of answers based on the payload.
         """
+        dependencies.logger.debug("__evaluate_answer route called")
         # retrieve data from request
-        answers_payload = dict(user_code=json.loads(Request.forms.get("user_code")))
+        answers_payload = dict(
+            user_code=dependencies.json.loads(
+                dependencies.Request.forms.get("user_code")
+            )
+        )
 
         # generate questions using the service
         response = evaluation_service_obj(**answers_payload)
-        print("Response successfully generated")
+        dependencies.logger.debug("Response successfully generated")
         return {
             "payload": response,
             "message": "Questions Generated Successfully",
@@ -37,7 +40,9 @@ class EvaluationRoute:
         """
         Register the route for question generation.
         """
-        App.route("/answer-evaluation", method="POST", callback=self.__evaluate_answer)
+        dependencies.App.route(
+            "/answer-evaluation", method="POST", callback=self.__evaluate_answer
+        )
 
 
 # singleton instance of EvaluationRoute

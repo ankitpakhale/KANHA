@@ -48,7 +48,7 @@ class OpenAI(Base):
 
         # extract and return the generated questions
         __generation = __response["choices"][0]["message"]["content"]
-        # __logger.info(f"Received generated response from OpenAI API: {evaluation}")
+        # logger.info(f"Received generated response from OpenAI API: {evaluation}")
         return __generation
 
     @typechecked
@@ -71,5 +71,5 @@ class OpenAI(Base):
 
         # extract and return the evaluation results
         __evaluation = __response["choices"][0]["message"]["content"]
-        # __logger.info(f"Received evaluation response from OpenAI API: {evaluation}")
+        # logger.info(f"Received evaluation response from OpenAI API: {evaluation}")
         return __evaluation

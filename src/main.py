@@ -11,5 +11,7 @@ evaluation_route_obj.register()
 if __name__ == "__main__":
     # get the port from general configurations
     __port = GeneralConfig.APP_PORT
+    __host = GeneralConfig.APP_HOST
     print(f"➡ Starting server on {__port} port...")
-    App.run(host="0.0.0.0", port=__port)
+    print(f"➡ Starting server on {__host} host...")
+    App.run(host=__host, port=__port)

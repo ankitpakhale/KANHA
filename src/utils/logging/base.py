@@ -13,7 +13,7 @@ logging.config.dictConfig({"disable_existing_loggers": True, "version": 1})
 
 # TODO: name must come from root directory
 # TODO: dynamic level
-def get_logger(name="DataFury", level="DEBUG"):
+def get_logger(name="KANHA", level="DEBUG"):
     __level = level if os.getenv("ENV") != "prod" else "CRITICAL"
     logger = logging.getLogger(name=name)
     for handler in logger.handlers:

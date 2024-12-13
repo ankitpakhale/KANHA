@@ -1,11 +1,9 @@
-from framework import App, Request
-from utils import __logger, ResponseManager
-import json
+from . import dependencies
 
 
 class HealthcheckRoute:
     """
-    Singleton class to handle and register routes for answer evaluation.
+    Singleton class to handle and register routes for healthcheck.
     """
 
     _instance = None
@@ -15,11 +13,12 @@ class HealthcheckRoute:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    @ResponseManager.handle_response
+    @dependencies.ResponseManager.handle_response
     def __healthcheck(self):
         """
-        Handle the evaluation of answers based on the payload.
+        Handle the healthcheck status.
         """
+        dependencies.logger.debug("__healthcheck route called")
         return {
             "payload": {},
             "message": "PONG",
@@ -28,10 +27,10 @@ class HealthcheckRoute:
 
     def register(self):
         """
-        Register the route for question generation.
+        Register the route of healthcheck.
         """
-        App.route("/ping", method="GET", callback=self.__healthcheck)
+        dependencies.App.route("/ping", method="GET", callback=self.__healthcheck)
 
 
-# singleton instance of EvaluationRoutes
+# singleton instance of HealthcheckRoute
 healthcheck_route_obj = HealthcheckRoute()

@@ -1,7 +1,5 @@
-from framework import App, Request, Response
+from . import dependencies
 from services import question_service_obj
-from utils import __logger, ResponseManager
-from ast import literal_eval
 
 
 class QuestionRoute:
@@ -16,34 +14,39 @@ class QuestionRoute:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    @ResponseManager.handle_response
+    @dependencies.ResponseManager.handle_response
     def __generate_questions(self):
         """
         handle the generation of questions based on the payload.
         """
+        dependencies.logger.debug("__generate_questions route called")
+
         # retrieve data from request and make a dictionary object
-        print(
+        dependencies.logger.debug(
             ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> difficulty_level",
-            Request.forms.get("difficulty_level"),
+            dependencies.Request.forms.get("difficulty_level"),
         )
-        print(
+        dependencies.logger.debug(
             ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> programming_language",
-            Request.forms.get("programming_language"),
+            dependencies.Request.forms.get("programming_language"),
         )
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> topics", Request.forms.get("topics"))
+        dependencies.logger.debug(
+            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> topics",
+            dependencies.Request.forms.get("topics"),
+        )
 
         # parse the 'topics' field which was sent as a json string
-        topics = literal_eval(Request.forms.get("topics"))
+        topics = dependencies.literal_eval(dependencies.Request.forms.get("topics"))
 
         questions_payload = dict(
-            difficulty_level=Request.forms.get("difficulty_level"),
-            programming_language=Request.forms.get("programming_language"),
+            difficulty_level=dependencies.Request.forms.get("difficulty_level"),
+            programming_language=dependencies.Request.forms.get("programming_language"),
             topics=topics,
         )
 
         # generate questions using the service
         response = question_service_obj(**questions_payload)
-        print("response successfully generated")
+        dependencies.logger.debug("response successfully generated")
         return {
             "payload": response,
             "message": "questions generated successfully",
@@ -54,7 +57,7 @@ class QuestionRoute:
         """
         Register the route for question generation.
         """
-        App.route(
+        dependencies.App.route(
             "/generate-questions", method="POST", callback=self.__generate_questions
         )
 

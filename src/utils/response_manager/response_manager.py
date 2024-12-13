@@ -1,5 +1,5 @@
 from framework import Response
-from utils import __logger
+from utils import logger
 
 
 class ResponseManager:
@@ -55,7 +55,7 @@ class ResponseManager:
                 }
             except AssertionError as ae:
                 # log the exception details
-                # __logger.critical(f"Assertion Error in processing request: {str(ae)}", exc_info=True)
+                # logger.critical(f"Assertion Error in processing request: {str(ae)}", exc_info=True)
                 print(f"Assertion Error in processing request: {str(ae)}")
 
                 # set the HTTP response status to 500 (Internal Server Error)
@@ -70,7 +70,7 @@ class ResponseManager:
                 }
             except Exception as e:
                 # log the exception details
-                # __logger.critical(f"Error in processing request: {str(e)}", exc_info=True)
+                # logger.critical(f"Error in processing request: {str(e)}", exc_info=True)
                 print(f"Error in processing request: {str(e)}")
 
                 # set the HTTP response status to 500 (Internal Server Error)

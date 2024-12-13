@@ -1,7 +1,7 @@
 from typing import Any
 import diskcache as dc
 from functools import wraps
-from utils import __logger
+from utils import logger
 
 
 class CacheManager:
@@ -73,7 +73,7 @@ def cache(func):
         # check if the result is cached
         cached_result = cache_manager.get(cache_key)
         if cached_result:
-            __logger.debug(f"Cache hit for key: {cache_key}")
+            logger.debug(f"Cache hit for key: {cache_key}")
             return cached_result
 
         # call the original function to generate the result
@@ -81,7 +81,7 @@ def cache(func):
 
         # cache the result
         cache_manager.set(cache_key, result)
-        __logger.debug(f"Cache miss for key: {cache_key}. Caching the result.")
+        logger.debug(f"Cache miss for key: {cache_key}. Caching the result.")
         return result
 
     return wrapper
@@ -89,9 +89,9 @@ def cache(func):
 
 def delete_cache(_key):
     cache_manager.delete(_key)
-    __logger.debug(f"Cache deleted for key '{_key}'!!!")
+    logger.debug(f"Cache deleted for key '{_key}'!!!")
 
 
 def clear_cache():
     cache_manager.clear()
-    __logger.debug("Deleted all caches!!!")
+    logger.debug("Deleted all caches!!!")
