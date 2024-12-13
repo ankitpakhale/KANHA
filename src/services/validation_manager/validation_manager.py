@@ -14,8 +14,7 @@ class ValidationManager:
         self.difficulty_level = kwargs.get("difficulty_level")
         self.programming_language = kwargs.get("programming_language")
         self.topics = kwargs.get("topics")
-        # logger.info(">>>>>>>>>>>>>>>>>>> Validation Manager Initialized")
-        print(">>>>>>>>>>>>>>>>>>> Validation Manager Initialized")
+        logger.info(">>>>>>>>>>>>>>>>>>> Validation Manager Initialized")
 
     def __validate_types(self):
         """
@@ -67,7 +66,7 @@ class ValidationManager:
         # validates the type of the payload
         self.__validate_types()
 
-        print(">>>>>>>>>>>>>>>>>>> Validation Passed successfully!!!")
+        logger.debug("Validation Passed successfully!!!")
 
         return True
 

@@ -5,6 +5,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from prompts import prompt_factory
+from utils import logger
 
 answer_evaluation_obj = prompt_factory.create_prompt(
     prompt_type="answer_evaluation",
@@ -17,7 +18,7 @@ answer_evaluation_obj = prompt_factory.create_prompt(
 )
 
 answer_system_prompt = answer_evaluation_obj.get_system_prompt()
-print("➡ >>>>>>>>>>>> answer_system_prompt:", answer_system_prompt)
+logger.debug("➡ >>>>>>>>>>>> answer_system_prompt:", answer_system_prompt)
 
 answer_user_prompt = answer_evaluation_obj.get_user_prompt()
-print("➡ >>>>>>>>>>>> answer_user_prompt:", answer_user_prompt)
+logger.debug("➡ >>>>>>>>>>>> answer_user_prompt:", answer_user_prompt)

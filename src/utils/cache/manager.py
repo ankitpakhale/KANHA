@@ -68,7 +68,7 @@ def cache(func):
             + "-"
             + "-".join(f"{k}={v}" for k, v in kwargs.items())
         )
-        print("➡ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> cache_key:", cache_key)
+        logger.debug("cache_key:", cache_key)
 
         # check if the result is cached
         cached_result = cache_manager.get(cache_key)

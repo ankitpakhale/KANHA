@@ -2,6 +2,7 @@ from typing import Optional, List, Dict
 from ..base import Base
 from config import AWSConfig
 from typeguard import typechecked
+from utils import logger
 
 
 class Bedrock(Base):
@@ -20,8 +21,9 @@ class Bedrock(Base):
         num_questions: Optional[int] = 20,
     ):
         """
-        Core logic to generate questions from OpenAI client
+        Core logic to generate questions from Bedrock client
         """
+        logger.debug("generate_questions core logic working of Bedrock client")
         __system_prompt = self.get_question_generation_system_prompt(
             difficulty_level=difficulty_level,
             programming_language=programming_language,
@@ -227,11 +229,9 @@ class Bedrock(Base):
     @typechecked
     def evaluate_answers(self, user_code: List[Dict[str, str]]):
         """
-        Core logic to evaluate users answer using OpenAI client
+        Core logic to evaluate users answer using Bedrock client
         """
-        print("➡ $$$$$$$$$$$$$$$$$$$$$$$$$$$$ evaluate_answers:", user_code)
-        print("➡ $$$$$$$$$$$$$$$$$$$$$$$$$$$$ type(evaluate_answers):", type(user_code))
-
+        logger.debug("evaluate_answers core logic working of Bedrock client")
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)
 
