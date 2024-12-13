@@ -11,15 +11,60 @@ class ResponseHandler:
 
     # exception mapping for handling various exceptions
     EXCEPTION_MAPPING = {
+        # json and validation errors
         json.decoder.JSONDecodeError: {
             "status_code": 502,
-            "message": "Validation Error",
+            "message": "validation error",
         },
-        AssertionError: {"status_code": 400, "message": "Validation Error"},
+        AssertionError: {
+            "status_code": 400,
+            "message": "validation error",
+        },
+        ValueError: {
+            "status_code": 400,
+            "message": "invalid value provided, default keys are difficulty_level, programming_language & topics",
+        },
+        KeyError: {
+            "status_code": 400,
+            "message": "missing required key in the request data",
+        },
+        # file and permission errors
+        FileNotFoundError: {
+            "status_code": 404,
+            "message": "requested file not found",
+        },
+        PermissionError: {
+            "status_code": 403,
+            "message": "permission denied for the requested operation",
+        },
+        # # database errors
+        # sqlalchemy.exc.IntegrityError: {
+        #     "status_code": 409,
+        #     "message": "database integrity constraint violated",
+        # },
+        # sqlalchemy.exc.OperationalError: {
+        #     "status_code": 500,
+        #     "message": "database operation failed",
+        # },
+        # # network and request errors
+        # requests.exceptions.ConnectionError: {
+        #     "status_code": 503,
+        #     "message": "failed to connect to the remote service",
+        # },
+        # requests.exceptions.Timeout: {
+        #     "status_code": 504,
+        #     "message": "the request to the remote service timed out",
+        # },
+        # # async errors
+        # asyncio.TimeoutError: {
+        #     "status_code": 504,
+        #     "message": "async operation timed out",
+        # },
+        # default exception
         Exception: {
             "status_code": 500,
-            "message": "Internal Server Error",
-        },  # eefault catch-all-exceptions
+            "message": "internal server error",
+        },
     }
 
     def __init__(self) -> None:
