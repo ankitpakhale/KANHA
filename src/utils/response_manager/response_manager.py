@@ -1,69 +1,90 @@
+from typing import Callable, Any, Dict, Type
 from framework import Response
 from utils import logger
+import json
 
 
-class ResponseManager:
+class ResponseHandler:
     """
-    Centralized handler for API responses, ensuring a consistent response format
-    and error management across the application.
+    Class to handle standardized response and exception handling logic.
     """
 
-    @staticmethod
-    def handle_response(func):
+    # exception mapping for handling various exceptions
+    EXCEPTION_MAPPING = {
+        json.decoder.JSONDecodeError: {
+            "status_code": 502,
+            "message": "Validation Error",
+        },
+        AssertionError: {"status_code": 400, "message": "Validation Error"},
+        Exception: {
+            "status_code": 500,
+            "message": "Internal Server Error",
+        },  # eefault catch-all-exceptions
+    }
+
+    def __init__(self) -> None:
+        self.status_code = 200
+
+    def set_status(self, status_code: int) -> None:
         """
-        Decorator to wrap a function with centralized try-except handling
-        and enforce a standard response structure.
+        Sets the HTTP response status code.
         """
+        self.status_code = status_code
+        Response.status = status_code
 
-        def wrapper(*args, **kwargs):
-            try:
-                # execute the decorated function
-                result = func(*args, **kwargs)
+    def handle_exception(self, exception: Exception) -> Dict[str, Any]:
+        """
+        Handles exceptions by returning a standardized error response.
+        """
+        exception_type = type(exception)
+        exception_info = self.EXCEPTION_MAPPING.get(
+            exception_type, self.EXCEPTION_MAPPING[Exception]
+        )
 
-                # extract response details
-                status_code = result.get("status_code", 200)
-                payload = result.get("payload", {})
-                message = result.get("message", "Success")
+        # log the error
+        logger.critical(
+            f"Error ({exception_info['status_code']}): {exception_info['message']}: {str(exception)}",
+            exc_info=True,
+        )
 
-                # set the response status code
-                Response.status = status_code
+        # set the response status
+        self.set_status(exception_info["status_code"])
 
-                # return the standardized response
-                return {
-                    "status": True,
-                    "payload": payload,
-                    "message": message,
-                    "status_code": status_code,
-                }
-            except AssertionError as ae:
-                # log the exception details
-                logger.critical(
-                    f"Assertion Error in processing request: {str(ae)}", exc_info=True
-                )
+        # return standardized error response
+        return {
+            "status": False,
+            "payload": {},
+            "message": f"{exception_info['message']}: {str(exception)}",
+            "status_code": exception_info["status_code"],
+        }
 
-                # set the HTTP response status to 500 (Internal Server Error)
-                Response.status = 403
+    def handle_success(self, result: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Handles successful responses by returning a standardized success response.
+        """
+        self.set_status(result.get("status_code", 200))
+        return {
+            "status": True,
+            "payload": result.get("payload", {}),
+            "message": result.get("message", "Success"),
+            "status_code": self.status_code,
+        }
 
-                # return an error response in the standardized format
-                return {
-                    "status": False,
-                    "payload": {},
-                    "message": f"Validation Error: {str(ae)}",
-                    "status_code": 500,
-                }
-            except Exception as e:
-                # log the exception details
-                logger.critical(f"Error in processing request: {str(e)}", exc_info=True)
 
-                # set the HTTP response status to 500 (Internal Server Error)
-                Response.status = 500
+def handle_response(func: Callable) -> Callable:
+    """
+    Decorator to wrap a function with centralized response handling.
+    """
+    handler = ResponseHandler()
 
-                # return an error response in the standardized format
-                return {
-                    "status": False,
-                    "payload": {},
-                    "message": f"Internal Server Error: {str(e)}",
-                    "status_code": 500,
-                }
+    def wrapper(*args, **kwargs) -> Dict[str, Any]:
+        try:
+            # execute the decorated function
+            result = func(*args, **kwargs)
+            # handle the success response
+            return handler.handle_success(result)
+        except tuple(ResponseHandler.EXCEPTION_MAPPING.keys()) as e:
+            # handle the error response
+            return handler.handle_exception(e)
 
-        return wrapper
+    return wrapper

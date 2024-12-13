@@ -13,7 +13,7 @@ class HealthcheckRoute:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    @dependencies.ResponseManager.handle_response
+    @dependencies.handle_response
     def __healthcheck(self):
         """
         Handle the healthcheck status.

@@ -14,7 +14,7 @@ class EvaluationRoute:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    @dependencies.ResponseManager.handle_response
+    @dependencies.handle_response
     def __evaluate_answer(self):
         """
         Handle the evaluation of answers based on the payload.
@@ -32,7 +32,7 @@ class EvaluationRoute:
         dependencies.logger.debug("Response successfully generated")
         return {
             "payload": response,
-            "message": "Questions Generated Successfully",
+            "message": "Answers Evaluated Successfully",
             "status_code": 200,
         }
 

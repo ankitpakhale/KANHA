@@ -16,7 +16,7 @@ question_generation_obj = prompt_factory.create_prompt(
 )
 
 question_system_prompt = question_generation_obj.get_system_prompt()
-logger.debug("➡ >>>>>>>>>>>> question_system_prompt:", question_system_prompt)
+logger.debug("➡question_system_prompt:", question_system_prompt)
 
 question_user_prompt = question_generation_obj.get_user_prompt()
-logger.debug("➡ >>>>>>>>>>>> question_user_prompt:", question_user_prompt)
+logger.debug("➡question_user_prompt:", question_user_prompt)

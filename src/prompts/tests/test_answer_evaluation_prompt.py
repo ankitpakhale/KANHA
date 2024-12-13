@@ -18,7 +18,7 @@ answer_evaluation_obj = prompt_factory.create_prompt(
 )
 
 answer_system_prompt = answer_evaluation_obj.get_system_prompt()
-logger.debug("➡ >>>>>>>>>>>> answer_system_prompt:", answer_system_prompt)
+logger.debug("➡ answer_system_prompt:", answer_system_prompt)
 
 answer_user_prompt = answer_evaluation_obj.get_user_prompt()
-logger.debug("➡ >>>>>>>>>>>> answer_user_prompt:", answer_user_prompt)
+logger.debug("➡ answer_user_prompt:", answer_user_prompt)

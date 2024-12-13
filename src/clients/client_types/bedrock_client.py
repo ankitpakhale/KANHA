@@ -23,7 +23,8 @@ class Bedrock(Base):
         """
         Core logic to generate questions from Bedrock client
         """
-        logger.debug("generate_questions core logic working of Bedrock client")
+        logger.info("generate_questions core logic working for Bedrock client")
+
         __system_prompt = self.get_question_generation_system_prompt(
             difficulty_level=difficulty_level,
             programming_language=programming_language,
@@ -231,7 +232,8 @@ class Bedrock(Base):
         """
         Core logic to evaluate users answer using Bedrock client
         """
-        logger.debug("evaluate_answers core logic working of Bedrock client")
+        logger.info("evaluate_answers core logic working for Bedrock client")
+
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)
 

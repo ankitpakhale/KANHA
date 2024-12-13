@@ -14,30 +14,17 @@ class QuestionRoute:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    @dependencies.ResponseManager.handle_response
+    @dependencies.handle_response
     def __generate_questions(self):
         """
         handle the generation of questions based on the payload.
         """
         dependencies.logger.debug("__generate_questions route called")
 
-        # retrieve data from request and make a dictionary object
-        dependencies.logger.debug(
-            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> difficulty_level",
-            dependencies.Request.forms.get("difficulty_level"),
-        )
-        dependencies.logger.debug(
-            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> programming_language",
-            dependencies.Request.forms.get("programming_language"),
-        )
-        dependencies.logger.debug(
-            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>> topics",
-            dependencies.Request.forms.get("topics"),
-        )
-
         # parse the 'topics' field which was sent as a json string
         topics = dependencies.literal_eval(dependencies.Request.forms.get("topics"))
 
+        # retrieve data from request and make a dictionary object
         questions_payload = dict(
             difficulty_level=dependencies.Request.forms.get("difficulty_level"),
             programming_language=dependencies.Request.forms.get("programming_language"),
@@ -49,7 +36,7 @@ class QuestionRoute:
         dependencies.logger.debug("response successfully generated")
         return {
             "payload": response,
-            "message": "questions generated successfully",
+            "message": "Questions generated successfully",
             "status_code": 200,
         }
 
