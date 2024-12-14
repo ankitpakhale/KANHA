@@ -1,4 +1,4 @@
-from utils import __logger
+from utils import logger
 
 
 class ValidationManager:
@@ -14,8 +14,7 @@ class ValidationManager:
         self.difficulty_level = kwargs.get("difficulty_level")
         self.programming_language = kwargs.get("programming_language")
         self.topics = kwargs.get("topics")
-        # __logger.info(">>>>>>>>>>>>>>>>>>> Validation Manager Initialized")
-        print(">>>>>>>>>>>>>>>>>>> Validation Manager Initialized")
+        logger.info("Validation Manager Initialized")
 
     def __validate_types(self):
         """
@@ -63,11 +62,11 @@ class ValidationManager:
         """
         # validates the type of the payload
         self.__validate_required()
+        logger.debug("Required field validation passed successfully!!!")
 
         # validates the type of the payload
         self.__validate_types()
-
-        print(">>>>>>>>>>>>>>>>>>> Validation Passed successfully!!!")
+        logger.debug("Field type validation passed successfully!!!")
 
         return True
 
@@ -81,7 +80,9 @@ class ValidationManager:
 
 def validation_payload_manager_obj(**kwargs):
     validation_manager_result = ValidationManager(**kwargs).validate_payload()
+    logger.info("All validations passed successfully!!!")
     return validation_manager_result
 
 
-def validation_response_manager_obj(response: dict): ...
+def validation_response_manager_obj(response: dict):
+    logger.debug("Validating response data...")

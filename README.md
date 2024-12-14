@@ -1,4 +1,4 @@
-## **KANHA** – **Kustomized Assessment & NLP-based Hyperpersonalized Assessments**
+## **KANHA** – **Kustomized Assessment & NLP-based Hyperpersonalized Audit**
 
 ### **Project Structure**
 
@@ -237,4 +237,20 @@ KANHA
 
 ### **Conclusion**
 
-**KANHA** is a powerful, AI-driven assessment platform designed to provide tailored learning and evaluation experiences. Its two key services—question generation and answer evaluation—are hosted on AWS Lambda for scalability and efficiency. By integrating advanced NLP capabilities with a distributed architecture, KANHA ensures personalized, meaningful assessments that promote skill improvement and engagement. Its robust technology stack and scalable design make it a versatile solution for education, training, and recruitment.
+**KANHA** is a powerful, AI-driven assessment platform designed to deliver tailored evaluation experiences. It offers two key services:
+
+- **Question Generation**
+- **Answer Evaluation**
+
+Both services are hosted on **AWS Lambda** for optimal scalability and efficiency. By integrating advanced **Natural Language Processing (NLP)** capabilities with a distributed architecture, **KANHA** ensures personalized and meaningful assessments that foster skill improvement and engagement.
+
+The platform’s robust technology stack, coupled with its scalable design, makes it a versatile solution for various industries:
+
+- **Education**
+- **Training**
+- **Recruitment**
+- **Other**
+
+---
+
+I hope **KANHA** helps you achieve your evaluation goals! For more information or to provide feedback, visit at [https://ankitpakhale.netlify.app](https://ankitpakhale.netlify.app). I’d love to hear from you!

@@ -2,10 +2,10 @@
 ENV := $(shell grep -oP '^ENV=\K.*' .env || echo dev)
 
 # define paths based on ENV
-DOCKER_COMPOSE_PATH = infra/$(ENV)/docker-compose.yml
+DOCKER_COMPOSE_PATH = infra/environments/$(ENV)/docker-compose.yml
 DOCKER_IMAGE = dev_kanha-backend
 DOCKER_CONTAINER = kanha_container
-DOCKERFILE = infra/$(ENV)/Dockerfile  # Updated this line to reflect correct Dockerfile path
+DOCKERFILE = infra/environments/$(ENV)/Dockerfile  # Updated this line to reflect correct Dockerfile path
 APP_PORT = 7010
 
 ifeq ($(ENV),dev)

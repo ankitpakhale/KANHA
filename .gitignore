@@ -28,6 +28,7 @@ ENV/
 lambda/
 
 # logs
+.logs/
 *.log
 *.out
 *.err

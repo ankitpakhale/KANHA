@@ -8,6 +8,7 @@ CLIENT_LIST = ["OpenAI", "Bedrock"]
 class GeneralConfig(BaseConfig):
     ENV = os.getenv("ENV", "local")
     APP_PORT = int(os.getenv("APP_PORT", 8080))  # convert to integer
+    APP_HOST = os.getenv("APP_HOST", "0.0.0.0")
     ACTIVE_CLIENT = os.getenv(
         "ACTIVE_CLIENT", "OpenAI"
     )  # default ACTIVE_CLIENT is OpenAI

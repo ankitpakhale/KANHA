@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "kanha"
 version = "0.1.0"
-description = "Kustomized Assessment & NLP-based Hyperpersonalized Assessments"
+description = "Kustomized Assessment & NLP-based Hyperpersonalized Audit"
 authors = ["Ankit Pakhale <akp3067@gmail.com>"]
 license = "MIT"
 readme = "README.md"

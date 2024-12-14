@@ -6,6 +6,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 
 from services import question_service_obj
+from utils import logger
 
 questions_payload = dict(
     num_questions=1,
@@ -14,4 +15,4 @@ questions_payload = dict(
     topics=["loops", "functions"],
 )
 service_instance = question_service_obj(**questions_payload)
-print("➡ service_instance:", service_instance)
+logger.debug("➡ service_instance:", service_instance)

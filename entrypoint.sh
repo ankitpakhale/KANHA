@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # remove all __pycache__ directories excluding those under .venv
-find . -name '__pycache__' -exec rm -rf {} \;  # force delete __pycache__
+sudo find . -name '__pycache__' -exec rm -rf {} \;  # force delete __pycache__
 
 # navigate to the src directory
 cd src || { echo "src directory not found!"; exit 1; }

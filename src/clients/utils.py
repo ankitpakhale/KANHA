@@ -1,5 +1,5 @@
 from typing import Dict, Optional, List
-from utils import __logger
+from utils import logger
 from prompts import prompt_factory
 
 QUESTION_GENERATION = "question_generation"
