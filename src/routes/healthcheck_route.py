@@ -1,4 +1,6 @@
-from . import dependencies
+from framework import App, Request
+from utils import logger, cache, handle_response
+from .constants import HEALTHCHECK_ROUTE
 
 
 class HealthcheckRoute:
@@ -13,12 +15,13 @@ class HealthcheckRoute:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    @dependencies.handle_response
-    def __healthcheck(self):
+    @handle_response
+    @cache
+    def __healthcheck_handler(self):
         """
         Handle the healthcheck status.
         """
-        dependencies.logger.debug("__healthcheck route called")
+        logger.debug("__healthcheck route called")
         return {
             "payload": {},
             "message": "PONG",
@@ -29,7 +32,7 @@ class HealthcheckRoute:
         """
         Register the route of healthcheck.
         """
-        dependencies.App.route("/ping", method="GET", callback=self.__healthcheck)
+        App.route(HEALTHCHECK_ROUTE, method="GET", callback=self.__healthcheck_handler)
 
 
 # singleton instance of HealthcheckRoute

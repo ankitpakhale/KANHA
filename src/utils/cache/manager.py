@@ -1,7 +1,8 @@
-from typing import Any
+from typing import Any, Callable
 import diskcache as dc
 from functools import wraps
 from utils import logger
+import hashlib
 
 
 class CacheManager:
@@ -48,6 +49,23 @@ class CacheManager:
         """
         CacheManager.cache_store.clear()
 
+    @staticmethod
+    def generate_cache_key(func: Callable, args: tuple, kwargs: dict) -> str:
+        """
+        Generates a unique cache key based on function name, args, and kwargs.
+        """
+        # convert arguments to their string representation, avoiding memory addresses
+        func_name = func.__name__
+        args_repr = [repr(arg) for arg in args]
+        kwargs_repr = [f"{k}={repr(v)}" for k, v in sorted(kwargs.items())]
+
+        # combine everything into a single string
+        key_data = f"{func_name}-{'-'.join(args_repr)}-{'-'.join(kwargs_repr)}"
+
+        # generate a hash for consistent and unique key
+        cache_key = hashlib.sha256(key_data.encode("utf-8")).hexdigest()
+        return cache_key
+
 
 # object of cache_manager
 cache_manager = CacheManager()
@@ -60,20 +78,13 @@ def cache(func):
 
     @wraps(func)
     def wrapper(*args, **kwargs):
-        # generate a cache key based on function arguments
-        # FIXME: fix the generation of cache key
-        cache_key = (
-            f"{func.__name__}-"
-            + "-".join(str(arg) for arg in args)
-            + "-"
-            + "-".join(f"{k}={v}" for k, v in kwargs.items())
-        )
-        logger.debug("cache_key:", cache_key)
+        cache_key = cache_manager.generate_cache_key(func, args, kwargs)
+        logger.info(f"Cache_key: {cache_key}")
 
         # check if the result is cached
         cached_result = cache_manager.get(cache_key)
         if cached_result:
-            logger.debug(f"Cache hit for key: {cache_key}")
+            logger.info(f"Cache hit for key: {cache_key}")
             return cached_result
 
         # call the original function to generate the result
@@ -81,7 +92,7 @@ def cache(func):
 
         # cache the result
         cache_manager.set(cache_key, result)
-        logger.debug(f"Cache miss for key: {cache_key}. Caching the result.")
+        logger.warning(f"Cache miss for key: {cache_key}. Caching the result.")
         return result
 
     return wrapper
@@ -89,9 +100,7 @@ def cache(func):
 
 def delete_cache(_key):
     cache_manager.delete(_key)
-    logger.debug(f"Cache deleted for key '{_key}'!!!")
 
 
 def clear_cache():
     cache_manager.clear()
-    logger.debug("Deleted all caches!!!")

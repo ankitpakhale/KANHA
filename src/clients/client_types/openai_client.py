@@ -39,7 +39,7 @@ class OpenAI(Base):
         topics: list,
         num_questions: Optional[
             int
-        ] = 1,  # adjust this value to specify the desired number of questions
+        ] = 20,  # adjust this value to specify the desired number of questions
     ) -> str:
         """
         Core logic to generate questions from OpenAI client
@@ -61,6 +61,7 @@ class OpenAI(Base):
         __generation = self.__get_result(
             system_prompt=__system_prompt, user_prompt=__user_prompt
         )
+
         logger.info("Received generated questions from OpenAI Client")
         return __generation
 
