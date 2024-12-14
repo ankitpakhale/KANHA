@@ -229,6 +229,7 @@ class Bedrock(Base):
         ]
         """
 
+        logger.info(f"__generation: {__generation}")
         return __generation
 
     @typechecked
@@ -259,5 +260,5 @@ class Bedrock(Base):
     }
 ]
 """
-
+        logger.info(f"__evaluation: {__evaluation}")
         return __evaluation
