@@ -25,3 +25,4 @@ bottle==0.13.*
 boto3==1.35.*
 typeguard==4.4.*
 bottle-cors==0.1.*
+jsonschema==4.23.*

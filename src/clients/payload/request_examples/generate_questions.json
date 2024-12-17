@@ -1,6 +1,5 @@
 [
     {
-        "num_questions": 20,
         "difficulty_level": "easy",
         "programming_language": "python",
         "topics": "loops, functions"

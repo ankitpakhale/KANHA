@@ -1,6 +1,8 @@
 from clients import Client
-from services import validation_payload_manager_obj
+from services import validation_manager_obj
 import json
+
+# TODO: change name to EvaluateAnswers
 
 
 class EvaluationService:
@@ -9,7 +11,9 @@ class EvaluationService:
         Initializes the question client and generates questions based on the user input.
         """
         # validate the data
-        # validation_payload_manager_obj(**kwargs)
+        validation_manager_obj(
+            service_type="evaluate_answers", validation_type="request"
+        ).validate(**kwargs)
 
         # return the client class
         __client_response = Client().evaluate_answers(**kwargs)
