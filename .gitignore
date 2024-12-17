@@ -76,6 +76,8 @@ openai_secrets/
 docs.txt
 EC2
 *.pem
+.__github
+
 
 # temporary files
 *.swp
