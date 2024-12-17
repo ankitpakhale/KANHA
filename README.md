@@ -76,12 +76,6 @@ KANHA
 │   ├── framework
 │   │   ├── bottle_app.py
 │   │   └── __init__.py
-│   ├── kanha.egg-info
-│   │   ├── dependency_links.txt
-│   │   ├── PKG-INFO
-│   │   ├── requires.txt
-│   │   ├── SOURCES.txt
-│   │   └── top_level.txt
 │   ├── main.py
 │   ├── prompts
 │   │   ├── answer_evaluation
