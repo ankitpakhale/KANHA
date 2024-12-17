@@ -1,4 +1,4 @@
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Union
 from ..base import Base
 from config import AWSConfig
 from typeguard import typechecked
@@ -15,16 +15,18 @@ class Bedrock(Base):
     def __get_result(self, system_prompt: str, user_prompt: str) -> str: ...
 
     @typechecked
-    def generate_questions(
-        self,
-        difficulty_level: str,
-        programming_language: str,
-        topics: list,
-        num_questions: Optional[int] = 20,
-    ):
+    def generate_questions(self, payload: Union[list, dict]) -> str:
         """
         Core logic to generate questions from Bedrock client
         """
+        logger.info("generate_questions core logic working for Bedrock client")
+        difficulty_level = payload["difficulty_level"]
+        programming_language = payload["programming_language"]
+        topics = payload["topics"]
+        num_questions = payload.get(
+            "num_questions", 20
+        )  # specify any number, default is 20
+
         logger.info("generate_questions core logic working for Bedrock client")
 
         __system_prompt = self.get_question_generation_system_prompt(
@@ -233,11 +235,12 @@ class Bedrock(Base):
         return __generation
 
     @typechecked
-    def evaluate_answers(self, user_code: List[Dict[str, str]]):
+    def evaluate_answers(self, payload: Union[list, dict]) -> str:
         """
-        Core logic to evaluate users answer using Bedrock client
+        Core logic to evaluate users answer using Bedrock Client
         """
-        logger.info("evaluate_answers core logic working for Bedrock client")
+        logger.info("evaluate_answers core logic working for Bedrock Client")
+        user_code = payload["user_code"]
 
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)

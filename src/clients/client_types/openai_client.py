@@ -1,4 +1,4 @@
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Union
 from clients import Base
 import openai
 from config import OpenAIConfig
@@ -32,19 +32,17 @@ class OpenAI(Base):
         return __result
 
     @typechecked
-    def generate_questions(
-        self,
-        difficulty_level: str,
-        programming_language: str,
-        topics: list,
-        num_questions: Optional[
-            int
-        ] = 20,  # adjust this value to specify the desired number of questions
-    ) -> str:
+    def generate_questions(self, payload: Union[list, dict]) -> str:
         """
         Core logic to generate questions from OpenAI client
         """
         logger.info("generate_questions core logic working for OpenAI client")
+        difficulty_level = payload["difficulty_level"]
+        programming_language = payload["programming_language"]
+        topics = payload["topics"]
+        num_questions = payload.get(
+            "num_questions", 1
+        )  # specify any number, default is 20
 
         __system_prompt = self.get_question_generation_system_prompt(
             difficulty_level=difficulty_level,
@@ -66,11 +64,12 @@ class OpenAI(Base):
         return __generation
 
     @typechecked
-    def evaluate_answers(self, user_code: List[Dict[str, str]]) -> str:
+    def evaluate_answers(self, payload: Union[list, dict]) -> str:
         """
         Core logic to evaluate users answer using OpenAI client
         """
         logger.info("evaluate_answers core logic working for OpenAI client")
+        user_code = payload["user_code"]
 
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)

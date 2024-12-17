@@ -1,17 +1,17 @@
 from typing import Union
 from services.validation_manager.strategy import (
-    generate_questions_request_payload,
-    generate_questions_response_payload,
-    evaluate_answers_request_payload,
-    evaluate_answers_response_payload,
+    generate_questions_request,
+    generate_questions_response,
+    evaluate_answers_request,
+    evaluate_answers_response,
 )
 
 # from utils import logger
 STRATEGY_MAP = {
-    "generate_questions_request": generate_questions_request_payload,
-    "generate_questions_response": generate_questions_response_payload,
-    "evaluate_answers_request": evaluate_answers_request_payload,
-    "evaluate_answers_response": evaluate_answers_response_payload,
+    "generate_questions_request": generate_questions_request,
+    "generate_questions_response": generate_questions_response,
+    "evaluate_answers_request": evaluate_answers_request,
+    "evaluate_answers_response": evaluate_answers_response,
 }
 
 

@@ -1,7 +1,5 @@
-[
-    {
-        "difficulty_level": "easy",
-        "programming_language": "python",
-        "topics": "loops, functions"
-    }
-]
+{
+    "difficulty_level": "easy",
+    "programming_language": "python",
+    "topics": "loops, functions"
+}
