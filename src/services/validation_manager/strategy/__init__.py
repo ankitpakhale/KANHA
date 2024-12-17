@@ -1,12 +1,12 @@
-from .generate_questions_request_payload import generate_questions_request_payload
-from .generate_questions_response_payload import generate_questions_response_payload
-from .evaluate_answers_request_payload import evaluate_answers_request_payload
-from .evaluate_answers_response_payload import evaluate_answers_response_payload
+from .generate_questions_request import generate_questions_request
+from .generate_questions_response import generate_questions_response
+from .evaluate_answers_request import evaluate_answers_request
+from .evaluate_answers_response import evaluate_answers_response
 
 
 __all__ = [
-    "generate_questions_request_payload",
-    "generate_questions_response_payload",
-    "evaluate_answers_request_payload",
-    "evaluate_answers_response_payload",
+    "generate_questions_request",
+    "generate_questions_response",
+    "evaluate_answers_request",
+    "evaluate_answers_response",
 ]

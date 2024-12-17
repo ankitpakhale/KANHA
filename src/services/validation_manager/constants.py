@@ -1,12 +1,11 @@
 SCHEMA_MAP = {
     "GENERATE_QUESTIONS": {
         "REQUEST_SCHEMA": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
             "type": "object",
             "properties": {
                 "difficulty_level": {"type": "string"},
                 "programming_language": {"type": "string"},
-                "topics": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+                "topics": {"type": "array", "items": {"type": "string"}},
             },
             "required": ["difficulty_level", "programming_language", "topics"],
             "additionalProperties": False,
@@ -34,54 +33,57 @@ SCHEMA_MAP = {
     },
     "EVALUATE_ANSWERS": {
         "REQUEST_SCHEMA": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "q_id": {"type": "string", "pattern": "^psq[0-9]+$"},
-                    "problem_description": {"type": "string"},
-                    "input_format": {"type": "string"},
-                    "output_format": {"type": "string"},
-                    "constraints": {"type": "string"},
-                    "examples": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "input": {"type": "string"},
-                                "output": {"type": "string"},
+            "type": "object",
+            "properties": {
+                "user_code": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "q_id": {"type": "string"},
+                            "problem_description": {"type": "string"},
+                            "input_format": {"type": "string"},
+                            "output_format": {"type": "string"},
+                            "constraints": {"type": "string"},
+                            "examples": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "input": {"type": "string"},
+                                        "output": {"type": "string"},
+                                    },
+                                    "required": ["input", "output"],
+                                },
                             },
-                            "required": ["input", "output"],
-                            "additionalProperties": False,
-                        },
-                    },
-                    "edge_cases": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "input": {"type": "string"},
-                                "output": {"type": "string"},
+                            "edge_cases": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "input": {"type": "string"},
+                                        "output": {"type": "string"},
+                                    },
+                                    "required": ["input", "output"],
+                                },
                             },
-                            "required": ["input", "output"],
-                            "additionalProperties": False,
+                            "user_code": {"type": "string"},
                         },
+                        "required": [
+                            "q_id",
+                            "problem_description",
+                            "input_format",
+                            "output_format",
+                            "constraints",
+                            "examples",
+                            "edge_cases",
+                            "user_code",
+                        ],
                     },
-                    "user_code": {"type": "string"},
-                },
-                "required": [
-                    "q_id",
-                    "problem_description",
-                    "input_format",
-                    "output_format",
-                    "constraints",
-                    "examples",
-                    "edge_cases",
-                    "user_code",
-                ],
-                "additionalProperties": False,
+                }
             },
+            "required": ["user_code"],
+            "additionalProperties": False,
         },
         "RESPONSE_SCHEMA": {
             "$schema": "http://json-schema.org/draft-07/schema#",

@@ -110,8 +110,8 @@ __validation_list = [
     REQUEST,
     RESPONSE,
 ]
-__service_type = __service_list[0]
-__validation_type = __validation_list[1]
+__service_type = __service_list[1]
+__validation_type = __validation_list[0]
 
 __payload = PAYLOAD_MAP[__service_type][__validation_type]
 

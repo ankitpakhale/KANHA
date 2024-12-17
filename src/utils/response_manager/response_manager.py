@@ -1,7 +1,8 @@
 from typing import Callable, Any, Dict, Type
 from framework import Response
 from utils import logger
-import json
+from json.decoder import JSONDecodeError
+from jsonschema.exceptions import ValidationError
 
 
 class ResponseHandler:
@@ -12,8 +13,12 @@ class ResponseHandler:
     # exception mapping for handling various exceptions
     EXCEPTION_MAPPING = {
         # json and validation errors
-        json.decoder.JSONDecodeError: {
+        JSONDecodeError: {
             "status_code": 502,
+            "message": "validation error",
+        },
+        ValidationError: {
+            "status_code": 400,
             "message": "validation error",
         },
         AssertionError: {
@@ -99,7 +104,7 @@ class ResponseHandler:
         return {
             "status": False,
             "payload": {},
-            "message": f"{exception_info['message']}: {str(exception)}",
+            "message": f"{exception_info['message']}",
             "status_code": exception_info["status_code"],
         }
 

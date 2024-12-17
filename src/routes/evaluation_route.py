@@ -28,7 +28,7 @@ class EvaluationRoute:
         answers_payload = dict(user_code=json.loads(Request.forms.get("user_code")))
 
         # generate questions using the service
-        response = evaluation_service_obj(**answers_payload)
+        response = evaluation_service_obj(payload=answers_payload)
         logger.debug("Response successfully generated")
         return {
             "payload": response,
