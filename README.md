@@ -3,146 +3,146 @@
 ### **Project Structure**
 
 ```
-KANHA
-├── cookbook
-│   └── version1
-│       └── index.md
-├── infra
-│   ├── environments
-│   │   ├── dev
-│   │   │   ├── docker-compose.yml
-│   │   │   └── Dockerfile
-│   │   ├── prod
-│   │   │   ├── docker-compose.yml
-│   │   │   └── Dockerfile
-│   │   ├── qa
-│   │   │   ├── docker-compose.yml
-│   │   │   └── Dockerfile
-│   │   └── stage
-│   │       ├── docker-compose.yml
-│   │       └── Dockerfile
-│   └── terraform
-│       ├── lambda_code
-│       │   ├── app.py
-│       │   ├── main.tf
-│       │   ├── outputs.tf
-│       │   ├── provider.tf
-│       │   ├── requirements.txt
-│       │   ├── terraform.tfstate
-│       │   └── variables.tf
-│       ├── main.tf
-│       ├── outputs.tf
-│       ├── provider.tf
-│       ├── terraform.tfstate
-│       └── variables.tf
-├── LICENSE
-├── Makefile
-├── poetry.lock
-├── pyproject.toml
-├── README.md
-├── release
-├── requirements.txt
-├── setup.py
-├── src
-│   ├── clients
-│   │   ├── base.py
-│   │   ├── client_types
-│   │   │   ├── bedrock_client.py
-│   │   │   ├── __init__.py
-│   │   │   └── openai_client.py
-│   │   ├── docs
-│   │   │   ├── ClientPackageArchitectureDiagram.png
-│   │   │   └── docs.md
-│   │   ├── factory.py
-│   │   ├── __init__.py
-│   │   ├── payload
-│   │   │   ├── request_examples
-│   │   │   │   ├── evaluate_answers.json
-│   │   │   │   └── generate_questions.json
-│   │   │   └── response_examples
-│   │   │       ├── evaluate_answers.json
-│   │   │       └── generate_questions.json
-│   │   ├── tests
-│   │   │   ├── test_evaluate_answers.py
-│   │   │   └── test_generate_questions.py
-│   │   └── utils.py
-│   ├── config
-│   │   ├── aws_config.py
-│   │   ├── base_config.py
-│   │   ├── env_config.py
-│   │   ├── general_config.py
-│   │   ├── __init__.py
-│   │   └── openai_config.py
-│   ├── framework
-│   │   ├── bottle_app.py
-│   │   └── __init__.py
-│   ├── main.py
-│   ├── prompts
-│   │   ├── answer_evaluation
-│   │   │   ├── __init__.py
-│   │   │   ├── system_prompts.py
-│   │   │   └── user_prompts.py
-│   │   ├── factory
-│   │   │   ├── answer_evaluation_prompt.py
-│   │   │   ├── base_prompt.py
-│   │   │   ├── __init__.py
-│   │   │   ├── prompt_factory.py
-│   │   │   └── question_generation_prompt.py
-│   │   ├── __init__.py
-│   │   ├── question_generation
-│   │   │   ├── __init__.py
-│   │   │   ├── system_prompts.py
-│   │   │   └── user_prompts.py
-│   │   └── tests
-│   │       ├── test_answer_evaluation_prompt.py
-│   │       └── test_question_generation_prompt.py
-│   ├── repository
-│   │   ├── evaluation_repo.py
-│   │   ├── __init__.py
-│   │   └── question_repo.py
-│   ├── routes
-│   │   ├── cache_route.py
-│   │   ├── constants.py
-│   │   ├── evaluation_route.py
-│   │   ├── healthcheck_route.py
-│   │   ├── __init__.py
-│   │   └── question_route.py
-│   ├── services
-│   │   ├── __init__.py
-│   │   ├── service_types
-│   │   │   ├── evaluation_service.py
-│   │   │   ├── __init__.py
-│   │   │   └── question_service.py
-│   │   ├── tests
-│   │   │   ├── test_evaluation_service.py
-│   │   │   └── test_question_service.py
-│   │   └── validation_manager
-│   │       ├── __init__.py
-│   │       ├── schema_map.py
-│   │       ├── strategy
-│   │       │   ├── base.py
-│   │       │   ├── evaluate_answers_request_payload.py
-│   │       │   ├── evaluate_answers_response_payload.py
-│   │       │   ├── generate_questions_request_payload.py
-│   │       │   ├── generate_questions_response_payload.py
-│   │       │   └── __init__.py
-│   │       ├── tests.py
-│   │       └── validation_manager.py
-│   └── utils
-│       ├── cache
-│       │   ├── __init__.py
-│       │   └── manager.py
-│       ├── __init__.py
-│       ├── logging
-│       │   ├── base.py
-│       │   ├── filters.py
-│       │   ├── formatters.py
-│       │   ├── handlers.py
-│       │   └── __init__.py
-│       └── response_manager
-│           ├── __init__.py
-│           └── response_manager.py
-└── entrypoint.sh
+KANHA                                  # Root directory of the project
+├── cookbook                           # Contains documentation and guides
+│   └── version1                       # Version 1 of the cookbook
+│       └── index.md                   # Main index file of the cookbook
+├── infra                              # Infrastructure related files
+│   ├── environments                   # Different environment configurations
+│   │   ├── dev                        # Development environment
+│   │   │   ├── docker-compose.yml     # Docker Compose file for dev environment
+│   │   │   └── Dockerfile             # Dockerfile for dev environment
+│   │   ├── prod                       # Production environment
+│   │   │   ├── docker-compose.yml     # Docker Compose file for prod environment
+│   │   │   └── Dockerfile             # Dockerfile for prod environment
+│   │   ├── qa                         # QA environment
+│   │   │   ├── docker-compose.yml     # Docker Compose file for QA environment
+│   │   │   └── Dockerfile             # Dockerfile for QA environment
+│   │   └── stage                      # Staging environment
+│   │       ├── docker-compose.yml     # Docker Compose file for stage environment
+│   │       └── Dockerfile             # Dockerfile for stage environment
+│   └── terraform                      # Terraform configuration files
+│       ├── lambda_code                # Lambda-related code and Terraform files
+│       │   ├── app.py                 # Lambda function code
+│       │   ├── main.tf                # Terraform main configuration for lambda
+│       │   ├── outputs.tf             # Terraform outputs for lambda
+│       │   ├── provider.tf            # Terraform provider configuration for lambda
+│       │   ├── requirements.txt       # Python requirements for lambda
+│       │   ├── terraform.tfstate      # Terraform state file for lambda
+│       │   └── variables.tf           # Terraform variables for lambda
+│       ├── main.tf                    # Terraform main configuration
+│       ├── outputs.tf                 # Terraform outputs
+│       ├── provider.tf                # Terraform provider configuration
+│       ├── terraform.tfstate          # Terraform state file
+│       └── variables.tf               # Terraform variables
+├── LICENSE                            # License file for the project
+├── Makefile                           # Makefile for build automation
+├── poetry.lock                        # Poetry lock file for package dependencies
+├── pyproject.toml                     # Poetry project configuration
+├── README.md                          # Main README file of the project
+├── release                            # Folder for release-related assets
+├── requirements.txt                   # Python dependencies
+├── setup.py                           # Setup script for the project
+├── src                                # Source code of the project
+│   ├── clients                        # Client-related code
+│   │   ├── base.py                    # Base class for clients
+│   │   ├── client_types               # Different types of clients
+│   │   │   ├── bedrock_client.py      # Bedrock client implementation
+│   │   │   ├── __init__.py            # Initialization of client_types
+│   │   │   └── openai_client.py       # OpenAI client implementation
+│   │   ├── docs                       # Documentation for clients
+│   │   │   ├── ClientPackageArchitectureDiagram.png  # Client architecture diagram
+│   │   │   └── docs.md                # Documentation file
+│   │   ├── factory.py                 # Factory to instantiate clients
+│   │   ├── __init__.py                # Initialization of the clients package
+│   │   ├── payload                    # Payloads for requests and responses
+│   │   │   ├── request_examples       # Example request payloads
+│   │   │   │   ├── evaluate_answers.json  # Example for evaluate_answers
+│   │   │   │   └── generate_questions.json  # Example for generate_questions
+│   │   │   └── response_examples      # Example response payloads
+│   │   │       ├── evaluate_answers.json  # Example response for evaluate_answers
+│   │   │       └── generate_questions.json  # Example response for generate_questions
+│   │   ├── tests                      # Unit tests for clients
+│   │   │   ├── test_evaluate_answers.py  # Test for evaluate_answers
+│   │   │   └── test_generate_questions.py  # Test for generate_questions
+│   │   └── utils.py                   # Utility functions for clients
+│   ├── config                         # Configuration files
+│   │   ├── aws_config.py              # AWS-specific configurations
+│   │   ├── base_config.py             # Base configuration for the project
+│   │   ├── env_config.py              # Environment-specific configurations
+│   │   ├── general_config.py          # General project configuration
+│   │   ├── __init__.py                # Initialization of config package
+│   │   └── openai_config.py           # OpenAI-specific configurations
+│   ├── framework                      # Core framework code
+│   │   ├── bottle_app.py              # Bottle framework app
+│   │   └── __init__.py                # Initialization of framework package
+│   ├── main.py                        # Main entry point of the application
+│   ├── prompts                        # Prompt-related files
+│   │   ├── answer_evaluation          # Prompts for answer evaluation
+│   │   │   ├── __init__.py            # Initialization of answer_evaluation
+│   │   │   ├── system_prompts.py      # System prompts for evaluation
+│   │   │   └── user_prompts.py        # User prompts for evaluation
+│   │   ├── factory                    # Factory for creating prompts
+│   │   │   ├── answer_evaluation_prompt.py  # Prompt for answer evaluation
+│   │   │   ├── base_prompt.py         # Base class for prompts
+│   │   │   ├── __init__.py            # Initialization of factory package
+│   │   │   ├── prompt_factory.py      # Prompt factory logic
+│   │   │   └── question_generation_prompt.py  # Prompt for question generation
+│   │   ├── __init__.py                # Initialization of prompts package
+│   │   ├── question_generation        # Prompts for question generation
+│   │   │   ├── __init__.py            # Initialization of question_generation
+│   │   │   ├── system_prompts.py      # System prompts for question generation
+│   │   │   └── user_prompts.py        # User prompts for question generation
+│   │   └── tests                      # Unit tests for prompts
+│   │       ├── test_answer_evaluation_prompt.py  # Test for answer evaluation prompts
+│   │       └── test_question_generation_prompt.py  # Test for question generation prompts
+│   ├── repository                     # Data repositories for questions and evaluations
+│   │   ├── evaluation_repo.py         # Repository for evaluations
+│   │   ├── __init__.py                # Initialization of repository package
+│   │   └── question_repo.py           # Repository for questions
+│   ├── routes                         # Routes for the API
+│   │   ├── cache_route.py             # Route for cache management
+│   │   ├── constants.py               # Constants used across the routes
+│   │   ├── evaluation_route.py        # Route for evaluations
+│   │   ├── healthcheck_route.py       # Route for health checks
+│   │   ├── __init__.py                # Initialization of routes package
+│   │   └── question_route.py          # Route for questions
+│   ├── services                       # Core services of the platform
+│   │   ├── __init__.py                # Initialization of services package
+│   │   ├── service_types              # Types of services (e.g., evaluation, question)
+│   │   │   ├── evaluation_service.py  # Evaluation service logic
+│   │   │   ├── __init__.py            # Initialization of service_types
+│   │   │   └── question_service.py    # Question service logic
+│   │   ├── tests                      # Unit tests for services
+│   │   │   ├── test_evaluation_service.py  # Test for evaluation service
+│   │   │   └── test_question_service.py    # Test for question service
+│   │   └── validation_manager         # Validation logic for request/response
+│   │       ├── __init__.py            # Initialization of validation_manager
+│   │       ├── schema_map.py          # Schema mapping for validation
+│   │       ├── strategy               # Validation strategies for payloads
+│   │       │   ├── base.py            # Base strategy for validation
+│   │       │   ├── evaluate_answers_request_payload.py  # Validation for evaluate_answers request
+│   │       │   ├── evaluate_answers_response_payload.py  # Validation for evaluate_answers response
+│   │       │   ├── generate_questions_request_payload.py  # Validation for generate_questions request
+│   │       │   ├── generate_questions_response_payload.py  # Validation for generate_questions response
+│   │       │   └── __init__.py        # Initialization of strategy package
+│   │       ├── tests.py               # Tests for validation manager
+│   │       └── validation_manager.py  # Main validation logic
+│   └── utils                          # Utility functions
+│       ├── cache                      # Cache management utilities
+│       │   ├── __init__.py            # Initialization of cache utilities
+│       │   └── manager.py             # Cache manager logic
+│       ├── __init__.py                # Initialization of utils package
+│       ├── logging                    # Logging utilities
+│       │   ├── base.py                # Base logging utilities
+│       │   ├── filters.py             # Log filters
+│       │   ├── formatters.py          # Log formatters
+│       │   ├── handlers.py            # Log handlers
+│       │   └── __init__.py            # Initialization of logging utilities
+│       └── response_manager           # Response management utilities
+│           ├── __init__.py            # Initialization of response manager
+│           └── response_manager.py    # Main response manager logic
+└── entrypoint.sh                      # Shell script for entry point of the application
 
 ```
 
