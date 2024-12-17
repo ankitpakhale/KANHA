@@ -72,12 +72,6 @@ openai_secrets/
 # mypy (python type checker) cache
 .mypy_cache/
 
-# others
-docs.txt
-EC2
-*.pem
-.__github
-
 
 # temporary files
 *.swp
@@ -98,3 +92,11 @@ kanha.egg-info/
 
 # builds
 build
+
+
+# others
+docs.txt
+EC2
+*.pem
+.__github
+tree.md

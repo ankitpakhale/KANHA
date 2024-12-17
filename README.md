@@ -4,100 +4,151 @@
 
 ```
 KANHA
-	src/
-	├── prompts/
-	│   ├── __init__.py                               # initializes the prompts package
-	│   ├── question_generation/                      # subpackage for question generation prompts
-	│   │   ├── __init__.py                           # initializes the subpackage
-	│   │   ├── user_prompts.py                       # user input prompts for question generation
-	│   │   ├── system_prompts.py                     # system prompts for question generation
-	│   ├── answer_evaluation/                        # subpackage for answer evaluation prompts
-	│   │   ├── __init__.py                           # initializes the subpackage
-	│   │   ├── user_prompts.py                       # user input prompts for answer evaluation
-	│   │   ├── system_prompts.py                     # system prompts for answer evaluation
-	│   └── prompt_manager.py                         # centralized logic for managing prompts (Factory and logic)
-	│
-	├── clients/  									  # all client-related modules and subpackages
-	│   ├── __init__.py  							  # constructor for the clients package
-	│   │
-	│   ├── base/  									  # base subpackage under clients
-	│   │   ├── __init__.py
-	│   │   └── base.py  							  # shared logic for clients like prompt generation
-	│   │
-	│   ├── bedrock_client/  						  # subpackage for AWS Bedrock-specific client
-	│   │   ├── __init__.py
-	│   │   ├── bedrock_client.py  					  # main client logic for interacting with Bedrock
-	│   │   ├── base/  								  # Bedrock-specific base functionality
-	│   │   │   ├── __init__.py
-	│   │   │
-	│   │   └── strategy/  							  # Bedrock-specific strategies
-	│   │       ├── __init__.py
-	│   │
-	│   ├── openai_client/  						  # OpenAI-specific client
-	│   │   ├── __init__.py
-	│   │   ├── openai_base/  						  # base OpenAI-related functionality
-	│   │   │   ├── __init__.py
-	│   │   │   ├── openai_base_client.py  			  # base OpenAI client
-	│   │   │   └── openai_strategy.py  			  # strategy implementation for OpenAI
-	│   │   │
-	│   │   └── strategy/  							  # subpackage for OpenAI-specific strategies
-	│   │       ├── __init__.py
-	│   │       ├── evaluate_answers_strategy.py      # strategy for evaluating answers
-	│   │       └── generate_questions_strategy.py    # strategy for generating questions
-	│   │
-	│   ├── docs/  									  # documentation for the clients package
-	│   │   ├── ClientPackageArchitectureDiagram.png  # architecture diagram
-	│   │   └── docs.md  							  # documentation for the client package structure and usage
-	│   │
-	│   ├── response_examples/   					  # sample response directory
-	│   │   ├── evaluate_answers.json   			  # sample response for answer evaluation
-	│   │   └── generate_questions.json 			  # sample response for question generation
-	│   │
-	│   └── tests/  								  # tests for all clients functionality
-	│       ├── test_evaluate_answers.py    		  # tests for answer evaluation functionality
-	│       └── test_generate_questions.py  		  # tests for question generation functionality
-	│
-	├── config/                                       # configuration files
-	│   ├── aws_config.py                             # AWS configurations (Bedrock, RDS, S3, etc.)
-	│   ├── base_config.py                            # base configurations
-	│   ├── env_config.py                             # environments configurations
-	│   ├── general_config.py                         # general configurations
-	│   ├── openai_config.py                          # OpenAI API configurations
-	│   └── __init__.py                               # makes config a Python package
-	│
-	├── framework/                                    # web framework files
-	│   ├── __init__.py                               # initializes the framework package
-	│   └── bottle_app.py                             # encapsulates Bottle-specific components
-	│
-	├── repository/                                   # database interaction layer
-	│   ├── question_repo.py                          # handles CRUD operations for questions
-	│   ├── evaluation_repo.py                        # handles CRUD operations for evaluation results
-	│   └── __init__.py                               # makes repository a Python package
-	│
-	├── routes/                                       # API endpoints (controllers)
-	│   ├── question_routes.py                        # routes for question generation
-	│   ├── evaluation_routes.py                      # routes for answer evaluation
-	│   └── __init__.py                               # makes routes a Python package
-	│
-	├── services/                                     # business logic layer
-	│   ├── question_service/                         # core logic for question generation
-	│   │   ├── __init__.py                           # main service logic
-	│   ├── evaluation_service/                       # core logic for answer evaluation
-	│   │   ├── __init__.py                           # main service logic
-	│   ├── validation_manager/                       # Payload validation logic
-	│   │   ├── __init__.py                           # main validation logic
-	│   └── __init__.py                               # makes services a Python package
-	│
-	├── utils/                                        # utilities for reusable logic
-	│   ├── logging_manager/                          # handles logging for the project
-	│   │   ├── __init__.py                           # main logging logic
-	│   ├── cache_manager/                            # handles caching for the project
-	│   │   ├── __init__.py                           # main cache logic
-	│   ├── __init__.py                               # makes utils a Python package
-	│   │
-	├── main.py                                       # application entry point
-	│
-	└── start_application.sh                          # bash file to run main entry point
+├── cookbook
+│   └── version1
+│       └── index.md
+├── infra
+│   ├── environments
+│   │   ├── dev
+│   │   │   ├── docker-compose.yml
+│   │   │   └── Dockerfile
+│   │   ├── prod
+│   │   │   ├── docker-compose.yml
+│   │   │   └── Dockerfile
+│   │   ├── qa
+│   │   │   ├── docker-compose.yml
+│   │   │   └── Dockerfile
+│   │   └── stage
+│   │       ├── docker-compose.yml
+│   │       └── Dockerfile
+│   └── terraform
+│       ├── lambda_code
+│       │   ├── app.py
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   ├── requirements.txt
+│       │   ├── terraform.tfstate
+│       │   └── variables.tf
+│       ├── main.tf
+│       ├── outputs.tf
+│       ├── provider.tf
+│       ├── terraform.tfstate
+│       └── variables.tf
+├── LICENSE
+├── Makefile
+├── poetry.lock
+├── pyproject.toml
+├── README.md
+├── release
+├── requirements.txt
+├── setup.py
+├── src
+│   ├── clients
+│   │   ├── base.py
+│   │   ├── client_types
+│   │   │   ├── bedrock_client.py
+│   │   │   ├── __init__.py
+│   │   │   └── openai_client.py
+│   │   ├── docs
+│   │   │   ├── ClientPackageArchitectureDiagram.png
+│   │   │   └── docs.md
+│   │   ├── factory.py
+│   │   ├── __init__.py
+│   │   ├── payload
+│   │   │   ├── request_examples
+│   │   │   │   ├── evaluate_answers.json
+│   │   │   │   └── generate_questions.json
+│   │   │   └── response_examples
+│   │   │       ├── evaluate_answers.json
+│   │   │       └── generate_questions.json
+│   │   ├── tests
+│   │   │   ├── test_evaluate_answers.py
+│   │   │   └── test_generate_questions.py
+│   │   └── utils.py
+│   ├── config
+│   │   ├── aws_config.py
+│   │   ├── base_config.py
+│   │   ├── env_config.py
+│   │   ├── general_config.py
+│   │   ├── __init__.py
+│   │   └── openai_config.py
+│   ├── framework
+│   │   ├── bottle_app.py
+│   │   └── __init__.py
+│   ├── kanha.egg-info
+│   │   ├── dependency_links.txt
+│   │   ├── PKG-INFO
+│   │   ├── requires.txt
+│   │   ├── SOURCES.txt
+│   │   └── top_level.txt
+│   ├── main.py
+│   ├── prompts
+│   │   ├── answer_evaluation
+│   │   │   ├── __init__.py
+│   │   │   ├── system_prompts.py
+│   │   │   └── user_prompts.py
+│   │   ├── factory
+│   │   │   ├── answer_evaluation_prompt.py
+│   │   │   ├── base_prompt.py
+│   │   │   ├── __init__.py
+│   │   │   ├── prompt_factory.py
+│   │   │   └── question_generation_prompt.py
+│   │   ├── __init__.py
+│   │   ├── question_generation
+│   │   │   ├── __init__.py
+│   │   │   ├── system_prompts.py
+│   │   │   └── user_prompts.py
+│   │   └── tests
+│   │       ├── test_answer_evaluation_prompt.py
+│   │       └── test_question_generation_prompt.py
+│   ├── repository
+│   │   ├── evaluation_repo.py
+│   │   ├── __init__.py
+│   │   └── question_repo.py
+│   ├── routes
+│   │   ├── cache_route.py
+│   │   ├── constants.py
+│   │   ├── evaluation_route.py
+│   │   ├── healthcheck_route.py
+│   │   ├── __init__.py
+│   │   └── question_route.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   ├── service_types
+│   │   │   ├── evaluation_service.py
+│   │   │   ├── __init__.py
+│   │   │   └── question_service.py
+│   │   ├── tests
+│   │   │   ├── test_evaluation_service.py
+│   │   │   └── test_question_service.py
+│   │   └── validation_manager
+│   │       ├── __init__.py
+│   │       ├── schema_map.py
+│   │       ├── strategy
+│   │       │   ├── base.py
+│   │       │   ├── evaluate_answers_request_payload.py
+│   │       │   ├── evaluate_answers_response_payload.py
+│   │       │   ├── generate_questions_request_payload.py
+│   │       │   ├── generate_questions_response_payload.py
+│   │       │   └── __init__.py
+│   │       ├── tests.py
+│   │       └── validation_manager.py
+│   └── utils
+│       ├── cache
+│       │   ├── __init__.py
+│       │   └── manager.py
+│       ├── __init__.py
+│       ├── logging
+│       │   ├── base.py
+│       │   ├── filters.py
+│       │   ├── formatters.py
+│       │   ├── handlers.py
+│       │   └── __init__.py
+│       └── response_manager
+│           ├── __init__.py
+│           └── response_manager.py
+└── entrypoint.sh
 
 ```
 
