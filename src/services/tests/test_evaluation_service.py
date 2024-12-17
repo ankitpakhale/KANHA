@@ -27,5 +27,6 @@ answer_payload = dict(
         }
     ]
 )
+# TODO: add validation layer
 service_instance = evaluation_service_obj(**answer_payload)
 logger.debug("➡ service_instance:", service_instance)

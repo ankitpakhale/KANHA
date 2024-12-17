@@ -229,7 +229,7 @@ class Bedrock(Base):
         ]
         """
 
-        logger.info(f"__generation: {__generation}")
+        logger.info("Received generated questions from Bedrock Client")
         return __generation
 
     @typechecked
@@ -260,5 +260,5 @@ class Bedrock(Base):
     }
 ]
 """
-        logger.info(f"__evaluation: {__evaluation}")
+        logger.info("Received evaluated answers from Bedrock Client")
         return __evaluation

@@ -18,7 +18,7 @@ class QuestionRoute:
         return cls._instance
 
     @handle_response
-    @cache
+    # @cache
     def __generate_questions_handler(self):
         """
         handle the generation of questions based on the payload.
@@ -34,6 +34,8 @@ class QuestionRoute:
             programming_language=Request.forms.get("programming_language"),
             topics=topics,
         )
+
+        logger.error(f"➡ questions_payload: {questions_payload}")
 
         # generate questions using the service
         response = question_service_obj(**questions_payload)

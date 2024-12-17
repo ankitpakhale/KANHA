@@ -1,6 +1,8 @@
 from clients import Client
-from services import validation_payload_manager_obj
+from services import validation_manager_obj
 import json
+
+# TODO: change name to GenerateQuestions
 
 
 class QuestionService:
@@ -9,7 +11,11 @@ class QuestionService:
         Initializes the question client and generates questions based on the user input.
         """
         # validate the data
-        validation_payload_manager_obj(**kwargs)
+        validation_manager = validation_manager_obj(
+            service_type="generate_questions", validation_type="request"
+        )
+        validation_status = validation_manager.validate(**kwargs)
+        print("➡ &&&&&&&&&&&&&&&&&&&&&&&&&&&9 validation_status:", validation_status)
 
         __client_response = Client().generate_questions(**kwargs)
 
