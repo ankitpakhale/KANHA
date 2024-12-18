@@ -10,7 +10,7 @@ def _get_monthly_log_directory():
     # get the current month's name in lowercase
     month = calendar.month_name[datetime.now().month].lower()
     # construct the directory path
-    log_dir = os.path.join(".logs", month)
+    log_dir = os.path.join(".kanha_logs", month)
     # create the directory if it does not exist
     os.makedirs(log_dir, exist_ok=True)
     return log_dir
