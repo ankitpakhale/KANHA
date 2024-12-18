@@ -1,1 +1,13 @@
-*ankit-pakhale
+# Global owner for all files
+*       @ankitpakhale
+
+# Owner for specific directories
+# /docs/  @docs-team
+# /src/   @dev-team
+
+# Owner for specific files
+# README.md  @ankitpakhale
+
+# Wildcard patterns
+# *.js    @frontend-member
+# *.py    @backend-member
