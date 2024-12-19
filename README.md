@@ -44,6 +44,25 @@ KANHA                                  # Root directory of the project
 ├── requirements.txt                   # Python dependencies
 ├── setup.py                           # Setup script for the project
 ├── src                                # Source code of the project
+│   ├── dao                            # Data Access Object, to handle database operations
+│   │   ├── base
+│   │   │   ├── base_dao.py
+│   │   │   └── __init__.py
+│   │   ├── feedback
+│   │   │   ├── feedback_dao.py
+│   │   │   └── __init__.py
+│   │   ├── helpers
+│   │   │   ├── db_helpers.py
+│   │   │   └── __init__.py
+│   │   ├── __init__.py
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── test_base_dao.py
+│   │   │   ├── test_feedback_dao.py
+│   │   │   └── test_user_dao.py
+│   │   └── user
+│   │       ├── __init__.py
+│   │       └── user_dao.py
 │   ├── clients                        # Client-related code
 │   │   ├── base.py                    # Base class for clients
 │   │   ├── client_types               # Different types of clients
