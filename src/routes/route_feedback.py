@@ -25,7 +25,7 @@ class FeedbackRoute:
         logger.debug("__feedback route called")
         # retrieve data from request and make a dictionary object
         payload = dict(
-            rating=Request.forms.get("rating"),
+            rating=int(Request.forms.get("rating")),
             comments=Request.forms.get("comments"),
             frequency_of_use=Request.forms.get("frequency_of_use"),
             purpose_of_use=Request.forms.get("purpose_of_use"),
