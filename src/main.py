@@ -9,7 +9,7 @@ from config.general_config import GeneralConfig
 from utils import logger
 
 
-# register question routes
+# register routes
 healthcheck_route_obj.register()
 question_route_obj.register()
 evaluation_route_obj.register()

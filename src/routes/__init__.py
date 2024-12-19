@@ -9,5 +9,5 @@ __all__ = [
     "question_route_obj",
     "evaluation_route_obj",
     "healthcheck_route_obj",
-    "cache_route_objhealthcheck_route_obj",
+    "cache_route_obj",
 ]
