@@ -29,6 +29,7 @@ lambda/
 
 # logs
 .logs/
+.kanha_logs/
 *.log
 *.out
 *.err

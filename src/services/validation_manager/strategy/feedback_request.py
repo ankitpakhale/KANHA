@@ -5,17 +5,17 @@ from utils import logger
 from services.validation_manager.schema_map import SCHEMA_MAP
 
 
-class EvaluateAnswersResponse(Base):
+class FeedbackRequest(Base):
     @staticmethod
     def __validate(payload: Union[list, dict], schema: Dict):
         validate(instance=payload, schema=schema)
-        logger.debug("Evaluate Answers Response Payload validated successfully!!!")
+        logger.debug("Feedback Request Payload validated successfully!!!")
         return True
 
     def validate(self, payload: Union[list, dict]) -> bool:
-        schema = SCHEMA_MAP["EVALUATE_ANSWERS"]["RESPONSE"]
+        schema = SCHEMA_MAP["FEEDBACK"]["REQUEST"]
         return self.__validate(payload=payload, schema=schema)
 
 
-# singleton instance of EvaluateAnswersResponse
-evaluate_answers_response = EvaluateAnswersResponse
+# singleton instance of FeedbackRequest
+feedback_request = FeedbackRequest

@@ -11,6 +11,7 @@ GENERATE_QUESTIONS = "generate_questions"
 EVALUATE_ANSWERS = "evaluate_answers"
 REQUEST = "request"
 RESPONSE = "response"
+FEEDBACK = "feedback"
 
 PAYLOAD_MAP = {
     GENERATE_QUESTIONS: {
@@ -100,17 +101,29 @@ PAYLOAD_MAP = {
             },
         ],
     },
+    FEEDBACK: {
+        REQUEST: {
+            "rating": 10,
+            "comments": "very good",
+            "frequency_of_use": "daily",
+            "purpose_of_use": "to take Interviews",
+            "ease_of_use": "very_easy",
+            "specific_features": "Question Generation part is extreamly great.",
+        },
+        RESPONSE: {},
+    },
 }
 
 __service_list = [
     GENERATE_QUESTIONS,
     EVALUATE_ANSWERS,
+    FEEDBACK,
 ]
 __validation_list = [
     REQUEST,
     RESPONSE,
 ]
-__service_type = __service_list[1]
+__service_type = __service_list[2]
 __validation_type = __validation_list[0]
 
 __payload = PAYLOAD_MAP[__service_type][__validation_type]
@@ -119,3 +132,5 @@ is_valid = validation_manager_obj(
     service_type=__service_type, validation_type=__validation_type
 ).validate(__payload)
 print("➡ is_valid:", is_valid)
+
+print("➡ __payload:", __payload)

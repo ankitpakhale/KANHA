@@ -1,6 +1,6 @@
 from framework import App, Request
 from utils import logger, cache, handle_response
-from .constants import HEALTHCHECK_ROUTE
+from .constants import HEALTHCHECK_ROUTE as ROUTE
 
 
 class HealthcheckRoute:
@@ -32,7 +32,7 @@ class HealthcheckRoute:
         """
         Register the route of healthcheck.
         """
-        App.route(HEALTHCHECK_ROUTE, method="GET", callback=self.__healthcheck_handler)
+        App.route(ROUTE, method="GET", callback=self.__healthcheck_handler)
 
 
 # singleton instance of HealthcheckRoute
