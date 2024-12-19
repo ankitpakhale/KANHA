@@ -81,5 +81,5 @@
 - [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
 
 - #### Tasklist 5.5
-- [x] Implement dao (data access object package) in source
-- [x] Create basic files and structure of dao
+- [x] Implement dao (data access object package) in source.
+- [x] Create basic files and structure of dao.
