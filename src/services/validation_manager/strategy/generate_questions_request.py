@@ -2,7 +2,7 @@ from jsonschema import validate
 from typing import Dict, Union
 from .base import Base
 from utils import logger
-from services.validation_manager.constants import SCHEMA_MAP
+from services.validation_manager.schema_map import SCHEMA_MAP
 
 
 class GenerateQuestionsRequest(Base):
@@ -13,7 +13,7 @@ class GenerateQuestionsRequest(Base):
         return True
 
     def validate(self, payload: Union[list, dict]) -> bool:
-        schema = SCHEMA_MAP["GENERATE_QUESTIONS"]["REQUEST_SCHEMA"]
+        schema = SCHEMA_MAP["GENERATE_QUESTIONS"]["REQUEST"]
         return self.__validate(payload=payload, schema=schema)
 
 

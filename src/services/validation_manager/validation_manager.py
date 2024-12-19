@@ -4,6 +4,7 @@ from services.validation_manager.strategy import (
     generate_questions_response,
     evaluate_answers_request,
     evaluate_answers_response,
+    feedback_request,
 )
 
 # from utils import logger
@@ -12,6 +13,7 @@ STRATEGY_MAP = {
     "generate_questions_response": generate_questions_response,
     "evaluate_answers_request": evaluate_answers_request,
     "evaluate_answers_response": evaluate_answers_response,
+    "feedback_request": feedback_request,
 }
 
 

@@ -1,6 +1,6 @@
 SCHEMA_MAP = {
     "GENERATE_QUESTIONS": {
-        "REQUEST_SCHEMA": {
+        "REQUEST": {
             "type": "object",
             "properties": {
                 "difficulty_level": {"type": "string"},
@@ -10,7 +10,7 @@ SCHEMA_MAP = {
             "required": ["difficulty_level", "programming_language", "topics"],
             "additionalProperties": False,
         },
-        "RESPONSE_SCHEMA": {
+        "RESPONSE": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "type": "array",
             "items": {
@@ -32,7 +32,7 @@ SCHEMA_MAP = {
         },
     },
     "EVALUATE_ANSWERS": {
-        "REQUEST_SCHEMA": {
+        "REQUEST": {
             "type": "object",
             "properties": {
                 "user_code": {
@@ -85,7 +85,7 @@ SCHEMA_MAP = {
             "required": ["user_code"],
             "additionalProperties": False,
         },
-        "RESPONSE_SCHEMA": {
+        "RESPONSE": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "type": "array",
             "items": {
@@ -114,6 +114,57 @@ SCHEMA_MAP = {
                 "required": ["q_id", "feedback", "points"],
                 "additionalProperties": False,
             },
+        },
+    },
+    "FEEDBACK": {
+        "REQUEST": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+                "rating": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "Rating from 1 to 10, where 10 is extremely good and 1 is bad",
+                },
+                "comments": {
+                    "type": "string",
+                    "description": "Feedback or comments about the product",
+                },
+                "frequency_of_use": {
+                    "type": "string",
+                    "enum": [
+                        "daily",
+                        "several_times_a_week",
+                        "once_a_week",
+                        "several_times_a_month",
+                        "once_a_month",
+                        "less_than_once_a_month",
+                        "first_time",
+                    ],
+                    "description": "Frequency of use",
+                },
+                "purpose_of_use": {
+                    "type": "string",
+                    "description": "The primary purpose for using the product",
+                },
+                "ease_of_use": {
+                    "type": "string",
+                    "enum": [
+                        "very_easy",
+                        "easy",
+                        "neutral",
+                        "difficult",
+                        "very_difficult",
+                    ],
+                    "description": "Ease of use rating",
+                },
+                "specific_features": {
+                    "type": "string",
+                    "description": "Specific features the user wants to highlight",
+                },
+            },
+            "required": ["rating"],
         },
     },
 }

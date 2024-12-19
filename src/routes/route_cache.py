@@ -1,6 +1,6 @@
 from framework import App, Request
 from utils import logger, cache, handle_response, clear_cache, delete_cache
-from .constants import CACHE_ROUTE
+from .constants import CACHE_ROUTE as ROUTE
 
 
 class CacheRoute:
@@ -41,7 +41,7 @@ class CacheRoute:
         """
         Register the route for question generation.
         """
-        App.route(CACHE_ROUTE, method="POST", callback=self.__cache_handler)
+        App.route(ROUTE, method="POST", callback=self.__cache_handler)
 
 
 # singleton instance of CacheRoute
