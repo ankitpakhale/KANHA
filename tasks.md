@@ -1,9 +1,11 @@
 ### TODO:
 
 - #### Tasklist 5
-- [x] Design feedback schema, what questions to ask.
-- [x] Implement Validation logic in feedback route.
-- [ ] Save feedback in DB (RDS, postgres or any).
+- [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
+
+- #### Tasklist 5.5
+- [ ] Create base layer of dao package.
+- [ ] Create models and layer of integration with specific database (postgres, RDS, S3, etc).
 
 ### BACKLOG
 
@@ -74,3 +76,10 @@
 
 - #### Tasklist 5
 - [x] Add base layer for feedback route.
+- [x] Design feedback schema, what questions to ask.
+- [x] Implement Validation logic in feedback route.
+- [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
+
+- #### Tasklist 5.5
+- [x] Implement dao (data access object package) in source
+- [x] Create basic files and structure of dao

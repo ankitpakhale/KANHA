@@ -44,7 +44,7 @@ KANHA                                  # Root directory of the project
 ├── requirements.txt                   # Python dependencies
 ├── setup.py                           # Setup script for the project
 ├── src                                # Source code of the project
-│   ├── DAO                            # Data Access Object, to handle database operations
+│   ├── dao                            # Data Access Object, to handle database operations
 │   │   ├── base
 │   │   │   ├── base_dao.py
 │   │   │   └── __init__.py
