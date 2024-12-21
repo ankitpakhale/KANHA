@@ -26,3 +26,10 @@ boto3==1.35.*
 typeguard==4.4.*
 bottle-cors==0.1.*
 jsonschema==4.23.*
+
+# DB Libraries
+greenlet==3.1.1
+psycopg2-binary==2.9.10
+python-dotenv==1.0.1
+SQLAlchemy==2.0.36
+typing_extensions==4.12.2

@@ -6,6 +6,7 @@
 - #### Tasklist 5.5
 - [ ] Create base layer of dao package.
 - [ ] Create models and layer of integration with specific database (postgres, RDS, S3, etc).
+- [ ] Fix all the constants file, there should be single contants file and everything will be class based implemented.
 
 ### BACKLOG
 
