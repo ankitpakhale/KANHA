@@ -4,7 +4,7 @@
 - [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
 
 - #### Tasklist 5.2
-- [ ] Make centralized test package in source directory.
+- [X] Make centralized test package in source directory.
 - [ ] Fix all the constants file, there should be single contants file and everything will be class based implemented.
 
 ### BACKLOG
