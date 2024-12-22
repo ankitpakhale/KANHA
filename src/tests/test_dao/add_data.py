@@ -3,7 +3,6 @@ from pathlib import Path
 
 # add the src directory to sys.path
 __path = str(Path(__file__).resolve().parent.parent.parent)
-print("➡ Current Path:", __path)
 sys.path.append(__path)
 
 from dao import Feedback, db_session  # noqa: E402
