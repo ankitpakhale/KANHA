@@ -1,7 +1,4 @@
-import uuid
-from config import GeneralConfig
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.dialects.postgresql import UUID
 from .base import BaseModel
 
 
@@ -14,11 +11,6 @@ class Feedback(BaseModel):
     # table name for the Feedback model
     __tablename__ = "feedback"
 
-    id = Column(
-        UUID(as_uuid=True) if GeneralConfig.ENV in ["local", "dev"] else String(36),
-        primary_key=True,
-        default=uuid.uuid4,  # generate a UUID automatically for new records
-    )
     rating = Column(Integer)
     comments = Column(String)
     frequency_of_use = Column(String)
@@ -34,6 +26,7 @@ class Feedback(BaseModel):
         """
         return f"""Feedback(
             id={self.id!r},
+            created_at={self.created_at!r},
             rating={self.rating!r},
             comments={self.comments!r},
             frequency_of_use={self.frequency_of_use!r},
