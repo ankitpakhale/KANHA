@@ -19,13 +19,16 @@ class DatabaseConfig:
         db_host = DBConfig.PG_HOST
         db_port = DBConfig.PG_PORT
 
-        if GeneralConfig.ENV == "dev":
-            # PostgreSQL database URL for development environment
-            database_url = f"postgresql://{db_username}:{
-                db_password}@{db_host}:{db_port}/{db_name}"
-        else:
-            # Sqlite database URL for local environment
-            database_url = f"sqlite:///{db_name}.db"
+        # TODO: Add AWS S3 and RDS based on specific environment
+        database_url = f"postgresql://{db_username}:{
+            db_password}@{db_host}:{db_port}/{db_name}"
+        # if GeneralConfig.ENV == "dev":
+        #     # PostgreSQL database URL for development environment
+        #     database_url = f"postgresql://{db_username}:{
+        #         db_password}@{db_host}:{db_port}/{db_name}"
+        # else:
+        #     # Sqlite database URL for local environment
+        #     database_url = f"sqlite:///{db_name}.db"
 
         return database_url
 

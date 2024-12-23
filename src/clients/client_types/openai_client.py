@@ -41,7 +41,7 @@ class OpenAI(Base):
         programming_language = payload["programming_language"]
         topics = payload["topics"]
         num_questions = payload.get(
-            "num_questions", 1
+            "num_questions", 2
         )  # specify any number, default is 20
 
         __system_prompt = self.get_question_generation_system_prompt(
