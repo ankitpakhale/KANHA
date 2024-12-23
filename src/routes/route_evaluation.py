@@ -24,15 +24,10 @@ class EvaluationRoute:
         Handle the evaluation of answers based on the payload.
         """
         logger.debug("__evaluate_answer route called")
+
         # retrieve data from request
-
         _request_data = Request.forms.get("user_code")
-        print("➡ ################################## _request_data:", _request_data)
-
-        __request_data = json.loads(_request_data)
-        print("➡ ################################## __request_data:", __request_data)
-
-        payload = dict(user_code=__request_data)
+        payload = json.loads(_request_data)
 
         # generate questions using the service
         response = evaluation_service_obj(payload=payload)

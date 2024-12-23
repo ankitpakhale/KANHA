@@ -69,10 +69,8 @@ class OpenAI(Base):
         Core logic to evaluate users answer using OpenAI client
         """
         logger.info("evaluate_answers core logic working for OpenAI client")
-        user_code = payload["user_code"]
-
-        __system_prompt = self.get_answer_evaluation_system_prompt(user_code=user_code)
-        __user_prompt = self.get_answer_evaluation_user_prompt(user_code=user_code)
+        __system_prompt = self.get_answer_evaluation_system_prompt(user_code=payload)
+        __user_prompt = self.get_answer_evaluation_user_prompt(user_code=payload)
         __evaluation = self.__get_result(
             system_prompt=__system_prompt, user_prompt=__user_prompt
         )
