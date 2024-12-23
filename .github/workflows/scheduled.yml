@@ -79,7 +79,15 @@ jobs:
       - name: start server
         run: |
           bash entrypoint.sh &
-          sleep 10  # wait for the server to start
+          sleep 30  # wait for the server to start
+
+      # wait for the server to be fully ready
+      - name: wait for server to be ready
+        run: |
+          until nc -z -v -w30 localhost 8080; do
+            echo "Waiting for server to start..."
+            sleep 5
+          done
 
       # check the /ping endpoint to ensure the server is up
       - name: check ping endpoint
