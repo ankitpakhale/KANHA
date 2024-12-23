@@ -1,6 +1,6 @@
 from framework import App, Request
 from utils import logger, cache, handle_response
-from .constants import FEEDBACK_ROUTE as ROUTE
+from utils import ROUTES
 from services import feedback_service_obj
 
 
@@ -46,7 +46,9 @@ class FeedbackRoute:
         """
         Register the route of feedback.
         """
-        App.route(ROUTE, method="POST", callback=self.__feedback_handler)
+        App.route(
+            ROUTES.FEEDBACK_ROUTE, method="POST", callback=self.__feedback_handler
+        )
 
 
 # singleton instance of FeedbackRoute
