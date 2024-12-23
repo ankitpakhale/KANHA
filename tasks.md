@@ -1,7 +1,15 @@
 ### TODO:
 
 - #### Tasklist 5
-- [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
+- [x] Save feedback in postgres.
+- [ ] [HOLD] Save feedback in AWS RDS.
+- [ ] [HOLD] Save feedback in AWS S3.
+
+- #### Tasklist 6
+- [ ] Fix Scheduled GH Workflow, fix psycopg2 library issue.
+- [ ] Adjust frontend code to send user answers.
+- [ ] Adjust frontend code to send user answers.
+- [ ] Make Answer Evaluation code FINALIZE.
 
 ### BACKLOG
 
@@ -12,14 +20,9 @@
 - [ ] [HOLD] Add core logic of answer evaluation in AWS Bedrock client.
 - [ ] [HOLD] Add core logic of question generation in AWS Bedrock client.
 
-- #### Tasklist 6
+- #### Tasklist 7
 - [ ] Update docs like, maintaining release version, cookbook & README file.
 - [ ] Integrate OpenAI client with Frontend.
-
-- #### Tasklist 7
-- [ ] Adjust frontend code to send user answers.
-- [ ] Adjust frontend code to send user answers.
-- [ ] Make Answer Evaluation code FINALIZE.
 
 - #### Tasklist 7.5
 - [ ] Implement slash command to register new route.
