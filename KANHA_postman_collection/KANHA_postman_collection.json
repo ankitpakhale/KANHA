@@ -1,0 +1,588 @@
+{
+	"info": {
+		"_postman_id": "be53dba1-ec88-4e4e-9cd5-79658e59db9d",
+		"name": "KANHA",
+		"description": "KANHA is a cutting-edge, AI-driven platform designed to provide highly personalized programming assessments and evaluate user submissions with precision. By leveraging NLP (Natural Language Processing) and AI, KANHA delivers customized question sets tailored to individual user requirements, ensuring a unique and efficient learning or assessment experience. The system focuses on two key processes: generating questions based on user inputs and evaluating answers with meaningful feedback. The platform awards points for programming questions based on initial code quality and provides optimized solutions for improvement.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10333728"
+	},
+	"item": [
+		{
+			"name": "health_check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ping",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "health_check example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/ping",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 23 Dec 2024 17:29:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.3"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Accept, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Length",
+							"value": "70"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"payload\": {},\n    \"message\": \"PONG\",\n    \"status_code\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "generate-questions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "difficulty_level",
+							"value": "medium",
+							"type": "text"
+						},
+						{
+							"key": "programming_language",
+							"value": "Python",
+							"type": "text"
+						},
+						{
+							"key": "topics",
+							"value": "['all']",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/generate-questions",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"generate-questions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "generate-questions example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "difficulty_level",
+									"value": "medium",
+									"type": "text"
+								},
+								{
+									"key": "programming_language",
+									"value": "Python",
+									"type": "text"
+								},
+								{
+									"key": "topics",
+									"value": "['all']",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/generate-questions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"generate-questions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 23 Dec 2024 18:32:47 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.3"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Accept, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1036"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"payload\": [\n        {\n            \"question\": \"What is the purpose of using decorators in Python?\",\n            \"options\": [\n                \"To add functionality to an existing function\",\n                \"To remove functionality from a function\",\n                \"To rename a function\",\n                \"To convert a function into a class\"\n            ],\n            \"correct_answer\": \"To add functionality to an existing function\",\n            \"q_id\": \"mcq274c1851f52e4d858e8b3953e9d8b23d\"\n        },\n        {\n            \"problem_description\": \"Write a Python function that takes a list of integers as input and returns the sum of all even numbers in the list.\",\n            \"input_format\": \"A list of integers.\",\n            \"output_format\": \"An integer representing the sum of all even numbers in the list.\",\n            \"constraints\": \"The input list can contain both positive and negative integers.\",\n            \"examples\": [\n                {\n                    \"input\": \"[1, 2, 3, 4, 5]\",\n                    \"output\": \"6\"\n                },\n                {\n                    \"input\": \"[-2, 3, 0, 8, -4]\",\n                    \"output\": \"2\"\n                }\n            ],\n            \"edge_cases\": [\n                {\n                    \"input\": \"[1, 3, 5, 7]\",\n                    \"output\": \"0\"\n                },\n                {\n                    \"input\": \"[]\",\n                    \"output\": \"0\"\n                }\n            ],\n            \"q_id\": \"psq6319655f29b94a45a899a56a24b3a78c\"\n        }\n    ],\n    \"message\": \"Questions generated successfully\",\n    \"status_code\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "evaluate-answers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_code",
+							"value": "[\n    {\n        \"q_id\": \"psq01223211122\",\n        \"problem_description\": \"Write a Python function that takes a list of integers and returns the maximum product of three numbers from the list. The function should handle both positive and negative integers.\",\n        \"input_format\": \"Input consists of a list of integers.\",\n        \"output_format\": \"Output should be an integer representing the maximum product of three numbers.\",\n        \"constraints\": \"The length of the list will be at least 3 and at most 10^4. Integers in the list will be in the range [-1000, 1000].\",\n        \"examples\": [\n            {\n                \"input\": \"[1, 2, 3, 4, 5]\",\n                \"output\": \"60\"\n            },\n            {\n                \"input\": \"[-10, -5, 1, 2, 3]\",\n                \"output\": \"150\"\n            }\n        ],\n        \"edge_cases\": [\n            {\n                \"input\": \"[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]\",\n                \"output\": \"125\"\n            }\n        ],\n        \"user_code\": \"def max_product(nums):\\n    nums.sort()\\n    return max(nums[0]*nums[1]*nums[-1], nums[-1]*nums[-2]*nums[-3])\"\n    }\n]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/answer-evaluation",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"answer-evaluation"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "evaluate-answers example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_code",
+									"value": "[\n    {\n        \"q_id\": \"psq01223211122\",\n        \"problem_description\": \"Write a Python function that takes a list of integers and returns the maximum product of three numbers from the list. The function should handle both positive and negative integers.\",\n        \"input_format\": \"Input consists of a list of integers.\",\n        \"output_format\": \"Output should be an integer representing the maximum product of three numbers.\",\n        \"constraints\": \"The length of the list will be at least 3 and at most 10^4. Integers in the list will be in the range [-1000, 1000].\",\n        \"examples\": [\n            {\n                \"input\": \"[1, 2, 3, 4, 5]\",\n                \"output\": \"60\"\n            },\n            {\n                \"input\": \"[-10, -5, 1, 2, 3]\",\n                \"output\": \"150\"\n            }\n        ],\n        \"edge_cases\": [\n            {\n                \"input\": \"[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]\",\n                \"output\": \"125\"\n            }\n        ],\n        \"user_code\": \"def max_product(nums):\\n    nums.sort()\\n    return max(nums[0]*nums[1]*nums[-1], nums[-1]*nums[-2]*nums[-3])\"\n    }\n]",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/answer-evaluation",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"answer-evaluation"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 23 Dec 2024 18:34:46 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.3"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Accept, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1251"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"payload\": [\n        {\n            \"q_id\": \"psq01223211122\",\n            \"feedback\": [\n                {\n                    \"correctness\": \"The function correctly finds the maximum product of three numbers from the list. It handles both positive and negative integers by sorting the list and considering two cases: either the product of two smallest numbers and the largest number or the product of the three largest numbers. The function returns the maximum of these two products.\",\n                    \"areas_for_improvement\": \"1. The function could be improved to handle cases where there are negative numbers that, when multiplied, result in a higher product than the three largest positive numbers. This can be achieved by considering the possibility of two negative numbers resulting in a positive product that, when multiplied by a positive number, yields a higher overall product. 2. The function could be more efficient by not sorting the entire list, as sorting has a time complexity of O(nlogn), which may not be necessary for this problem.\"\n                },\n                {\n                    \"strengths\": \"1. The function correctly identifies the two cases to consider for finding the maximum product of three numbers. 2. The code is relatively simple and easy to understand.\"\n                }\n            ],\n            \"points\": \"7\"\n        }\n    ],\n    \"message\": \"Answers Evaluated Successfully\",\n    \"status_code\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "feedback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "rating",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "comments",
+							"value": "very good",
+							"type": "text"
+						},
+						{
+							"key": "frequency_of_use",
+							"value": "daily",
+							"type": "text"
+						},
+						{
+							"key": "purpose_of_use",
+							"value": "to take Interviews",
+							"type": "text"
+						},
+						{
+							"key": "ease_of_use",
+							"value": "very_easy",
+							"type": "text"
+						},
+						{
+							"key": "specific_features",
+							"value": "Question Generation part is extreamly great.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/feedback",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"feedback"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "feedback example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "rating",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "comments",
+									"value": "very good",
+									"type": "text"
+								},
+								{
+									"key": "frequency_of_use",
+									"value": "daily",
+									"type": "text"
+								},
+								{
+									"key": "purpose_of_use",
+									"value": "to take Interviews",
+									"type": "text"
+								},
+								{
+									"key": "ease_of_use",
+									"value": "very_easy",
+									"type": "text"
+								},
+								{
+									"key": "specific_features",
+									"value": "Question Generation part is extreamly great.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/feedback",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feedback"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 23 Dec 2024 18:44:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.3"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Accept, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Length",
+							"value": "97"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"payload\": {},\n    \"message\": \"feedbacks received successfully\",\n    \"status_code\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "delete-cache",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "generate_questions--",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/clear-cache",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clear-cache"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete specific cache example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "key",
+									"value": "generate_questions--",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/clear-cache",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clear-cache"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 04 Dec 2024 13:54:03 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.3"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"payload\": {},\n    \"message\": \"Cache cleared successfully\",\n    \"status_code\": 200\n}"
+				},
+				{
+					"name": "clear all cache example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "key",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/clear-cache",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clear-cache"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 04 Dec 2024 13:56:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.3"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"payload\": {},\n    \"message\": \"Cache cleared successfully\",\n    \"status_code\": 200\n}"
+				}
+			]
+		}
+	]
+}

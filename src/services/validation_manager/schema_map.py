@@ -3,6 +3,7 @@ SCHEMA_MAP = {
         "REQUEST": {
             "type": "object",
             "properties": {
+                "num_questions": {"type": "integer"},
                 "difficulty_level": {"type": "string"},
                 "programming_language": {"type": "string"},
                 "topics": {"type": "array", "items": {"type": "string"}},
@@ -33,57 +34,73 @@ SCHEMA_MAP = {
     },
     "EVALUATE_ANSWERS": {
         "REQUEST": {
-            "type": "object",
-            "properties": {
-                "user_code": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "q_id": {"type": "string"},
-                            "problem_description": {"type": "string"},
-                            "input_format": {"type": "string"},
-                            "output_format": {"type": "string"},
-                            "constraints": {"type": "string"},
-                            "examples": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "input": {"type": "string"},
-                                        "output": {"type": "string"},
-                                    },
-                                    "required": ["input", "output"],
-                                },
-                            },
-                            "edge_cases": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "input": {"type": "string"},
-                                        "output": {"type": "string"},
-                                    },
-                                    "required": ["input", "output"],
-                                },
-                            },
-                            "user_code": {"type": "string"},
-                        },
-                        "required": [
-                            "q_id",
-                            "problem_description",
-                            "input_format",
-                            "output_format",
-                            "constraints",
-                            "examples",
-                            "edge_cases",
-                            "user_code",
-                        ],
+            "type": "array",  # the root is an array
+            "items": {
+                "type": "object",  # each item in the array is an object
+                "properties": {
+                    "q_id": {
+                        "type": "string",  # q_id should be a string
+                        # simple alphanumeric validation for q_id
+                        "pattern": "^[a-zA-Z0-9]+$",
                     },
-                }
+                    "problem_description": {
+                        "type": "string"  # problem_description should be a string
+                    },
+                    "input_format": {
+                        "type": "string"  # input_format should be a string
+                    },
+                    "output_format": {
+                        "type": "string"  # output_format should be a string
+                    },
+                    "constraints": {"type": "string"},  # constraints should be a string
+                    "examples": {
+                        "type": "array",  # examples should be an array
+                        "items": {
+                            "type": "object",  # Each example is an object
+                            "properties": {
+                                "input": {
+                                    "type": "string"  # input for example should be a string
+                                },
+                                "output": {
+                                    "type": "string"  # output for example should be a string
+                                },
+                            },
+                            # both input and output are required in examples
+                            "required": ["input", "output"],
+                        },
+                    },
+                    "edge_cases": {
+                        "type": "array",  # edge_cases should be an array
+                        "items": {
+                            "type": "object",  # Each edge case is an object
+                            "properties": {
+                                "input": {
+                                    "type": "string"  # input for edge case should be a string
+                                },
+                                "output": {
+                                    "type": "string"  # output for edge case should be a string
+                                },
+                            },
+                            # both input and output are required in edge cases
+                            "required": ["input", "output"],
+                        },
+                    },
+                    "user_code": {
+                        # user_code should be a string (a Python code block)
+                        "type": "string"
+                    },
+                },
+                "required": [
+                    "q_id",
+                    "problem_description",
+                    "input_format",
+                    "output_format",
+                    "constraints",
+                    "examples",
+                    "edge_cases",
+                    "user_code",
+                ],  # all fields are required
             },
-            "required": ["user_code"],
-            "additionalProperties": False,
         },
         "RESPONSE": {
             "$schema": "http://json-schema.org/draft-07/schema#",

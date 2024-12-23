@@ -5,7 +5,8 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 # validation_manager import should be after path adjustments only
-from validation_manager import validation_manager_obj
+from services import validation_manager_obj
+
 
 GENERATE_QUESTIONS = "generate_questions"
 EVALUATE_ANSWERS = "evaluate_answers"
@@ -123,10 +124,20 @@ __validation_list = [
     REQUEST,
     RESPONSE,
 ]
+
 __service_type = __service_list[2]
 __validation_type = __validation_list[0]
 
 __payload = PAYLOAD_MAP[__service_type][__validation_type]
+print(
+    "➡ ################################################# __service_type:",
+    __service_type,
+)
+print(
+    "➡ ################################################# __validation_type:",
+    __validation_type,
+)
+print("➡ ################################################# __payload:", __payload)
 
 is_valid = validation_manager_obj(
     service_type=__service_type, validation_type=__validation_type

@@ -2,7 +2,7 @@ from framework import App, Request
 from services import question_service_obj
 from utils import logger, cache, handle_response
 from ast import literal_eval
-from .constants import QUESTION_ROUTE as ROUTE
+from utils import ROUTES
 
 
 class QuestionRoute:
@@ -48,7 +48,11 @@ class QuestionRoute:
         """
         Register the route for question generation.
         """
-        App.route(ROUTE, method="POST", callback=self.__generate_questions_handler)
+        App.route(
+            ROUTES.QUESTION_ROUTE,
+            method="POST",
+            callback=self.__generate_questions_handler,
+        )
 
 
 # singleton instance of QuestionRoute

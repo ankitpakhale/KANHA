@@ -3,11 +3,6 @@
 - #### Tasklist 5
 - [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
 
-- #### Tasklist 5.5
-- [ ] Create base layer of dao package.
-- [ ] Create models and layer of integration with specific database (postgres, RDS, S3, etc).
-- [ ] Fix all the constants file, there should be single contants file and everything will be class based implemented.
-
 ### BACKLOG
 
 - #### Tasklist 1
@@ -33,7 +28,11 @@
 - [ ] Implement slash command to create new service_type in service_types directory.
 
 - #### Tasklist 8
+- [ ] Take programming_language input in the form of List like topic in QuestionGenerationService.
 - [ ] Add adapter layer in src.
+- [ ] Replace existing caching with RADIS.
+- [ ] Fix all type hinting is all the methods like QuestionService.
+- [ ] Implement Pydentic library for validations.
 - [ ] Automate the process of registering the routes (check all the files in routes directory that starts with route\_, register those routes).
 - [ ] Add retry mechanism if client fails the data generation or evaluation.
 
@@ -79,8 +78,14 @@
 - [x] Add base layer for feedback route.
 - [x] Design feedback schema, what questions to ask.
 - [x] Implement Validation logic in feedback route.
-- [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
+- [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.1)
 
-- #### Tasklist 5.5
+- #### Tasklist 5.1
 - [x] Implement dao (data access object package) in source.
 - [x] Create basic files and structure of dao.
+- [x] Create base layer of dao package.
+- [x] Create models and layer of integration with specific database (postgres, RDS, S3, etc).
+
+- #### Tasklist 5.2
+- [x] Make centralized test package in source directory.
+- [x] Fix all the constants file, there should be single contants file and everything will be class based implemented.

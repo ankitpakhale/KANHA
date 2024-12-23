@@ -6,7 +6,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 
 from services import evaluation_service_obj
-from utils import logger
+
 
 answer_payload = dict(
     user_code=[
@@ -28,5 +28,5 @@ answer_payload = dict(
     ]
 )
 # TODO: add validation layer
-service_instance = evaluation_service_obj(**answer_payload)
-logger.debug("➡ service_instance:", service_instance)
+service_instance = evaluation_service_obj(answer_payload)
+print("➡ service_instance:", service_instance)

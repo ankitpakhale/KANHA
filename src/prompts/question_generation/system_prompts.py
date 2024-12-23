@@ -592,7 +592,6 @@ Follow the specified formats below strictly:
 
 1.  **MCQ Format**
     {
-      "q_type": "MCQ",
       "question": "Question text here?",
       "options": [
         "Option 1",
@@ -605,7 +604,6 @@ Follow the specified formats below strictly:
 
 2.  **Problem-Solving Format**
     {
-      "q_type": "problem_solving",
       "problem_description": "Detailed problem description here.",
       "input_format": "Description of the input format here.",
       "output_format": "Description of the output format here.",
@@ -635,7 +633,6 @@ Follow the specified formats below strictly:
 YOUR RESPONSE SHOULD STRICTLY FOLLOW THIS FORMAT:
 [
     {
-      "q_type": "MCQ",
       "question": "Your question text here?",
       "options": [
         "Option 1",
@@ -646,7 +643,6 @@ YOUR RESPONSE SHOULD STRICTLY FOLLOW THIS FORMAT:
       "correct_answer": "The correct answer option"
     },
     {
-      "q_type": "problem_solving",
       "problem_description": "Detailed problem description.",
       "input_format": "Description of the input format.",
       "output_format": "Description of the output format.",
@@ -732,5 +728,4 @@ YOUR RESPONSE SHOULD STRICTLY FOLLOW THIS FORMAT:
 """
 
 
-# TODO: remove q_type from output response
 QUESTION_GENERATION_SYSTEM_PROMPT = QUESTION_GENERATION_SYSTEM_PROMPT_V5
