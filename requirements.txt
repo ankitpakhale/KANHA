@@ -1,7 +1,8 @@
 # DB Libraries
 greenlet==3.1.*
-# psycopg2-binary==2.9.*
 SQLAlchemy==2.0.*
+psycopg2-binary==2.9.*
+psycopg2==2.9.*
 
 # Data Science and ML Libraries
 openai==0.28
