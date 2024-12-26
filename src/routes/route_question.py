@@ -18,7 +18,7 @@ class QuestionRoute:
         return cls._instance
 
     @handle_response
-    # @cache
+    @cache
     def __generate_questions_handler(self):
         """
         handle the generation of questions based on the payload.

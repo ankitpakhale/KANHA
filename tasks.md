@@ -1,4 +1,4 @@
-### TODO:
+### TODO
 
 - #### Tasklist 5
 - [x] Save feedback in postgres.
@@ -23,6 +23,7 @@
 - #### Tasklist 7
 - [ ] Update docs like, maintaining release version, cookbook & README file.
 - [ ] Integrate OpenAI client with Frontend.
+- [ ] Change Difficulty Level to Position like (junior, senior, technical specialist).
 
 - #### Tasklist 7.5
 - [ ] Implement slash command to register new route.
