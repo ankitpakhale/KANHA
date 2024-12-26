@@ -56,6 +56,10 @@
 - #### Tasklist 12
 - [ ] Check all the todo notes in BE & FE.
 
+- #### Tasklist 13
+- [ ] Implement voice assistance system to take introductory round of interview and preparation.
+- [ ] Calculate score of Introductory round based on facial expresion (confidance), body language, speech, level of articulation.
+
 ### COMPLETED
 
 - #### Tasklist 1
