@@ -16,7 +16,6 @@ class HealthcheckRoute:
         return cls._instance
 
     @handle_response
-    @cache
     def __healthcheck_handler(self):
         """
         Handle the healthcheck status.

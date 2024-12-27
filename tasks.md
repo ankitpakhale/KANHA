@@ -1,7 +1,16 @@
-### TODO:
+### TODO
 
 - #### Tasklist 5
-- [ ] [HOLD] Save feedback in DB (RDS, postgres or any). (depend on Tasklist 5.5)
+- [x] Save feedback in postgres.
+- [ ] [HOLD] Save feedback in AWS RDS.
+- [ ] [HOLD] Save feedback in AWS S3.
+
+- #### Tasklist 6
+- [ ] Fix Scheduled GH Workflow, fix psycopg2 library issue.
+- [ ] Adjust frontend code to send user answers.
+- [ ] Adjust frontend code to send user answers.
+- [ ] Test caching properly in all the routes.
+- [ ] Make Answer Evaluation code FINALIZE.
 
 ### BACKLOG
 
@@ -12,14 +21,24 @@
 - [ ] [HOLD] Add core logic of answer evaluation in AWS Bedrock client.
 - [ ] [HOLD] Add core logic of question generation in AWS Bedrock client.
 
-- #### Tasklist 6
-- [ ] Update docs like, maintaining release version, cookbook & README file.
-- [ ] Integrate OpenAI client with Frontend.
+- #### Tasklist 6.1
+- [ ] Design DB schema for MCQ type questions.
+- [ ] Design DB schema for PSQ type questions and add dificulty level field.
+
+- #### Tasklist 6.2
+- [ ] Get at least 1000 MCQ questions using GPT and save it in csv and then DB.
+- [ ] Get at least 500 PSQ Medium level questions using GPT and save it in csv and then DB.
+- [ ] Get at least 500 PSQ Hard level questions using GPT and save it in csv and then DB.
+
+- #### Tasklist 6.3
+- [ ] Save valid question obj in DB regardless of question type, received from User Query.
+- [ ] If any request comes, don't call OpenAI instead fetch data from DB randomly and return it to user.
+- [ ] Find a fix for malformed/broken json, extract proper json objects from received questions list from GPT and save it in DB and return it.
 
 - #### Tasklist 7
-- [ ] Adjust frontend code to send user answers.
-- [ ] Adjust frontend code to send user answers.
-- [ ] Make Answer Evaluation code FINALIZE.
+- [ ] Update docs like, maintaining release version, cookbook & README file.
+- [ ] Integrate OpenAI client with Frontend.
+- [ ] Change Difficulty Level to Position like (junior, senior, technical specialist).
 
 - #### Tasklist 7.5
 - [ ] Implement slash command to register new route.
@@ -51,6 +70,10 @@
 
 - #### Tasklist 12
 - [ ] Check all the todo notes in BE & FE.
+
+- #### Tasklist 13
+- [ ] Implement voice assistance system to take introductory round of interview and preparation.
+- [ ] Calculate score of Introductory round based on facial expresion (confidance), body language, speech, level of articulation.
 
 ### COMPLETED
 
