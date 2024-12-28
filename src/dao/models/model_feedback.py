@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import Mapped
 from .base import BaseModel
 
 
@@ -11,12 +12,13 @@ class Feedback(BaseModel):
     # table name for the Feedback model
     __tablename__ = "feedback"
 
-    rating = Column(Integer)
-    comments = Column(String)
-    frequency_of_use = Column(String)
-    purpose_of_use = Column(String)
-    ease_of_use = Column(String)
-    specific_features = Column(String)
+    # Define fields using Mapped[] for SQLAlchemy 2.x
+    rating: Mapped[int] = Column(Integer)
+    comments: Mapped[str] = Column(String)
+    frequency_of_use: Mapped[str] = Column(String, nullable=True)
+    purpose_of_use: Mapped[str] = Column(String, nullable=True)
+    ease_of_use: Mapped[str] = Column(String, nullable=True)
+    specific_features: Mapped[str] = Column(String, nullable=True)
 
     def __repr__(self) -> str:
         """

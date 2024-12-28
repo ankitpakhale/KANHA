@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, JSON
+from sqlalchemy.orm import Mapped
 from src.dao.models.base import BaseModel
 from typing import Optional, List
 
@@ -12,12 +13,12 @@ class ProblemSolvingQuestion(BaseModel):
     # table name for the ProblemSolvingQuestion model
     __tablename__ = "problem_solving_questions"
 
-    problem_description: str = Column(String, nullable=False)
-    input_format: str = Column(String, nullable=False)
-    output_format: str = Column(String, nullable=False)
-    constraints: Optional[str] = Column(String, nullable=True)
-    examples: Optional[List] = Column(JSON, nullable=True)
-    edge_cases: Optional[List] = Column(JSON, nullable=True)
+    problem_description: Mapped[str] = Column(String, nullable=False)
+    input_format: Mapped[str] = Column(String, nullable=False)
+    output_format: Mapped[str] = Column(String, nullable=False)
+    constraints: Mapped[Optional[str]] = Column(String, nullable=True)
+    examples: Mapped[Optional[List[dict]]] = Column(JSON, nullable=True)
+    edge_cases: Mapped[Optional[List[dict]]] = Column(JSON, nullable=True)
 
     def __repr__(self) -> str:
         """

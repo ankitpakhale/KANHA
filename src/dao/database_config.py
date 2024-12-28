@@ -1,4 +1,4 @@
-from config import GeneralConfig, DBConfig
+from src.config import GeneralConfig, DBConfig
 from sqlalchemy import create_engine
 
 

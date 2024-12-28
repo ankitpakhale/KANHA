@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String
+from sqlalchemy.orm import Mapped
 from src.dao.models import BaseModel
 
 
@@ -11,12 +12,12 @@ class MultipleChoiceQuestion(BaseModel):
     # table name for the MultipleChoiceQuestion model
     __tablename__ = "multiple_choice_question"
 
-    question: str = Column(String, nullable=False)
-    option_1: str = Column(String, nullable=False)
-    option_2: str = Column(String, nullable=False)
-    option_3: str = Column(String, nullable=False)
-    option_4: str = Column(String, nullable=False)
-    correct_answer: str = Column(String, nullable=False)
+    question: Mapped[str] = Column(String, nullable=False)
+    option_1: Mapped[str] = Column(String, nullable=False)
+    option_2: Mapped[str] = Column(String, nullable=False)
+    option_3: Mapped[str] = Column(String, nullable=False)
+    option_4: Mapped[str] = Column(String, nullable=False)
+    correct_answer: Mapped[str] = Column(String, nullable=False)
 
     def __repr__(self) -> str:
         """

@@ -4,3 +4,7 @@ class ROUTES:
     HEALTHCHECK_ROUTE = "/ping"
     QUESTION_ROUTE = "/generate-questions"
     FEEDBACK_ROUTE = "/feedback"
+
+
+class PATH:
+    MODEL_PATH = "src/dao/models"

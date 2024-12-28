@@ -1,7 +1,7 @@
 from utils.logging import __logger as logger
 from utils.cache import cache, delete_cache, clear_cache
 from utils.response_manager import handle_response
-from utils.constants import ROUTES
+from utils.constants import ROUTES, PATH
 
 
 __all__ = [
@@ -11,4 +11,5 @@ __all__ = [
     "clear_cache",
     "handle_response",
     "ROUTES",
+    "PATH",
 ]

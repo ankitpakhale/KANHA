@@ -1,5 +1,5 @@
 import os
-from config import BaseConfig
+from src.config import BaseConfig
 
 
 class AWSConfig(BaseConfig):
