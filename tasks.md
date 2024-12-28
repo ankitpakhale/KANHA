@@ -5,12 +5,9 @@
 - [ ] [HOLD] Save feedback in AWS RDS.
 - [ ] [HOLD] Save feedback in AWS S3.
 
-- #### Tasklist 6
-- [ ] Fix Scheduled GH Workflow, fix psycopg2 library issue.
-- [ ] Adjust frontend code to send user answers.
-- [ ] Adjust frontend code to send user answers.
-- [ ] Test caching properly in all the routes.
-- [ ] Make Answer Evaluation code FINALIZE.
+- #### Tasklist 6.1
+- [ ] Design DB schema for MCQ type questions.
+- [ ] Design DB schema for PSQ type questions and add dificulty level field.
 
 ### BACKLOG
 
@@ -21,9 +18,12 @@
 - [ ] [HOLD] Add core logic of answer evaluation in AWS Bedrock client.
 - [ ] [HOLD] Add core logic of question generation in AWS Bedrock client.
 
-- #### Tasklist 6.1
-- [ ] Design DB schema for MCQ type questions.
-- [ ] Design DB schema for PSQ type questions and add dificulty level field.
+- #### Tasklist 6
+- [ ] Fix Scheduled GH Workflow, fix psycopg2 library issue.
+- [ ] Adjust frontend code to send user answers.
+- [ ] Adjust frontend code to send user answers.
+- [ ] Test caching properly in all the routes.
+- [ ] Make Answer Evaluation code FINALIZE.
 
 - #### Tasklist 6.2
 - [ ] Get at least 1000 MCQ questions using GPT and save it in csv and then DB.

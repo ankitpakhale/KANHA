@@ -42,6 +42,7 @@ class QuestionService:
         logger.debug("Payload varified successfully at Question Service!!!")
 
         __client_response = Client().generate_questions(payload)
+        logger.info(f"Received Questions from Client: {__client_response}")
 
         # remove escape sequences and parse JSON
         __formatted_json = json.loads(__client_response)
