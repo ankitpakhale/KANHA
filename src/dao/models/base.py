@@ -12,6 +12,9 @@ class BaseModel(DeclarativeBase):
     All model classes should inherit from this base class.
     """
 
+    id: UUID  # id field should be UUID object
+    created_at: datetime  # created_at field should be datetime object
+
     id = Column(
         UUID(as_uuid=True) if GeneralConfig.ENV in ["local", "dev"] else String(36),
         primary_key=True,

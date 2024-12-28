@@ -8,6 +8,7 @@
 - #### Tasklist 6.1
 - [ ] Design DB schema for MCQ type questions.
 - [ ] Design DB schema for PSQ type questions and add dificulty level field.
+- [ ] Rename src to app.
 
 ### BACKLOG
 
