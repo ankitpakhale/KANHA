@@ -6,9 +6,11 @@
 - [ ] [HOLD] Save feedback in AWS S3.
 
 - #### Tasklist 6.1
-- [x] Design DB schema for MCQ type questions.
-- [x] Design DB schema for PSQ type questions and add question level field.
-- [ ] Rename app to app.
+- [ ] Implement changes in DAO package to save mcq type of questions.
+- [ ] Implement changes in DAO package to save psq type of questions.
+- [ ] Get at least 1000 MCQ questions using GPT and save it in csv and then DB.
+- [ ] Get at least 500 PSQ Medium level questions using GPT and save it in csv and then DB.
+- [ ] Get at least 500 PSQ Hard level questions using GPT and save it in csv and then DB.
 
 ### BACKLOG
 
@@ -19,22 +21,17 @@
 - [ ] [HOLD] Add core logic of answer evaluation in AWS Bedrock client.
 - [ ] [HOLD] Add core logic of question generation in AWS Bedrock client.
 
-- #### Tasklist 6
+- #### Tasklist 6.2
+- [ ] Save valid question obj in DB regardless of question type, received from User Query.
+- [ ] If any request comes, don't call OpenAI instead fetch data from DB randomly and return it to user.
+- [ ] Find a fix for malformed/broken json, extract proper json objects from received questions list from GPT and save it in DB and return it.
+
+- #### Tasklist 6.3
 - [ ] Fix Scheduled GH Workflow, fix psycopg2 library issue.
 - [ ] Adjust frontend code to send user answers.
 - [ ] Adjust frontend code to send user answers.
 - [ ] Test caching properly in all the routes.
 - [ ] Make Answer Evaluation code FINALIZE.
-
-- #### Tasklist 6.2
-- [ ] Get at least 1000 MCQ questions using GPT and save it in csv and then DB.
-- [ ] Get at least 500 PSQ Medium level questions using GPT and save it in csv and then DB.
-- [ ] Get at least 500 PSQ Hard level questions using GPT and save it in csv and then DB.
-
-- #### Tasklist 6.3
-- [ ] Save valid question obj in DB regardless of question type, received from User Query.
-- [ ] If any request comes, don't call OpenAI instead fetch data from DB randomly and return it to user.
-- [ ] Find a fix for malformed/broken json, extract proper json objects from received questions list from GPT and save it in DB and return it.
 
 - #### Tasklist 7
 - [ ] Update docs like, maintaining release version, cookbook & README file.
@@ -113,3 +110,8 @@
 - #### Tasklist 5.2
 - [x] Make centralized test package in source directory.
 - [x] Fix all the constants file, there should be single contants file and everything will be class based implemented.
+
+- #### Tasklist 6
+- [x] Design DB schema for MCQ type questions.
+- [x] Design DB schema for PSQ type questions and add question level field.
+- [x] Rename app to app.
