@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.orm import Mapped
 from src.dao.models.base import BaseModel
 
@@ -14,11 +14,11 @@ class Feedback(BaseModel):
 
     # Define fields using Mapped[] for SQLAlchemy 2.x
     rating: Mapped[int] = Column(Integer)
-    comments: Mapped[str] = Column(String)
-    frequency_of_use: Mapped[str] = Column(String, nullable=True)
-    purpose_of_use: Mapped[str] = Column(String, nullable=True)
-    ease_of_use: Mapped[str] = Column(String, nullable=True)
-    specific_features: Mapped[str] = Column(String, nullable=True)
+    comments: Mapped[str] = Column(Text)
+    frequency_of_use: Mapped[str] = Column(Text, nullable=True)
+    purpose_of_use: Mapped[str] = Column(Text, nullable=True)
+    ease_of_use: Mapped[str] = Column(Text, nullable=True)
+    specific_features: Mapped[str] = Column(Text, nullable=True)
 
     def __repr__(self) -> str:
         """

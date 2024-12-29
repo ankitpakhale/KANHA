@@ -2,7 +2,7 @@ from typing import Optional, List, Dict, Union
 from ..base import Base
 from config import AWSConfig
 from typeguard import typechecked
-from utils import logger
+from src.utils import logger
 
 
 class Bedrock(Base):

@@ -1,7 +1,6 @@
-from framework import App, Request
-from utils import ROUTES
-from services import evaluation_service_obj
-from utils import logger, cache, handle_response
+from src.framework import App, Request
+from src.services import evaluation_service_obj
+from src.utils import logger, cache, handle_response, ROUTES
 import json
 
 

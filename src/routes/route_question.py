@@ -1,8 +1,7 @@
-from framework import App, Request
-from services import question_service_obj
-from utils import logger, cache, handle_response
+from src.framework import App, Request
+from src.services import question_service_obj
+from src.utils import logger, cache, handle_response, ROUTES
 from ast import literal_eval
-from utils import ROUTES
 
 
 class QuestionRoute:

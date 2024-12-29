@@ -1,13 +1,13 @@
-from framework import App
-from routes import (
+from src.framework import App
+from src.routes import (
     healthcheck_route_obj,
     question_route_obj,
     evaluation_route_obj,
     cache_route_obj,
     feedback_route_obj,
 )
-from config.general_config import GeneralConfig
-from utils import logger
+from src.config.general_config import GeneralConfig
+from src.utils import logger
 
 
 # register routes

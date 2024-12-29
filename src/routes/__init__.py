@@ -1,8 +1,8 @@
-from .route_question import question_route_obj
-from .route_evaluation import evaluation_route_obj
-from .route_healthcheck import healthcheck_route_obj
-from .route_cache import cache_route_obj
-from .route_feedback import feedback_route_obj
+from src.routes.route_question import question_route_obj
+from src.routes.route_evaluation import evaluation_route_obj
+from src.routes.route_healthcheck import healthcheck_route_obj
+from src.routes.route_cache import cache_route_obj
+from src.routes.route_feedback import feedback_route_obj
 
 
 # TODO: make a RouteManager that retrieve data from request and pass it to appropriate service, creating individual file for specific route is not feasiabl option

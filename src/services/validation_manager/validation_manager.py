@@ -1,5 +1,5 @@
 from typing import Union
-from services.validation_manager.strategy import (
+from src.services.validation_manager.strategy import (
     generate_questions_request,
     generate_questions_response,
     evaluate_answers_request,
@@ -7,7 +7,7 @@ from services.validation_manager.strategy import (
     feedback_request,
 )
 
-# from utils import logger
+# from src.utils import logger
 STRATEGY_MAP = {
     "generate_questions_request": generate_questions_request,
     "generate_questions_response": generate_questions_response,

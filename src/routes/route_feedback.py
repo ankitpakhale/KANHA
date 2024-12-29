@@ -1,7 +1,6 @@
-from framework import App, Request
-from utils import logger, cache, handle_response
-from utils import ROUTES
-from services import feedback_service_obj
+from src.framework import App, Request
+from src.utils import logger, cache, handle_response, ROUTES
+from src.services import feedback_service_obj
 
 
 class FeedbackRoute:

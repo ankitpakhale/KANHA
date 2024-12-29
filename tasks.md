@@ -6,8 +6,8 @@
 - [ ] [HOLD] Save feedback in AWS S3.
 
 - #### Tasklist 6.1
-- [ ] Design DB schema for MCQ type questions.
-- [ ] Design DB schema for PSQ type questions and add dificulty level field.
+- [x] Design DB schema for MCQ type questions.
+- [x] Design DB schema for PSQ type questions and add question level field.
 - [ ] Rename src to app.
 
 ### BACKLOG

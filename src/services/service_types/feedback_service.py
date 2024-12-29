@@ -1,6 +1,6 @@
 from typing import Union
 from services import validation_manager_obj
-from utils import logger
+from src.utils import logger
 from dao import Feedback, db_session  # noqa: E402
 
 

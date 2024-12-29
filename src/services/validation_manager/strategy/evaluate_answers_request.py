@@ -1,8 +1,8 @@
 from jsonschema import validate
 from typing import Dict, Union
-from .base import Base
-from utils import logger
-from services.validation_manager.schema_map import SCHEMA_MAP
+from src.services.validation_manager.strategy.base import Base
+from src.utils import logger
+from src.services.validation_manager.schema_map import SCHEMA_MAP
 
 
 class EvaluateAnswersRequest(Base):

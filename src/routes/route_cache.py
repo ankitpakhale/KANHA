@@ -1,6 +1,5 @@
-from framework import App, Request
-from utils import logger, cache, handle_response, clear_cache, delete_cache
-from utils import ROUTES
+from src.framework import App, Request
+from src.utils import logger, cache, handle_response, clear_cache, delete_cache, ROUTES
 
 
 class CacheRoute:
