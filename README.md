@@ -43,7 +43,7 @@ KANHA                                  # Root directory of the project
 ├── release                            # Folder for release-related assets
 ├── requirements.txt                   # Python dependencies
 ├── setup.py                           # Setup script for the project
-├── src                                # Source code of the project
+├── app                                # Source code of the project
 │   ├── dao                            # Data Access Object, to handle database operations
 │   │   ├── base
 │   │   │   ├── base_dao.py
@@ -285,7 +285,7 @@ KANHA                                  # Root directory of the project
     - Open `alembic/env.py` and import your models at the top:
 
       ```python
-      from src.dao.models import BaseModel, Feedback, MultipleChoiceQuestion, ProblemSolvingQuestion
+      from app.dao.models import BaseModel, Feedback, MultipleChoiceQuestion, ProblemSolvingQuestion
 
       ```
 

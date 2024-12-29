@@ -10,4 +10,4 @@ PORT=${APP_PORT:-8080}
 export PYTHONPATH=$(pwd):$PYTHONPATH
 
 # execute the main.py file with the specified port
-python3 src/main.py --port "$PORT"
+python3 app/main.py --port "$PORT"

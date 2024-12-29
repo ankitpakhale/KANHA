@@ -8,7 +8,7 @@
 - #### Tasklist 6.1
 - [x] Design DB schema for MCQ type questions.
 - [x] Design DB schema for PSQ type questions and add question level field.
-- [ ] Rename src to app.
+- [ ] Rename app to app.
 
 ### BACKLOG
 
@@ -49,7 +49,7 @@
 
 - #### Tasklist 8
 - [ ] Take programming_language input in the form of List like topic in QuestionGenerationService.
-- [ ] Add adapter layer in src.
+- [ ] Add adapter layer in app.
 - [ ] Replace existing caching with RADIS.
 - [ ] Fix all type hinting is all the methods like QuestionService.
 - [ ] Implement Pydentic library for validations.

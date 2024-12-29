@@ -1,6 +1,6 @@
 from __future__ import with_statement
-from src.dao.models import BaseModel
-from src.config.db_config import DBConfig
+from app.dao.models import BaseModel
+from app.config.db_config import DBConfig
 import os
 import sys
 from logging.config import fileConfig
@@ -10,7 +10,7 @@ from alembic import context
 
 # Add your model's module to the sys.path
 # This allows Alembic to find the models
-sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "app"))
 
 
 # construct the SQLAlchemy database URL
