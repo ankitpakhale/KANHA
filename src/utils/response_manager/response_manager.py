@@ -1,8 +1,9 @@
 from typing import Callable, Any, Dict, Type
-from framework import Response
-from utils import logger
+from src.framework import Response
+from src.utils import logger
 from json.decoder import JSONDecodeError
 from jsonschema.exceptions import ValidationError
+from sqlalchemy.exc import IntegrityError, OperationalError
 
 
 class ResponseHandler:
@@ -42,15 +43,15 @@ class ResponseHandler:
             "status_code": 403,
             "message": "permission denied for the requested operation",
         },
-        # # database errors
-        # sqlalchemy.exc.IntegrityError: {
-        #     "status_code": 409,
-        #     "message": "database integrity constraint violated",
-        # },
-        # sqlalchemy.exc.OperationalError: {
-        #     "status_code": 500,
-        #     "message": "database operation failed",
-        # },
+        # database errors
+        IntegrityError: {
+            "status_code": 409,
+            "message": "database integrity constraint violated",
+        },
+        OperationalError: {
+            "status_code": 500,
+            "message": "database operation failed",
+        },
         # # network and request errors
         # requests.exceptions.ConnectionError: {
         #     "status_code": 503,

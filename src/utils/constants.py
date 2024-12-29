@@ -8,3 +8,5 @@ class ROUTES:
 
 class PATH:
     MODEL_PATH = "src/dao/models"
+    PROJECT_ROOT = ""
+    MIGRATION_PATH = "migrations/versions"

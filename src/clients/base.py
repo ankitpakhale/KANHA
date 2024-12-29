@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .utils import Prompt
+from src.clients.utils import Prompt
 
 
 class Base(ABC, Prompt):

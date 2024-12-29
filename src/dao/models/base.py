@@ -1,10 +1,10 @@
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Column, String, DateTime
+from sqlalchemy.orm import Mapped
 from datetime import datetime, timedelta, timezone
 import uuid
 from src.config import GeneralConfig
-from sqlalchemy.orm import Mapped
 
 
 class BaseModel(DeclarativeBase):

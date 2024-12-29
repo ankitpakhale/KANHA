@@ -1,10 +1,6 @@
 from __future__ import with_statement
-from src.dao.models import (
-    BaseModel,
-    Feedback,
-    MultipleChoiceQuestion,
-    ProblemSolvingQuestion,
-)
+from src.dao.models import BaseModel
+from src.config.db_config import DBConfig
 import os
 import sys
 from logging.config import fileConfig
@@ -15,6 +11,15 @@ from alembic import context
 # Add your model's module to the sys.path
 # This allows Alembic to find the models
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
+
+
+# construct the SQLAlchemy database URL
+DATABASE_URL = f"postgresql://{DBConfig.PG_USERNAME}:{
+    DBConfig.PG_PASSWORD}@{DBConfig.PG_HOST}:{DBConfig.PG_PORT}/{DBConfig.PG_NAME}"
+
+# update the Alembic config with the constructed SQLAlchemy URL
+config = context.config
+config.set_section_option("alembic", "sqlalchemy.url", DATABASE_URL)
 
 # Import your SQLAlchemy BaseModel and metadata here
 

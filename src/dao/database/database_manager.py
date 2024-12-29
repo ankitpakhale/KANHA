@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
-from .database_config import DatabaseConfig
-from .models import BaseModel
+from src.dao.database_config import DatabaseConfig
+from src.dao.models import BaseModel
 
 
 class DatabaseManager:

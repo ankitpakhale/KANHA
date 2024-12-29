@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import Mapped
-from .base import BaseModel
+from src.dao.models.base import BaseModel
 
 
 class Feedback(BaseModel):

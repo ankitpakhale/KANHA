@@ -1,7 +1,7 @@
 from typing import Any, Callable
 import diskcache as dc
 from functools import wraps
-from utils import logger
+from src.utils import logger
 import hashlib
 
 

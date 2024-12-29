@@ -1,4 +1,4 @@
-from .database_manager import db_manager
+from src.dao.database.database_manager import db_manager
 
 
 # initialize the database manager

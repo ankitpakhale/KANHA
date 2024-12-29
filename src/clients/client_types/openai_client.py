@@ -1,9 +1,9 @@
 from typing import Optional, List, Dict, Union
-from clients import Base
+from src.clients import Base
 import openai
-from config import OpenAIConfig
+from src.config import OpenAIConfig
 from typeguard import typechecked
-from utils import logger
+from src.utils import logger
 import json
 
 # from langchain.text_splitter import RecursiveCharacterTextSplitter

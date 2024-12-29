@@ -1,8 +1,8 @@
 from typing import Union, List, Dict
-from clients import Client
-from services import validation_manager_obj
+from src.clients import Client
+from src.services import validation_manager_obj
 import json
-from utils import logger
+from src.utils import logger
 from uuid import uuid4
 
 
