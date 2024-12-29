@@ -43,7 +43,7 @@ KANHA                                  # Root directory of the project
 ├── release                            # Folder for release-related assets
 ├── requirements.txt                   # Python dependencies
 ├── setup.py                           # Setup script for the project
-├── src                                # Source code of the project
+├── app                                # Source code of the project
 │   ├── dao                            # Data Access Object, to handle database operations
 │   │   ├── base
 │   │   │   ├── base_dao.py
@@ -244,6 +244,156 @@ KANHA                                  # Root directory of the project
 
     - **Question Generation Service:** Generates customized questions based on user inputs and integrates with OpenAI and Langchain for NLP-driven question creation.
     - **Answer Evaluation Service:** Evaluates answers, provides feedback, awards points, and generates optimized programming solutions.
+
+---
+
+### Setup Database
+
+#### Step 1: Configure Database Connection
+
+1.  Open the `alembic.ini` file in the project directory and set the **SQLAlchemy database URL**:
+
+    ```ini
+    sqlalchemy.url = postgresql://postgres:pgpass@localhost:5432/kanha
+
+    ```
+
+    Replace the following values:
+
+    - **postgres**: Your PostgreSQL username.
+    - **pgpass**: Your PostgreSQL password.
+    - **localhost**: The host where PostgreSQL is running (use `localhost` if it's on your local machine).
+    - **5432**: The default PostgreSQL port (use another port if applicable).
+    - **kanha**: Your PostgreSQL database name.
+
+---
+
+#### Step 2: Set Up Alembic and Migrations
+
+1.  **Initialize Alembic** (if you haven’t initialized Alembic already):
+
+    ```bash
+    alembic init alembic
+
+    ```
+
+    This will create the necessary `alembic.ini` file and the `alembic/` directory structure for managing migrations.
+
+2.  **Ensure All Models Are Registered**:  
+    Alembic uses SQLAlchemy’s metadata to detect table changes. Make sure all models (like `Feedback`, `MultipleChoiceQuestion`, `ProblemSolvingQuestion`) are imported in the `env.py` file inside the `alembic/` folder.
+
+    - Open `alembic/env.py` and import your models at the top:
+
+      ```python
+      from app.dao.models import BaseModel, Feedback, MultipleChoiceQuestion, ProblemSolvingQuestion
+
+      ```
+
+    - Ensure `target_metadata` is set to the base metadata:
+
+      ```python
+      target_metadata = BaseModel.metadata  # or Base.metadata if using a different base class
+
+      ```
+
+---
+
+#### Step 3: Create and Apply Migrations
+
+1.  **Generate Migration Script**:
+
+    Run the following command to generate a new migration script. This will detect changes in your models and create the corresponding migration:
+
+    ```bash
+    alembic revision --autogenerate -m "Initial migration to create tables"
+
+    ```
+
+    - Alembic will compare your models to the current state of the database and generate the necessary SQL to create the tables.
+    - The migration script will be saved in the `alembic/versions/` directory.
+
+2.  **Review the Migration Script**:
+
+    - Navigate to `alembic/versions/` and open the generated migration script.
+    - Make sure that all the tables (`feedback`, `multiple_choice_question`, `problem_solving_questions`) are being created as per your models.
+    - If everything looks correct, you can apply the migration.
+
+3.  **Apply the Migration**:
+
+    Run the following command to apply the migration and create the tables in your database:
+
+    ```bash
+    alembic upgrade head
+
+    ```
+
+    - This command will apply the migration and create the necessary tables in your PostgreSQL database.
+
+---
+
+#### Step 4: Verify the Database
+
+Once the migration has been applied, you can verify the database schema using PostgreSQL commands:
+
+1.  Connect to your PostgreSQL database:
+
+    ```bash
+    psql -U postgres -d kanha
+
+    ```
+
+2.  Check the tables in the database:
+
+    ```sql
+    \d feedback;
+    \d multiple_choice_question;
+    \d problem_solving_questions;
+
+    ```
+
+    - The above commands will show the details of the `feedback`, `multiple_choice_question`, and `problem_solving_questions` tables.
+
+---
+
+#### Step 5: Adding Future Migrations
+
+If you modify your models (e.g., adding new fields or tables), you can regenerate a new migration file by running:
+
+```bash
+alembic revision --autogenerate -m "Added new fields to feedback model"
+
+```
+
+Then, apply the new migration using:
+
+```bash
+alembic upgrade head
+
+```
+
+This will update the database schema to reflect the new changes.
+
+---
+
+## Troubleshooting
+
+- **Error: Can't load plugin: sqlalchemy.dialects:driver**  
+  This error occurs if the database URL is incorrectly configured in the `alembic.ini` file. Make sure your connection URL is correct (e.g., `postgresql://postgres:pgpass@localhost:5432/kanha`).
+- **Error: Missing Target Metadata in `env.py`**  
+  Ensure that you’ve imported all models in `env.py` and that the `target_metadata` points to your `Base.metadata`:
+
+  ```python
+  target_metadata = BaseModel.metadata  # or Base.metadata
+
+  ```
+
+- **Error: Type Annotation for "id" can't be correctly interpreted**  
+  This occurs if you're using a type annotation format incompatible with SQLAlchemy's ORM. In such cases, use `Mapped[]` instead of regular type annotations for mapped fields. For example:
+
+  ```python
+  id: Mapped[UUID] = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+
+  ```
 
 ---
 

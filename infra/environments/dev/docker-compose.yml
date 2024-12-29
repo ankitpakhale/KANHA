@@ -12,4 +12,4 @@ services:
       - "7010:7010" # map container port 7010 to host port 7010
     volumes:
       - ../../../:/app # mount the root directory to /app in the container
-    command: python3 src/main.py --port 7010 # use python command to start the server
+    command: python3 app/main.py --port 7010 # use python command to start the server

@@ -20,4 +20,4 @@ RUN chmod +x entrypoint.sh
 EXPOSE 7010
 
 # set the default command to start the server on port 7010
-CMD ["python3", "src/main.py", "--port", "7010"]
+CMD ["python3", "app/main.py", "--port", "7010"]
