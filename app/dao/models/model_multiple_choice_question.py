@@ -11,7 +11,7 @@ class MultipleChoiceQuestion(BaseModel):
 
     # table name for the MultipleChoiceQuestion model
     __tablename__ = "multiple_choice_question"
-    question_level: Mapped[str] = Column(Text, nullable=False)
+    difficulty_level: Mapped[str] = Column(Text, nullable=False)
     question: Mapped[str] = Column(Text, nullable=False)
     option_1: Mapped[str] = Column(Text, nullable=False)
     option_2: Mapped[str] = Column(Text, nullable=False)
@@ -28,6 +28,7 @@ class MultipleChoiceQuestion(BaseModel):
         return f"""MultipleChoiceQuestion(
             id={self.id!r},
             created_at={self.created_at!r},
+            difficulty_level={self.difficulty_level!r},
             question={self.question!r},
             option_1={self.option_1!r},
             option_2={self.option_2!r},

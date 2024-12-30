@@ -43,7 +43,7 @@ KANHA                                  # Root directory of the project
 ├── release                            # Folder for release-related assets
 ├── requirements.txt                   # Python dependencies
 ├── setup.py                           # Setup script for the project
-├── app                                # Source code of the project
+├── app                                # Application code of the project
 │   ├── dao                            # Data Access Object, to handle database operations
 │   │   ├── base
 │   │   │   ├── base_dao.py

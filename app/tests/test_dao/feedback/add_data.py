@@ -2,10 +2,10 @@ import sys
 from pathlib import Path
 
 # add the app directory to sys.path
-__path = str(Path(__file__).resolve().parent.parent.parent)
+__path = str(Path(__file__).resolve().parent.parent.parent.parent.parent)
 sys.path.append(__path)
 
-from dao import Feedback, db_session  # noqa: E402
+from app.dao import Feedback, db_session  # noqa: E402
 import random  # noqa: E402
 
 # list of feedback entries
@@ -101,15 +101,15 @@ session = db_session()
 # use the selected entry in feedback_entry
 feedback_entry = Feedback(
     rating=selected_feedback["rating"],
-    # comments=selected_feedback["comments"],
-    # frequency_of_use=selected_feedback["frequency_of_use"],
-    # purpose_of_use=selected_feedback["purpose_of_use"],
-    # ease_of_use=selected_feedback["ease_of_use"],
-    # specific_features=selected_feedback["specific_features"],
+    comments=selected_feedback["comments"],
+    frequency_of_use=selected_feedback["frequency_of_use"],
+    purpose_of_use=selected_feedback["purpose_of_use"],
+    ease_of_use=selected_feedback["ease_of_use"],
+    specific_features=selected_feedback["specific_features"],
 )
 
 session.add(feedback_entry)
 session.commit()
-print("Feedback Data added successfully!!!")
+print("\n=====================> Feedback Data added successfully!!!\n")
 
 print(feedback_entry)
