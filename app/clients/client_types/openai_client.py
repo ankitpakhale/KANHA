@@ -100,7 +100,7 @@ class OpenAI(Base):
         """
         Core logic to generate questions from OpenAI client
         """
-        logger.info("generate_questions core logic working for OpenAI client")
+        logger.debug("generate_questions core logic working for OpenAI client")
         difficulty_level = payload["difficulty_level"]
         programming_language = payload["programming_language"]
         topics = payload["topics"]
@@ -125,7 +125,7 @@ class OpenAI(Base):
             system_prompt=__system_prompt, user_prompt=__user_prompt
         )
 
-        logger.info("Received generated questions from OpenAI Client")
+        logger.debug("Received generated questions from OpenAI Client")
         return __generation
 
     @typechecked
@@ -133,11 +133,11 @@ class OpenAI(Base):
         """
         Core logic to evaluate users answer using OpenAI client
         """
-        logger.info("evaluate_answers core logic working for OpenAI client")
+        logger.debug("evaluate_answers core logic working for OpenAI client")
         __system_prompt = self.get_answer_evaluation_system_prompt(user_code=payload)
         __user_prompt = self.get_answer_evaluation_user_prompt(user_code=payload)
         __evaluation = self.__get_result(
             system_prompt=__system_prompt, user_prompt=__user_prompt
         )
-        logger.info("Received evaluated answers from OpenAI Client")
+        logger.debug("Received evaluated answers from OpenAI Client")
         return __evaluation
