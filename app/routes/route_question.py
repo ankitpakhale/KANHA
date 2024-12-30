@@ -36,7 +36,6 @@ class QuestionRoute:
 
         # generate questions using the service
         response = question_service_obj(payload=payload)
-        logger.debug("response successfully generated")
         return {
             "payload": response,
             "message": "Questions generated successfully",

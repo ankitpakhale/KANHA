@@ -11,25 +11,56 @@ SCHEMA_MAP = {
             "required": ["difficulty_level", "programming_language", "topics"],
             "additionalProperties": False,
         },
-        "RESPONSE": {
+        "MCQ_RESPONSE": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "q_id": {"type": "string", "pattern": "^mcq[0-9]+$"},
-                    "question": {"type": "string"},
-                    "options": {
-                        "type": "array",
-                        "items": {"type": "string"},
-                        "minItems": 2,
-                        "uniqueItems": True,
-                    },
-                    "correct_answer": {"type": "string"},
-                },
-                "required": ["q_id", "question", "options", "correct_answer"],
-                "additionalProperties": False,
+            "type": "object",
+            "properties": {
+                "question": {"type": "string"},
+                "options": {"type": "array", "items": {"type": "string"}},
+                "correct_answer": {"type": "string"},
             },
+            "required": ["question", "options", "correct_answer"],
+            "additionalProperties": False,
+        },
+        "PSQ_RESPONSE": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+                "problem_description": {"type": "string"},
+                "input_format": {"type": "string"},
+                "output_format": {"type": "string"},
+                "constraints": {"type": "string"},
+                "examples": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "input": {"type": "string"},
+                            "output": {"type": "string"},
+                        },
+                        "required": ["input", "output"],
+                    },
+                },
+                "edge_cases": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "input": {"type": "string"},
+                            "output": {"type": "string"},
+                        },
+                        "required": ["input", "output"],
+                    },
+                },
+            },
+            "required": [
+                "problem_description",
+                "input_format",
+                "output_format",
+                "constraints",
+                "examples",
+                "edge_cases",
+            ],
         },
     },
     "EVALUATE_ANSWERS": {

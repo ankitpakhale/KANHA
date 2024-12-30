@@ -30,7 +30,6 @@ class EvaluationRoute:
 
         # generate questions using the service
         response = evaluation_service_obj(payload=payload)
-        logger.debug("Response successfully generated")
         return {
             "payload": response,
             "message": "Answers Evaluated Successfully",

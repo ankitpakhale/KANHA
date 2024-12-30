@@ -2,10 +2,10 @@ import sys
 from pathlib import Path
 
 # add the app directory to sys.path
-__path = str(Path(__file__).resolve().parent.parent.parent)
+__path = str(Path(__file__).resolve().parent.parent.parent.parent.parent)
 sys.path.append(__path)
 
-from dao import Feedback, db_session  # noqa: E402
+from app.dao import Feedback, db_session  # noqa: E402
 
 # create the session
 session = db_session()

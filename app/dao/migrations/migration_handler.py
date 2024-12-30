@@ -51,7 +51,24 @@ class MigrationHandler:
         try:
             logger.info("applying migrations...")
             command.upgrade(self.alembic_cfg, "head")
+
+            # after running the migration, log the current revision
+            current_revision = command.current(self.alembic_cfg)
+            logger.info(f"Current database revision: {current_revision}")
+
             logger.info("migrations applied successfully.")
+        except Exception as e:
+            print("➡ Error Occued:", e)
+            logger.error(f"error applying migrations: {e}")
+
+    def __run_migrations(self):
+        """
+        Runs alembic migrations to apply schema changes.
+        """
+        try:
+            logger.debug("applying migrations...")
+            command.upgrade(self.alembic_cfg, "head")
+            logger.debug("migrations applied successfully.")
         except Exception as e:
             logger.error(f"error applying migrations: {e}")
             # raise OperationalError(f"error applying migrations: {e}")  # this line is causing error in further script execution
