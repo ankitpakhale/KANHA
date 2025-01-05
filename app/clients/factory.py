@@ -1,5 +1,5 @@
 from typing import Optional, Any, Union
-from config import GeneralConfig
+from app.config import GeneralConfig
 from .client_types import Bedrock, OpenAI
 
 

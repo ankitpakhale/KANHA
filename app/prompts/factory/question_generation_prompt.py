@@ -1,5 +1,8 @@
 from typing import Optional
-from prompts import QUESTION_GENERATION_SYSTEM_PROMPT, QUESTION_GENERATION_USER_PROMPT
+from app.prompts import (
+    QUESTION_GENERATION_SYSTEM_PROMPT,
+    QUESTION_GENERATION_USER_PROMPT,
+)
 from .base_prompt import BasePrompt
 
 

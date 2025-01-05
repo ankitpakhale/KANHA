@@ -1,7 +1,7 @@
 from typing import Union
-from services import validation_manager_obj
+from app.services import validation_manager_obj
 from app.utils import logger
-from dao import Feedback, db_session  # noqa: E402
+from app.dao import Feedback, db_session  # noqa: E402
 
 
 # TODO: change name to Feedback

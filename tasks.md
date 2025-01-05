@@ -6,6 +6,7 @@
 - [ ] [HOLD] Save feedback in AWS S3.
 
 - #### Tasklist 6.1
+- [ ] Simplify routes package ex server healthcheck & db healthcheck.
 - [ ] Implement changes in DAO package to save mcq type of questions.
 - [ ] Implement changes in DAO package to save psq type of questions.
 - [ ] Get at least 1000 MCQ questions using GPT and save it in csv and then DB.

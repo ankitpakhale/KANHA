@@ -1,6 +1,6 @@
 from typing import Optional, List, Dict, Union
 from ..base import Base
-from config import AWSConfig
+from app.config import AWSConfig
 from typeguard import typechecked
 from app.utils import logger
 

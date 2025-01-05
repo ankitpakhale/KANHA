@@ -1,6 +1,6 @@
 from typing import Dict, Optional, List
 from app.utils import logger
-from prompts import prompt_factory
+from app.prompts import prompt_factory
 
 QUESTION_GENERATION = "question_generation"
 ANSWER_EVALUATION = "answer_evaluation"

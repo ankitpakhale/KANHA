@@ -2,12 +2,11 @@ from typing import Optional, List, Dict, Union
 from app.clients import Base
 import openai
 from app.config import OpenAIConfig
-from typeguard import typechecked
 from app.utils import logger
 import json
-
-# from langchain.text_splitter import RecursiveCharacterTextSplitter
-# from langchain.memory import ConversationBufferMemory
+from app.utils import ClientSettings
+from math import ceil
+import re
 
 
 class OpenAI(Base):
@@ -16,9 +15,86 @@ class OpenAI(Base):
         self.model = OpenAIConfig.OPENAI_MODEL
         self.temperature = OpenAIConfig.OPENAI_TEMPERATURE
         self.max_tokens = OpenAIConfig.OPENAI_MAX_TOKENS
-        # self.text_splitter = RecursiveCharacterTextSplitter(
-        #     chunk_size=3000, chunk_overlap=100)
-        # self.memory = ConversationBufferMemory()
+        self.batch_size = ClientSettings.BATCH_SIZE
+
+    @staticmethod
+    def __fix_raw_response(json_str: str) -> str:
+        """
+        Fixes a potentially malformed JSON string by:
+        - Ensuring proper double quotes for keys and string values.
+        - Handling special characters and structural issues.
+        """
+        try:
+            # attempt to load the JSON as-is to see if it's valid
+            loaded_json = json.loads(json_str)
+            question_list = []
+            if "questions" in loaded_json:
+                logger.warning("question key detected in json data.")
+                question_list.extend(loaded_json["questions"])
+            if "Easy" in loaded_json and loaded_json["Easy"] is not None:
+                logger.warning("Easy key detected in json data.")
+                question_list.extend(loaded_json["Easy"])
+            if "Medium" in loaded_json and loaded_json["Medium"] is not None:
+                logger.warning("Medium key detected in json data.")
+                question_list.extend(loaded_json["Medium"])
+            if "Hard" in loaded_json and loaded_json["Hard"] is not None:
+                logger.warning("Hard key detected in json data.")
+                question_list.extend(loaded_json["Hard"])
+            logger.info(
+                "Received JSON is by default complient with json.loads, returning the json data."
+            )
+            return question_list
+        except json.JSONDecodeError:
+            logger.error("JSONDecodeError Occured, continue fixing the JSON...")
+            pass  # continue fixing the JSON
+
+        # use regex to remove comments and other invalid structures
+        # remove single-line comments starting with #
+        if "#" in json_str:
+            logger.warning("Comments detected, removing comments from the JSON.")
+            try:
+                # only apply the regex to remove comments if a comment exists
+                json_str = re.sub(r"#.*$", "", json_str, flags=re.MULTILINE)
+                logger.debug("Detected comments removed, loading the JSON.")
+                loaded_json = json.loads(json_str)
+                logger.info(
+                    "Received JSON is by default complient with json.loads, returning the json data."
+                )
+                return loaded_json
+            except json.JSONDecodeError:
+                logger.error(
+                    "JSONDecodeError Occured while removing the comment, continue fixing the JSON..."
+                )
+                pass  # continue fixing the JSON
+
+        # use regex to extract the list
+        matches = re.search(r"\[\s*(\{.*?\})\s*\]", json_str, re.DOTALL)
+        if matches:
+            # extract the JSON string
+            json_str = f"[{matches.group(1)}]"
+
+        # replace single quotes with double quotes for JSON compatibility
+        json_str = json_str.replace("'", '"')
+
+        # fix invalid spacing and formatting issues
+        json_str = re.sub(r"\s*:\s*", ":", json_str)
+        json_str = re.sub(r"\s*,\s*", ",", json_str)
+
+        # ensure keys are properly quoted
+        json_str = re.sub(r'(?<=\{|,)\s*([^"\s][^:]+)\s*:', r'"\1":', json_str)
+
+        # Fix improperly escaped quotes within strings
+        json_str = re.sub(r'(?<!\\)"(?![:,\]}])', r'\\"', json_str)
+
+        # ensure proper array/object separation
+        json_str = re.sub(r"}\s*{", r"},{", json_str)
+
+        # remove trailing commas
+        json_str = re.sub(r",(?=\s*[}\]])", "", json_str)
+
+        # strip invalid leading/trailing characters
+        json_str = json_str.strip()
+        return json.loads(json_str)
 
     def __get_result(self, system_prompt: str, user_prompt: str) -> str:
         # call openai to result based on requested prompt
@@ -31,104 +107,68 @@ class OpenAI(Base):
             temperature=self.temperature,
             max_tokens=self.max_tokens,
         )
-        logger.debug(f"➡ 28 __response: {__response}")
 
         # extract and return the results
         __result = __response["choices"][0]["message"]["content"]
         logger.info("Received result from OpenAI Client")
         return __result
 
-    # def __validate_and_combine_json(responses: List[str]) -> Dict:
-    #     combined_result = {}
-    #     for response in responses:
-    #         try:
-    #             partial_result = json.loads(response)
-    #             combined_result.update(partial_result)
-    #         except json.JSONDecodeError as e:
-    #             logger.error(f"Invalid JSON: {response}. Error: {e}")
-    #     return combined_result
+    def __get_batch_result(self, payload):
+        """ """
+        difficulty_level = payload["difficulty_level"]
+        programming_language = payload["programming_language"]
+        topics = ", ".join(payload["topics"])
+        num_questions = payload.get(
+            "num_questions", 25
+        )  # specify any number, default is 20
 
-    # def __get_result__new(self, system_prompt: str, user_prompt: str) -> str:
-    #     """
-    #     Use LangChain to handle long prompts and chunk input while maintaining context.
-    #     """
-    #     chunks = self.text_splitter.split_text(user_prompt)
-    #     logger.debug(f"Split user prompt into {len(chunks)} chunks.")
+        print("➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ")
+        print("➡ difficulty_level:", difficulty_level)
+        print("➡ programming_language:", programming_language)
+        print("➡ topics:", topics)
+        print("➡ num_questions:", num_questions)
+        print("➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ➡ ")
 
-    #     responses = []
-    #     for chunk in chunks:
-    #         logger.debug(f"Getting result for chunk: {chunks}")
+        result = []
+        num_calls = 0  # keep track of total calls
 
-    #         # add memory-based conversation context
-    #         conversation_context = self.memory.chat_memory.messages
-    #         logger.debug(f"Conversation Context: {conversation_context}")
+        system_prompt = self.get_question_generation_system_prompt(
+            difficulty_level=difficulty_level,
+            programming_language=programming_language,
+            topics=topics,
+            num_questions=num_questions,
+        )
 
-    #         # prepare messages with context
-    #         messages = [
-    #             {"role": "system", "content": system_prompt},
-    #             *conversation_context,  # add past conversation
-    #             {"role": "user", "content": chunk},
-    #         ]
+        for _ in range(ceil(num_questions / self.batch_size)):
+            current_batch_size = min(self.batch_size, num_questions - num_calls)
+            user_prompt = self.get_question_generation_user_prompt(
+                difficulty_level=difficulty_level,
+                programming_language=programming_language,
+                topics=topics,
+                num_questions=current_batch_size,
+            )
+            json_string = self.__get_result(
+                system_prompt=system_prompt, user_prompt=user_prompt
+            )
+            logger.debug(f"json_string: {json_string}")
 
-    #         # calculate the number of tokens used in input
-    #         # total_available_tokens = 4096  # total limit for GPT-3.5 Turbo
-    #         # total_input_tokens = sum(len(m["content"])
-    #         #                         for m in messages)  # input tokens used
-    #         # if total_input_tokens + self.max_tokens > total_available_tokens:
-    #         #     # truncate old context if tokens exceed the limit
-    #         #     logger.warning(f"messages exceed token limit , truncating context...")
-    #         #     self.memory.clear()  # clear old memory to make space
+            response = self.__fix_raw_response(json_string)
+            logger.debug(f"response: {response}")
 
-    #         # call OpenAI API
-    #         response = openai.ChatCompletion.create(
-    #             model=self.model,
-    #             messages=messages,
-    #             temperature=self.temperature,
-    #             max_tokens=self.max_tokens,
-    #         )
-    #         result = response["choices"][0]["message"]["content"]
-    #         self.memory.save_context({"input": chunk}, {"output": result})
-    #         responses.append(result)
+            result.extend(response)
+            num_calls += current_batch_size
 
-    #     # combine and validate JSON
-    #     final_output = self.__validate_and_combine_json(responses)
-    #     logger.info("Received final result from OpenAI Client")
-    #     return final_output
+        return result
 
-    @typechecked
     def generate_questions(self, payload: Union[list, dict]) -> str:
         """
         Core logic to generate questions from OpenAI client
         """
         logger.debug("generate_questions core logic working for OpenAI client")
-        difficulty_level = payload["difficulty_level"]
-        programming_language = payload["programming_language"]
-        topics = payload["topics"]
-        num_questions = payload.get(
-            "num_questions", 2
-        )  # specify any number, default is 20
-
-        __system_prompt = self.get_question_generation_system_prompt(
-            difficulty_level=difficulty_level,
-            programming_language=programming_language,
-            topics=", ".join(topics),
-            num_questions=num_questions,
-        )
-        __user_prompt = self.get_question_generation_user_prompt(
-            difficulty_level=difficulty_level,
-            programming_language=programming_language,
-            topics=", ".join(topics),
-            num_questions=num_questions,
-        )
-        logger.debug(f"Generating Questions for __user_prompt: {__user_prompt}")
-        __generation = self.__get_result(
-            system_prompt=__system_prompt, user_prompt=__user_prompt
-        )
-
+        response = self.__get_batch_result(payload)
         logger.debug("Received generated questions from OpenAI Client")
-        return __generation
+        return response
 
-    @typechecked
     def evaluate_answers(self, payload: Union[list, dict]) -> str:
         """
         Core logic to evaluate users answer using OpenAI client

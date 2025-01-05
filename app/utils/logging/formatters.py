@@ -31,7 +31,10 @@ class Default(logging.Formatter, Colors):
     colors = Colors()
     # format = "%(module)s.%(funcName)s ► %(message)s"
     # format = "► %(asctime)s - %(levelname)s │ %(message)s"  # log message format
-    format = "►►►►►►► %(asctime)s - %(levelname)s │ %(message)s"  # log message format
+    # format = "►►►►►►► %(asctime)s - %(levelname)s │ %(message)s"  # log message format
+    format = (
+        "►►►►►►► %(asctime)s - %(levelname)s │ %(module)s.%(funcName)s │ %(message)s"
+    )
     # format = "► %(message)s"
 
     FORMATS = {

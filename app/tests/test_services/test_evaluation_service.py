@@ -2,10 +2,10 @@ import sys
 from pathlib import Path
 
 # add the app directory to sys.path
-sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
 
 
-from services import evaluation_service_obj
+from app.services import evaluation_service_obj  # noqa: E402
 
 
 answer_payload = dict(
