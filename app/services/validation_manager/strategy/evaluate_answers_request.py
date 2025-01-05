@@ -13,8 +13,19 @@ class EvaluateAnswersRequest(Base):
         return True
 
     def validate(self, payload: Union[list, dict]) -> bool:
-        schema = SCHEMA_MAP["EVALUATE_ANSWERS"]["REQUEST"]
-        return self.__validate(payload=payload, schema=schema)
+        if self.control_panel_manager.get_setting("VALIDATE_REQUEST_DATA"):
+            schema = SCHEMA_MAP["EVALUATE_ANSWERS"]["REQUEST"]
+            status = self.__validate(payload=payload, schema=schema)
+        else:
+            logger.warning(
+                """
+                Request data validation is currently disabled (VALIDATE_REQUEST_DATA setting is False in the control panel).
+                As a result, the incoming payload will not be validated against the expected schema.
+                This may lead to unexpected behavior or issues if the data structure is incorrect.
+                """
+            )
+            status = True
+        return status
 
 
 # singleton instance of EvaluateAnswersRequest

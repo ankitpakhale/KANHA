@@ -1,0 +1,9 @@
+CONTROL_PANEL_SETTINGS = {
+    "VALIDATE_REQUEST_DATA": True,
+    "GENERATE_QUESTIONS_FROM_CLIENT": True,
+    "EVALUATE_ANSWERS_FROM_CLIENT": True,
+    "VALIDATE_RESPONSE_DATA": True,
+    "SAVE_CLIENT_RESPONSE_IN_DB": True,
+    "SAVE_FEEDBACK_IN_DB": True,
+    # Add more toggle settings as required
+}

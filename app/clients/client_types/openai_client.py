@@ -53,7 +53,6 @@ class OpenAI(Base):
         if "#" in json_str:
             logger.warning("Comments detected, removing comments from the JSON.")
             try:
-                # only apply the regex to remove comments if a comment exists
                 json_str = re.sub(r"#.*$", "", json_str, flags=re.MULTILINE)
                 logger.debug("Detected comments removed, loading the JSON.")
                 loaded_json = json.loads(json_str)
@@ -94,6 +93,7 @@ class OpenAI(Base):
 
         # strip invalid leading/trailing characters
         json_str = json_str.strip()
+        logger.info(f"Applied string operations in stringified json: {json_str}")
         return json.loads(json_str)
 
     def __get_result(self, system_prompt: str, user_prompt: str) -> str:
