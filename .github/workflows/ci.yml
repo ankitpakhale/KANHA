@@ -33,6 +33,16 @@ jobs:
           key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-python-
+        id: cache-python
+
+      # Log cache status
+      - name: Log Cache Status
+        run: |
+          if [ "${{ steps.cache-python.outputs.cache-hit }}" == "true" ]; then
+            echo "Cache hit: Dependencies found in the cache.";
+          else
+            echo "Cache miss: Installing dependencies from requirements.txt.";
+          fi
 
       # install dependencies from requirements.txt (if not cached)
       - name: Install dependencies
@@ -67,6 +77,16 @@ jobs:
           key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-python-
+        id: cache-python
+
+      # Log cache status
+      - name: Log Cache Status
+        run: |
+          if [ "${{ steps.cache-python.outputs.cache-hit }}" == "true" ]; then
+            echo "Cache hit: Dependencies found in the cache.";
+          else
+            echo "Cache miss: Installing dependencies from requirements.txt.";
+          fi
 
       # install dependencies from requirements.txt (if not cached)
       - name: Install dependencies
@@ -101,6 +121,16 @@ jobs:
           key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-python-
+        id: cache-python
+
+      # Log cache status
+      - name: Log Cache Status
+        run: |
+          if [ "${{ steps.cache-python.outputs.cache-hit }}" == "true" ]; then
+            echo "Cache hit: Dependencies found in the cache.";
+          else
+            echo "Cache miss: Installing dependencies from requirements.txt.";
+          fi
 
       # install dependencies from requirements.txt (if not cached)
       - name: Install dependencies
