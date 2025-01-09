@@ -48,7 +48,7 @@ jobs:
       # install dependencies from requirements.txt
       - name: install dependencies
         run: |
-          pip install --no-cache-dir -r requirements.txt
+          pip install --no-cache-dir -r requirements.txt --break-system-packages
 
       # run pre-commit hooks for linting
       - name: run pre-commit hooks for linting
@@ -73,7 +73,7 @@ jobs:
       # install dependencies from requirements.txt
       - name: install dependencies
         run: |
-          pip install --no-cache-dir -r requirements.txt
+          pip install --no-cache-dir -r requirements.txt --break-system-packages
 
       # start the server in the background
       - name: start server
