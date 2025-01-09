@@ -34,4 +34,4 @@ class ValidationManager:
 
 
 # singleton instance of ValidationManager
-validation_manager_obj = ValidationManager
+validation_manager = ValidationManager

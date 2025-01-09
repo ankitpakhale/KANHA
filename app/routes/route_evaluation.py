@@ -1,5 +1,5 @@
 from app.framework import App, Request
-from app.services import evaluation_service_obj
+from app.services import evaluation_service
 from app.utils import logger, cache, handle_response, ROUTES
 import json
 
@@ -29,7 +29,7 @@ class EvaluationRoute:
         payload = json.loads(_request_data)
 
         # generate questions using the service
-        response = evaluation_service_obj(payload=payload)
+        response = evaluation_service.evaluate_answers(payload=payload)
         return {
             "payload": response,
             "message": "Answers Evaluated Successfully",

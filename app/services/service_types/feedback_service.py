@@ -1,5 +1,5 @@
 from typing import Union
-from app.services import validation_manager_obj
+from app.services import validation_manager
 from app.utils import logger
 from app.dao import Feedback, db_session  # noqa: E402
 from app.control_panel import control_panel_manager
@@ -13,10 +13,9 @@ class FeedbackService:
         Initializes the database layer and save user feedback.
         """
         # validate the data
-        validation_manager = validation_manager_obj(
-            service_type="feedback", validation_type="request"
+        validation_manager(service_type="feedback", validation_type="request").validate(
+            payload
         )
-        validation_manager.validate(payload)
         logger.debug("Payload varified successfully at Feedback Service!!!")
 
         # create the database session
@@ -58,6 +57,8 @@ class FeedbackService:
         return status
 
 
-def feedback_service_obj(payload: Union[list, dict]):
-    feedback_service_result = FeedbackService().feedback(payload)
-    return feedback_service_result
+feedback_service = FeedbackService
+
+# def feedback_service_obj(payload: Union[list, dict]):
+#     feedback_service_result = FeedbackService().feedback(payload)
+#     return feedback_service_result

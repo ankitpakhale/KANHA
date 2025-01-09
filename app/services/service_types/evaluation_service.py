@@ -1,6 +1,6 @@
-from typing import Union
+from typing import Union, Dict, List
 from app.clients import Client
-from app.services import validation_manager_obj
+from app.services import validation_manager
 import json
 from app.utils import logger
 from app.control_panel import control_panel_manager
@@ -9,22 +9,28 @@ from app.control_panel import control_panel_manager
 
 
 class EvaluationService:
+    @staticmethod
+    def __validate_request_data(payload: Dict[str, Union[str, List[str]]]) -> None:
+        # whole payload is getting validated at once
+        validation_manager(
+            service_type="evaluate_answers", validation_type="request"
+        ).validate(payload)
+
     def __evaluate_answers(self, payload: Union[list, dict]):
         """
         Initializes the question client and generates questions based on the user input.
         """
         # validate the data
-        validation_manager = validation_manager_obj(
-            service_type="evaluate_answers", validation_type="request"
-        )
-        validation_manager.validate(payload)
-        logger.debug("Payload varified successfully at Evaluation Service!!!")
+        self.__validate_request_data(payload)
+        logger.debug("User request data validated at question service")
 
         # return the client class
         __client_response = Client().evaluate_answers(payload)
 
         # remove escape sequences and parse JSON
         formatted_json = json.loads(__client_response)
+
+        # TODO: add response validation layer
 
         return formatted_json
 
@@ -54,6 +60,7 @@ class EvaluationService:
         return data
 
 
-def evaluation_service_obj(payload: Union[list, dict]):
-    evaluation_service_result = EvaluationService().evaluate_answers(payload)
-    return evaluation_service_result
+evaluation_service = EvaluationService
+# def evaluation_service_obj(payload: Union[list, dict]):
+#     evaluation_service_result = EvaluationService().evaluate_answers(payload)
+#     return evaluation_service_result

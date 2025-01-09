@@ -2,7 +2,7 @@ from typing import Union, List, Dict
 from uuid import uuid4
 import json
 from app.clients import Client
-from app.services import validation_manager_obj
+from app.services import validation_manager
 from app.utils import logger
 from app.dao import (
     MultipleChoiceQuestion,
@@ -16,10 +16,9 @@ from app.control_panel import control_panel_manager
 class QuestionService:
     @staticmethod
     def __validate_request_data(payload: Dict[str, Union[str, List[str]]]) -> None:
-        __validation_manager = validation_manager_obj(
+        validation_manager(
             service_type="generate_questions", validation_type="request"
-        )
-        __validation_manager.validate(payload)
+        ).validate(payload)
 
     @staticmethod
     def __get_data_from_client(
@@ -52,7 +51,7 @@ class QuestionService:
 
     @staticmethod
     def __validate_response_data(response: List[Dict[str, str]]) -> None:
-        __validation_manager = validation_manager_obj(
+        __validation_manager = validation_manager(
             service_type="generate_questions", validation_type="response"
         )
         for res in response:
@@ -180,9 +179,4 @@ class QuestionService:
         return self.__generate_questions(payload)
 
 
-# TODO: simplify this service obj method, add singleton design pattern
-def question_service_obj(
-    payload: Dict[str, Union[str, List[str]]]
-) -> List[Dict[str, Union[str, List[Union[str, Dict[str, str]]]]]]:
-    question_service_result = QuestionService().generate_questions(payload)
-    return question_service_result
+question_service = QuestionService
