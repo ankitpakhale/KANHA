@@ -42,11 +42,11 @@ class OpenAIClient(Base):
         ]
         return "\n".join(problem_descriptions)
 
-    def __update_context(self, content: str) -> None:
+    def __update_context(self, role: str, content: str) -> None:
         """
         adds a message to the context message history
         """
-        self.message_history.add_message(content)
+        self.message_history.add_message(role, content)
 
     def __prepare_combined_prompt(
         self, system_prompt: str, user_prompt: str
@@ -123,6 +123,17 @@ class OpenAIClient(Base):
         logger.info(f"applied string operations in stringified json: {json_str}")
         return json.loads(json_str)
 
+    def __extract_questions(self, raw_response: str) -> Any:
+        logger.debug("INSIDE __extract_questions")
+        try:
+            # Directly use LangChain parser to parse the response
+            parsed_response = self.__parse_json_with_langchain(raw_response)
+            logger.debug(f"Parsed response: {parsed_response}")
+            return parsed_response
+        except Exception as e:
+            logger.error(f"Error while extracting questions: {e}")
+            return []
+
     @staticmethod
     def __parse_json_with_langchain(raw_response: Any) -> Any:
         """
@@ -130,72 +141,73 @@ class OpenAIClient(Base):
         to extract questions or problem descriptions in a structured format.
         This function ensures the response is in string format before attempting to parse it.
         """
+
         # Check if the response is an AIMessage object and extract content if it is
         if hasattr(raw_response, "content"):
             raw_response = (
                 raw_response.content
             )  # Extract the content from the AIMessage object
 
-        logger.debug(f"➡ raw_response: {raw_response}")
-        # Convert the raw response (string) to a dictionary using json.loads
-        try:
-            raw_response = json.loads(raw_response)
-        except json.JSONDecodeError:
+        # Handle both cases: list of questions or a dictionary with the 'questions' key
+        if isinstance(raw_response, dict) and "questions" in raw_response:
+            # Extract list from the 'questions' key
+            raw_response = raw_response["questions"]
+
+        # Check if the response is already in the expected list format
+        if not isinstance(raw_response, list):
             raise OutputParserException(
-                f"Failed to parse the raw response as JSON. Received: {type(raw_response)}"
+                f"Expected a list of questions, but got: {type(raw_response)}"
             )
 
-        question_list = []
+        # Define the expected structure of the response for both problem descriptions and questions
+        problem_description_schema = ResponseSchema(
+            name="problem_description",
+            description="Detailed problem description with input/output/constraints, examples, and edge cases.",
+        )
 
-        for _type in ["questions", "Easy", "Medium", "Hard"]:
-            if isinstance(raw_response, dict) and _type in raw_response:
-                # Extract list from the _type key
-                raw_response = raw_response[_type]
-                question_list.extend(raw_response)
-                print("➡ questions key raw_response:", raw_response)
-        else:
-            question_list.extend(raw_response)
+        question_schema = ResponseSchema(
+            name="question",
+            description="Multiple choice question with options and correct answer.",
+        )
 
-        print("➡ FINAL question_list:", question_list)
-        return question_list
+        # Use StructuredOutputParser to handle both types of responses
+        parser = StructuredOutputParser.from_response_schemas(
+            [problem_description_schema, question_schema]
+        )
 
-        # # Check if the response is already in the expected list format
-        # if not isinstance(raw_response, list):
-        #     raise OutputParserException(
-        #         f"Expected a list of questions, but got: {type(raw_response)}")
+        try:
+            # Use LangChain's parsing utility to extract structured data
+            parsed_response = parser.parse(raw_response)
+            logger.debug(f"Parsed response: {parsed_response}")
+            return parsed_response  # Return parsed response that could be any type
+        except Exception as e:
+            logger.error(f"Error parsing response with LangChain: {e}")
+            raise ValueError("Error parsing response with LangChain")
 
-        # # Define the expected structure of the response for both problem descriptions and questions
-        # problem_description_schema = ResponseSchema(
-        #     name="problem_description",
-        #     description="Detailed problem description with input/output/constraints, examples, and edge cases."
-        # )
+    def __get_result_(
+        self, system_prompt: str, user_prompt: str, callback: Optional[callable] = None
+    ) -> str:
+        # prepare combined prompt
+        combined_prompt = self.__prepare_combined_prompt(system_prompt, user_prompt)
 
-        # question_schema = ResponseSchema(
-        #     name="question",
-        #     description="Multiple choice question with options and correct answer."
-        # )
+        # generate response using langchain's chatopenai
+        raw_response = self.llm.invoke(combined_prompt)
+        assistant_message = self.__extract_questions(raw_response)
 
-        # # Define a new schema for both types of data
-        # mixed_schema = ResponseSchema(
-        #     name="mixed_type",
-        #     description="Can be either a problem description with examples/edge cases or a multiple choice question."
-        # )
+        logger.debug(f"➡ assistant_message: {assistant_message}")
 
-        # # Use StructuredOutputParser to handle both types of responses
-        # parser = StructuredOutputParser.from_response_schemas(
-        #     # Add mixed_schema to handle both types
-        #     [problem_description_schema, question_schema, mixed_schema])
+        self.__update_context("assistant", assistant_message)
 
-        # try:
-        #     # Use LangChain's parsing utility to extract structured data
-        #     parsed_response = parser.parse(raw_response)
-        #     logger.debug(f"Parsed response: {parsed_response}")
-        #     return parsed_response  # Return parsed response that could be any type
-        # except Exception as e:
-        #     logger.error(f"Error parsing response with LangChain: {e}")
-        #     raise ValueError("Error parsing response with LangChain")
+        # If a callback is provided, apply it to the assistant's message
+        if callback:
+            logger.debug("Applying callback to the response data...")
+            assistant_message = callback(assistant_message)
 
-    def __get_result(self, system_prompt: str, user_prompt: str) -> str:
+        return assistant_message
+
+    def __get_result(
+        self, system_prompt: str, user_prompt: str, callback: Optional[callable] = None
+    ) -> str:
         # prepare combined prompt
         combined_prompt = self.__prepare_combined_prompt(system_prompt, user_prompt)
 
@@ -203,16 +215,27 @@ class OpenAIClient(Base):
         raw_response = self.llm.invoke(combined_prompt)
         logger.debug(f"➡ raw_response: {raw_response}")
 
-        return raw_response
+        # Call the new LangChain parsing method to extract questions or problem descriptions
+        assistant_message = self.__parse_json_with_langchain(raw_response)
+        logger.debug(f"➡ assistant_message: {assistant_message}")
 
-    def __get_batch_result(self, payload):
+        self.__update_context("assistant", assistant_message)
+
+        # If a callback is provided, apply it to the assistant's message
+        if callback:
+            logger.debug("Applying callback to the response data...")
+            assistant_message = callback(assistant_message)
+
+        return assistant_message
+
+    def __get_batch_result_(self, payload, callback: Optional[callable] = None):
         """
-        retrieves questions or problem descriptions in batches and maintains context
+        retrieves questions in batches and maintains context
         """
         difficulty_level = payload["difficulty_level"]
         programming_language = payload["programming_language"]
         topics = ", ".join(payload["topics"])
-        num_questions = payload.get("num_questions", 2)
+        num_questions = payload.get("num_questions", 25)
 
         result = []
         num_calls = 0  # track number of api calls
@@ -233,34 +256,95 @@ class OpenAIClient(Base):
                 num_questions=current_batch_size,
             )
 
-            raw_response = self.__get_result(
-                system_prompt=system_prompt, user_prompt=user_prompt
+            json_string = self.__get_result(
+                system_prompt=system_prompt, user_prompt=user_prompt, callback=callback
             )
+            logger.debug(f"json_string: {json_string}")
 
-            # call the new LangChain parsing method to extract questions or problem descriptions
-            response = self.__parse_json_with_langchain(raw_response)
+            response = self.__fix_raw_response(json_string)
+            logger.debug(f"response: {response}")
 
-            self.__update_context(content=self.__prepare_context_content(response))
+            # If a callback is provided, apply it to the response data
+
+            if callback:
+                logger.debug("Applying callback to the batch response data...")
+                response = callback(response)
+
+            self.__update_context(
+                role="system", content=self.__prepare_context_content(response)
+            )
 
             result.extend(response)
             num_calls += current_batch_size
-            print(">" * 80)
-            print(f"One Iteration completed, the result is {result}")
-            print("<" * 80)
+
         return result
 
-    def generate_questions(self, payload: Union[list, dict]) -> str:
+    def __get_batch_result(self, payload, callback: Optional[callable] = None):
+        """
+        retrieves questions or problem descriptions in batches and maintains context
+        """
+        difficulty_level = payload["difficulty_level"]
+        programming_language = payload["programming_language"]
+        topics = ", ".join(payload["topics"])
+        num_questions = payload.get("num_questions", 25)
+
+        result = []
+        num_calls = 0  # track number of api calls
+
+        system_prompt = self.get_question_generation_system_prompt(
+            difficulty_level=difficulty_level,
+            programming_language=programming_language,
+            topics=topics,
+            num_questions=num_questions,
+        )
+
+        for _ in range(ceil(num_questions / self.batch_size)):
+            current_batch_size = min(self.batch_size, num_questions - num_calls)
+            user_prompt = self.get_question_generation_user_prompt(
+                difficulty_level=difficulty_level,
+                programming_language=programming_language,
+                topics=topics,
+                num_questions=current_batch_size,
+            )
+
+            json_string = self.__get_result(
+                system_prompt=system_prompt, user_prompt=user_prompt, callback=callback
+            )
+            logger.debug(f"json_string: {json_string}")
+
+            response = self.__fix_raw_response(json_string)
+            logger.debug(f"response: {response}")
+
+            # if a callback is provided, apply it to the response data
+            if callback:
+                logger.debug("applying callback to the batch response data...")
+                response = callback(response)
+
+            self.__update_context(
+                role="system", content=self.__prepare_context_content(response)
+            )
+
+            result.extend(response)
+            num_calls += current_batch_size
+
+        return result
+
+    def generate_questions(
+        self, payload: Union[list, dict], callback: Optional[callable] = None
+    ) -> str:
         """
         core logic to generate questions from openai client
         """
         logger.debug(
             "generate_questions core logic working for openai client with context"
         )
-        response = self.__get_batch_result(payload)
+        response = self.__get_batch_result(payload, callback=callback)
         logger.debug("received generated questions from openai client with context")
         return response
 
-    def evaluate_answers(self, payload: Union[list, dict]) -> str:
+    def evaluate_answers(
+        self, payload: Union[list, dict], callback: Optional[callable] = None
+    ) -> str:
         """
         core logic to evaluate user answers using openai client
         """
@@ -270,7 +354,13 @@ class OpenAIClient(Base):
         system_prompt = self.get_answer_evaluation_system_prompt(user_code=payload)
         user_prompt = self.get_answer_evaluation_user_prompt(user_code=payload)
         evaluation = self.__get_result(
-            system_prompt=system_prompt, user_prompt=user_prompt
+            system_prompt=system_prompt, user_prompt=user_prompt, callback=callback
         )
         logger.debug("received evaluated answers from openai client with context")
         return evaluation
+
+    # TODO: define a generic callback function elsewhere to clean data or handle other operations
+    # Example callback function:
+    # def clean_data(data):
+    #     # apply your cleaning or transformation logic here
+    #     return cleaned_data

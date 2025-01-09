@@ -7,6 +7,7 @@ from app.routes import (
     feedback_route_obj,
 )
 from app.config.general_config import GeneralConfig
+from app.config.openai_config import OpenAIConfig
 from app.utils import logger
 
 
@@ -24,4 +25,6 @@ if __name__ == "__main__":
     __host = GeneralConfig.APP_HOST
     logger.debug(f"➡ Starting server on {__port} port...")
     logger.debug(f"➡ Starting server on {__host} host...")
+    logger.info(f"➡ Active Client is {GeneralConfig.ACTIVE_CLIENT}")
+    logger.info(f"➡ Client Model is {OpenAIConfig.OPENAI_MODEL}")
     App.run(host=__host, port=__port)

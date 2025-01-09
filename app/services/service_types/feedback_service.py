@@ -1,8 +1,8 @@
 from typing import Union
-from services import validation_manager_obj
+from app.services import validation_manager_obj
 from app.utils import logger
-from dao import Feedback, db_session  # noqa: E402
-
+from app.dao import Feedback, db_session  # noqa: E402
+from app.control_panel import control_panel_manager
 
 # TODO: change name to Feedback
 
@@ -40,7 +40,22 @@ class FeedbackService:
         return {}
 
     def feedback(self, payload: Union[list, dict]):
-        return self.__feedback(payload)
+        if control_panel_manager.get_setting("SAVE_FEEDBACK_IN_DB"):
+            status = self.__feedback(payload)
+        else:
+            logger.warning(
+                """
+                The 'SAVE_FEEDBACK_IN_DB' setting is currently disabled in the control panel.
+                If this setting was not intentionally turned off, please enable it to allow saving
+                feedback in the database.
+
+                WARNING: With this setting disabled, feedback will not be persisted in the database.
+                This behavior is typically used in testing environments. Ensure that this setting is enabled
+                in production to retain valuable feedback data and avoid potential issues with missing or lost feedback.
+                """
+            )
+            status = {}
+        return status
 
 
 def feedback_service_obj(payload: Union[list, dict]):

@@ -15,11 +15,11 @@ SCHEMA_MAP = {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "type": "object",
             "properties": {
-                "question": {"type": "string"},
+                "problem_description": {"type": "string"},
                 "options": {"type": "array", "items": {"type": "string"}},
                 "correct_answer": {"type": "string"},
             },
-            "required": ["question", "options", "correct_answer"],
+            "required": ["problem_description", "options", "correct_answer"],
             "additionalProperties": False,
         },
         "PSQ_RESPONSE": {

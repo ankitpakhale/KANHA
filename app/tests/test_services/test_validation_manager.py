@@ -2,10 +2,10 @@ import sys
 from pathlib import Path
 
 # add the app directory to sys.path
-sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
 
 # validation_manager import should be after path adjustments only
-from services import validation_manager_obj
+from app.services import validation_manager_obj  # noqa: E402
 
 
 GENERATE_QUESTIONS = "generate_questions"

@@ -2,7 +2,7 @@ import os
 from app.config import BaseConfig
 
 
-CLIENT_LIST = ["OpenAI", "Bedrock"]
+CLIENT_LIST = ["OpenAIClient", "BedrockClient"]
 
 
 class GeneralConfig(BaseConfig):

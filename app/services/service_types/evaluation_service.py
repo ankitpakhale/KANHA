@@ -3,6 +3,7 @@ from app.clients import Client
 from app.services import validation_manager_obj
 import json
 from app.utils import logger
+from app.control_panel import control_panel_manager
 
 # TODO: change name to EvaluateAnswers
 
@@ -28,7 +29,29 @@ class EvaluationService:
         return formatted_json
 
     def evaluate_answers(self, payload: Union[list, dict]):
-        return self.__evaluate_answers(payload)
+        if control_panel_manager.get_setting("EVALUATE_ANSWERS_FROM_CLIENT"):
+            data = self.__evaluate_answers(payload)
+        else:
+            logger.warning(
+                """
+                The 'EVALUATE_ANSWERS_FROM_CLIENT' setting is currently disabled in the control panel.
+                If this setting was not intentionally turned off, please enable it to allow evaluating
+                answers dynamically based on the client request.
+
+                WARNING: The fallback to static data from the 'evaluate_answers.json' file is only for testing purposes.
+                Do not use this approach in production environments, as it bypasses dynamic answer evaluation
+                and relies on hardcoded data. Ensure that the setting is enabled in production to maintain correct
+                functionality and avoid potential issues.
+                """
+            )
+            # path of JSON file
+            json_file_path = "app/payloads/response_examples/evaluate_answers.json"
+
+            # open and read the JSON file
+            with open(json_file_path, "r") as file:
+                data = json.load(file)
+
+        return data
 
 
 def evaluation_service_obj(payload: Union[list, dict]):

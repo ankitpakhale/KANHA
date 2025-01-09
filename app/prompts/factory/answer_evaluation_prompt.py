@@ -1,4 +1,4 @@
-from prompts import ANSWER_EVALUATION_SYSTEM_PROMPT, ANSWER_EVALUATION_USER_PROMPT
+from app.prompts import ANSWER_EVALUATION_SYSTEM_PROMPT, ANSWER_EVALUATION_USER_PROMPT
 from .base_prompt import BasePrompt
 from typing import Dict, List
 

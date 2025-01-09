@@ -1,11 +1,8 @@
 from . import formatters, handlers
-import os
 import logging
 import logging.config
-from dotenv import load_dotenv
+from app.config import GeneralConfig
 
-# load environment variables
-load_dotenv()
 
 logging.config.dictConfig({"disable_existing_loggers": True, "version": 1})
 
@@ -13,7 +10,7 @@ logging.config.dictConfig({"disable_existing_loggers": True, "version": 1})
 # TODO: name must come from root directory
 # TODO: dynamic level
 def get_logger(name="KANHA", level="DEBUG"):
-    __level = level if os.getenv("ENV") != "prod" else "CRITICAL"
+    __level = level if GeneralConfig.ENV != "prod" else "CRITICAL"
     logger = logging.getLogger(name=name)
 
     # remove any existing handlers to avoid duplicates

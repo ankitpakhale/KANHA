@@ -92,7 +92,8 @@ def cache(func):
 
         # cache the result
         cache_manager.set(cache_key, result)
-        logger.warning(f"Cache miss for key: {cache_key}. Caching the result.")
+        logger.warning(f"Cache miss for key: {cache_key}")
+        logger.warning("Result successfully cached for future use.")
         return result
 
     return wrapper

@@ -1,7 +1,7 @@
 from app.utils.logging import __logger as logger
 from app.utils.cache import cache, delete_cache, clear_cache
 from app.utils.response_manager import handle_response
-from app.utils.constants import ROUTES, PATH
+from app.utils.constants import ROUTES, PATH, ClientSettings
 
 
 __all__ = [
@@ -12,4 +12,5 @@ __all__ = [
     "handle_response",
     "ROUTES",
     "PATH",
+    "ClientSettings",
 ]
