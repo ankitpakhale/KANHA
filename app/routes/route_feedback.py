@@ -1,6 +1,6 @@
 from app.framework import App, Request
 from app.utils import logger, cache, handle_response, ROUTES
-from app.services import feedback_service_obj
+from app.services import feedback_service
 
 
 class FeedbackRoute:
@@ -33,7 +33,7 @@ class FeedbackRoute:
         )
 
         # pass feedback data to feedback service
-        response = feedback_service_obj(payload=payload)
+        response = feedback_service().feedback(payload=payload)
         logger.debug("feedbacks received successfully")
         return {
             "payload": response,

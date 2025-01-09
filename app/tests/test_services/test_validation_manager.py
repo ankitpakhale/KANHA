@@ -5,7 +5,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
 
 # validation_manager import should be after path adjustments only
-from app.services import validation_manager_obj  # noqa: E402
+from app.services import validation_manager  # noqa: E402
 
 
 GENERATE_QUESTIONS = "generate_questions"
@@ -139,7 +139,7 @@ print(
 )
 print("➡ ################################################# __payload:", __payload)
 
-is_valid = validation_manager_obj(
+is_valid = validation_manager(
     service_type=__service_type, validation_type=__validation_type
 ).validate(__payload)
 print("➡ is_valid:", is_valid)

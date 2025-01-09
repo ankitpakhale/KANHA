@@ -1,5 +1,5 @@
 from app.framework import App, Request
-from app.services import question_service_obj
+from app.services import question_service
 from app.utils import logger, cache, handle_response, ROUTES
 from ast import literal_eval
 
@@ -35,7 +35,7 @@ class QuestionRoute:
         )
 
         # generate questions using the service
-        response = question_service_obj(payload=payload)
+        response = question_service().generate_questions(payload=payload)
         return {
             "payload": response,
             "message": "Questions generated successfully",
