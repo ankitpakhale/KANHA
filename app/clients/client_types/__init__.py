@@ -1,7 +1,7 @@
-from .bedrock_client import Bedrock
-from .openai_client import OpenAI
+from .bedrock_client import BedrockClient
+from .openai_client import OpenAIClient
 
 __all__ = [
-    "Bedrock",
-    "OpenAI",
+    "BedrockClient",
+    "OpenAIClient",
 ]

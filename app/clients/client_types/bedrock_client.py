@@ -5,7 +5,7 @@ from typeguard import typechecked
 from app.utils import logger
 
 
-class Bedrock(Base):
+class BedrockClient(Base):
     def __init__(self) -> None:
         # config data
         self.model = AWSConfig.BEDROCK_MODEL

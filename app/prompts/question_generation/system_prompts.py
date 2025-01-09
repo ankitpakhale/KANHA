@@ -1342,4 +1342,4 @@ For **Medium** and **Hard** levels where problem-solving questions are required:
 5.  Always ensure your output is **strictly in List of JSONs format**.
 """
 
-QUESTION_GENERATION_SYSTEM_PROMPT = QUESTION_GENERATION_SYSTEM_PROMPT_V8
+QUESTION_GENERATION_SYSTEM_PROMPT = QUESTION_GENERATION_SYSTEM_PROMPT_V7

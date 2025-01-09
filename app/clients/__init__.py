@@ -1,10 +1,10 @@
 from .base import Base
 from .factory import Client
-from .client_types import OpenAI, Bedrock
+from .client_types import OpenAIClient, BedrockClient
 
 __all__ = [
     "Base",
     "Client",
-    "Bedrock",
-    "OpenAI",
+    "BedrockClient",
+    "OpenAIClient",
 ]

@@ -1,11 +1,13 @@
 from typing import Optional, Any, Union
 from app.config import GeneralConfig
-from .client_types import Bedrock, OpenAI
+from .client_types import BedrockClient, OpenAIClient
 
 
 class Client:
     def __init__(self, client_type: Optional[Any] = GeneralConfig.ACTIVE_CLIENT) -> Any:
-        __client_type = OpenAI if client_type == OpenAI.__name__ else Bedrock
+        __client_type = (
+            OpenAIClient if client_type == OpenAIClient.__name__ else BedrockClient
+        )
         self.client_type = __client_type()
 
     def generate_questions(self, payload: Union[list, dict]):
