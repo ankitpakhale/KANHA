@@ -23,7 +23,7 @@ jobs:
       # install dependencies from requirements.txt
       - name: install dependencies
         run: |
-          pip install --no-cache-dir -r requirements.txt
+          pip install --no-cache-dir -r requirements.txt --break-system-packages
 
       # run pre-commit hooks to check formatting
       - name: run pre-commit hooks for formatting
