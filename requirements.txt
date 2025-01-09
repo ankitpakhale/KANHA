@@ -5,7 +5,7 @@ psycopg2-binary==2.9.*
 psycopg2==2.9.*
 
 # Data Science and ML Libraries
-openai==0.28
+openai==1.58.1
 typeguard==4.4.*
 langchain-community==0.3.14
 langchain-openai==0.2.14
