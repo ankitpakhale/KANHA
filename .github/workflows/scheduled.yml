@@ -6,21 +6,21 @@ on:
     - cron: '30 22 * * *'  # runs at 10:30 PM UTC, which is 4:00 AM IST
 
 jobs:
-  # Combined job for formatting and linting checks
+  # combined job for formatting and linting checks
   formatting_and_linting:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the code from the repository
+      # checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Python environment
+      # set up python environment
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # Cache Python dependencies
+      # cache python dependencies
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
@@ -30,46 +30,46 @@ jobs:
             ${{ runner.os }}-python-
         id: cache-python
 
-      # Log cache status
+      # log cache status
       - name: Log Cache Status
         run: |
           if [ "${{ steps.cache-python.outputs.cache-hit }}" == "true" ]; then
-            echo "Cache hit: Dependencies found in the cache.";
+            echo "cache hit: dependencies found in the cache.";
           else
-            echo "Cache miss: Installing dependencies from requirements.txt.";
+            echo "cache miss: installing dependencies from requirements.txt.";
           fi
 
-      # Install dependencies (if not cached)
+      # install dependencies (if not cached)
       - name: Install dependencies
         run: |
           pip install --no-cache-dir -r requirements.txt
 
-      # Run pre-commit hooks for formatting
+      # run pre-commit hooks for formatting
       - name: Run pre-commit hooks for formatting
         run: |
           pre-commit run --all-files
 
-      # Run pre-commit hooks for linting
+      # run pre-commit hooks for linting
       - name: Run pre-commit hooks for linting
         run: |
           pre-commit run --all-files
 
-  # Job for server healthcheck
+  # job for server healthcheck
   healthcheck:
     runs-on: ubuntu-latest
-    needs: formatting_and_linting  # Ensure healthcheck runs after formatting and linting
+    needs: formatting_and_linting  # ensure healthcheck runs after formatting and linting
     steps:
-      # Checkout the code from the repository
+      # checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Python environment
+      # set up python environment
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # Restore cached dependencies
+      # restore cached dependencies
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
@@ -79,27 +79,23 @@ jobs:
             ${{ runner.os }}-python-
         id: cache-python
 
-      # Log cache status
-      - name: Log Cache Status
+      # log cache status and install dependencies if cache miss
+      - name: Log Cache & Install dependencies on Miss
         run: |
           if [ "${{ steps.cache-python.outputs.cache-hit }}" == "true" ]; then
-            echo "Cache hit: Dependencies found in the cache.";
+            echo "cache hit: dependencies found in the cache.";
           else
-            echo "Cache miss: Installing dependencies from requirements.txt.";
+            echo "cache miss: installing dependencies from requirements.txt.";
+            pip install --no-cache-dir -r requirements.txt
           fi
 
-      # Install dependencies (if not cached)
-      - name: Install dependencies
-        run: |
-          pip install --no-cache-dir -r requirements.txt
-
-      # Start the server in the background
+      # start the server in the background
       - name: Start server
         run: |
           bash entrypoint.sh &
-          sleep 10  # Wait for the server to start (adjust if needed)
+          sleep 10  # wait for the server to start
 
-      # Check the /ping endpoint to ensure the server is up
+      # check the /ping endpoint to ensure the server is up
       - name: Check ping endpoint
         run: |
           curl --fail http://localhost:8080/ping
