@@ -3,7 +3,7 @@ name: Scheduled
 on:
   # schedule to run daily at 12:37 AM IST
   schedule:
-    - cron: '30 22 * * *'  # Runs at 10:30 PM UTC, which is 4:00 AM IST
+    - cron: '30 22 * * *'  # runs at 10:30 PM UTC, which is 4:00 AM IST
 
 jobs:
   # job for formatting checks
@@ -20,12 +20,21 @@ jobs:
         with:
           python-version: '3.x'
 
+      # cache Python dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+
       # install dependencies from requirements.txt
       - name: install dependencies
         run: |
           pip install --no-cache-dir -r requirements.txt --break-system-packages
 
-      # run pre-commit hooks to check formatting
+      # run pre-commit hooks for formatting
       - name: run pre-commit hooks for formatting
         run: |
           pre-commit run --all-files
@@ -45,7 +54,16 @@ jobs:
         with:
           python-version: '3.x'
 
-      # install dependencies from requirements.txt
+      # restore cached dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+
+      # install dependencies if cache is not found
       - name: install dependencies
         run: |
           pip install --no-cache-dir -r requirements.txt --break-system-packages
@@ -70,7 +88,16 @@ jobs:
         with:
           python-version: '3.x'
 
-      # install dependencies from requirements.txt
+      # restore cached dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+
+      # install dependencies if cache is not found
       - name: install dependencies
         run: |
           pip install --no-cache-dir -r requirements.txt --break-system-packages

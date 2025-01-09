@@ -16,22 +16,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout the code from the repository
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v2
 
       # set up python environment
-      - name: set up python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # install dependencies from requirements.txt
-      - name: install dependencies
+      # cache Python dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+
+      # install dependencies from requirements.txt (if not cached)
+      - name: Install dependencies
         run: |
           pip install --no-cache-dir -r requirements.txt
 
-      # run pre-commit hooks to check formatting
-      - name: run pre-commit hooks for formatting
+      # run pre-commit hooks for formatting
+      - name: Run pre-commit hooks for formatting
         run: |
           pre-commit run --all-files
 
@@ -41,22 +50,31 @@ jobs:
     needs: formatting  # ensure linting only runs after formatting
     steps:
       # checkout the code from the repository
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v2
 
       # set up python environment
-      - name: set up python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # install dependencies from requirements.txt
-      - name: install dependencies
+      # restore cached dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+
+      # install dependencies from requirements.txt (if not cached)
+      - name: Install dependencies
         run: |
           pip install --no-cache-dir -r requirements.txt
 
       # run pre-commit hooks for linting
-      - name: run pre-commit hooks for linting
+      - name: Run pre-commit hooks for linting
         run: |
           pre-commit run --all-files
 
@@ -66,53 +84,36 @@ jobs:
     needs: [formatting, linting]  # ensure healthcheck runs after both formatting and linting
     steps:
       # checkout the code from the repository
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v2
 
       # set up python environment
-      - name: set up python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # install dependencies from requirements.txt
-      - name: install dependencies
+      # restore cached dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+
+      # install dependencies from requirements.txt (if not cached)
+      - name: Install dependencies
         run: |
           pip install --no-cache-dir -r requirements.txt
 
       # start the server in the background
-      - name: start server
+      - name: Start server
         run: |
           bash entrypoint.sh &
           sleep 10  # wait for the server to start (adjust if needed)
 
       # check the /ping endpoint to ensure the server is up
-      - name: check ping endpoint
+      - name: Check ping endpoint
         run: |
           curl --fail http://localhost:8080/ping
-
-
-  # # job for sending email
-  # notify:
-  #   runs-on: ubuntu-latest
-  #   needs: [formatting, linting, healthcheck]
-  #   steps:
-  #     # send email notification
-  #     - name: send email notification
-  #       uses: dawidd6/action-send-mail@v3
-  #       with:
-  #         server_address: smtp.gmail.com
-  #         server_port: 587
-  #         username: ${{ secrets.GMAIL_USERNAME }}
-  #         password: ${{ secrets.GMAIL_APP_PASSWORD }}
-  #         subject: "ci workflow result: ${{ job.status }}"
-  #         to: "akp3067@gmail.com.com" # replace with your email or a list of emails separated by commas
-  #         from: "${{ secrets.GMAIL_USERNAME }}"
-  #         body: |
-  #           ci workflow has completed.
-
-  #           job status: ${{ job.status }}
-
-  #           formatting job: ${{ needs.formatting.result }}
-  #           linting job: ${{ needs.linting.result }}
-  #           healthcheck job: ${{ needs.healthcheck.result }}
