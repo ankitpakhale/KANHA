@@ -79,15 +79,19 @@ jobs:
             ${{ runner.os }}-python-
         id: cache-python
 
-      # log cache status and install dependencies if cache miss
-      - name: Log Cache & Install dependencies on Miss
+      # log cache status
+      - name: Log Cache Status
         run: |
           if [ "${{ steps.cache-python.outputs.cache-hit }}" == "true" ]; then
             echo "cache hit: dependencies found in the cache.";
           else
             echo "cache miss: installing dependencies from requirements.txt.";
-            pip install --no-cache-dir -r requirements.txt
           fi
+
+      # install dependencies (if not cached)
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
 
       # start the server in the background
       - name: Start server
