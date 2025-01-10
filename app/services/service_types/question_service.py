@@ -69,7 +69,11 @@ class QuestionService:
                     "q_id": (
                         f"mcq{''.join(str(uuid4()).replace('-', ''))}"
                         if "options" in res
-                        else f"psq{''.join(str(uuid4()).replace('-', ''))}"
+                        else (
+                            f"psq{''.join(str(uuid4()).replace('-', ''))}"
+                            if "q_id" not in res
+                            else res["q_id"]
+                        )
                     ),
                 },
                 response,
