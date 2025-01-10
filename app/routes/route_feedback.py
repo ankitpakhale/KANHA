@@ -16,7 +16,7 @@ class FeedbackRoute:
         return cls._instance
 
     @handle_response
-    @cache
+    # @cache
     def __feedback_handler(self):
         """
         Handle the feedback status.

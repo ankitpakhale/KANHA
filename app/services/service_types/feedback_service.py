@@ -34,7 +34,7 @@ class FeedbackService:
         session.add(feedback_entry)
         session.commit()
 
-        logger.debug("Feedback Data added successfully!!!")
+        logger.debug("Feedback added in Database successfully!!!")
 
         return {}
 
@@ -57,8 +57,5 @@ class FeedbackService:
         return status
 
 
+# singleton instance of FeedbackService
 feedback_service = FeedbackService
-
-# def feedback_service_obj(payload: Union[list, dict]):
-#     feedback_service_result = FeedbackService().feedback(payload)
-#     return feedback_service_result

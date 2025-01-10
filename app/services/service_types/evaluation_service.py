@@ -56,4 +56,5 @@ class EvaluationService:
         return data
 
 
+# singleton instance of EvaluationService
 evaluation_service = EvaluationService

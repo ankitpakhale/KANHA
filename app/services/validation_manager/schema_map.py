@@ -177,7 +177,7 @@ SCHEMA_MAP = {
                 },
                 "comments": {
                     "type": "string",
-                    "description": "Feedback or comments about the product",
+                    "description": "Feedback about KANHA",
                 },
                 "frequency_of_use": {
                     "type": "string",

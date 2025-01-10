@@ -2,12 +2,12 @@
 *       @ankitpakhale
 
 # Owner for specific directories
-# /docs/  @docs-team
-# /app/   @dev-team
+# /docs/  @ankitpakhale
+# /app/   @ankitpakhale
 
 # Owner for specific files
-# README.md  @ankitpakhale
+*       @ankitpakhale
 
 # Wildcard patterns
-# *.js    @frontend-member
-# *.py    @backend-member
+# *.js    @ankitpakhale
+# *.py    @ankitpakhale
