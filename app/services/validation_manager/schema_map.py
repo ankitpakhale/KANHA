@@ -116,8 +116,8 @@ SCHEMA_MAP = {
                             "required": ["input", "output"],
                         },
                     },
-                    "user_code": {
-                        # user_code should be a string (a Python code block)
+                    "userCode": {
+                        # userCode should be a string (a Python code block)
                         "type": "string"
                     },
                 },
@@ -129,7 +129,7 @@ SCHEMA_MAP = {
                     "constraints",
                     "examples",
                     "edge_cases",
-                    "user_code",
+                    "userCode",
                 ],  # all fields are required
             },
         },

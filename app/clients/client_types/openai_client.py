@@ -130,6 +130,7 @@ class OpenAIClient(Base):
         to extract questions or problem descriptions in a structured format.
         This function ensures the response is in string format before attempting to parse it.
         """
+        # TODO: Adjust __parse_json_with_langchain method according to both questions generation and evaluate answers
         # Check if the response is an AIMessage object and extract content if it is
         if hasattr(raw_response, "content"):
             raw_response = (
@@ -272,5 +273,7 @@ class OpenAIClient(Base):
         evaluation = self.__get_result(
             system_prompt=system_prompt, user_prompt=user_prompt
         )
+        response = self.__parse_json_with_langchain(evaluation)
+
         logger.debug("received evaluated answers from openai client with context")
-        return evaluation
+        return response

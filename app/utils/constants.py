@@ -1,6 +1,6 @@
 class ROUTES:
     CACHE_ROUTE = "/delete-cache"
-    EVALUATION_ROUTE = "/answer-evaluation"
+    EVALUATION_ROUTE = "/evaluate-answers"
     HEALTHCHECK_ROUTE = "/ping"
     DB_HEALTHCHECK_ROUTE = "/db-healthcheck"
     QUESTION_ROUTE = "/generate-questions"

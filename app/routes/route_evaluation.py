@@ -27,9 +27,8 @@ class EvaluationRoute:
         # retrieve data from request
         _request_data = Request.forms.get("user_code")
         payload = json.loads(_request_data)
-
         # generate questions using the service
-        response = evaluation_service.evaluate_answers(payload=payload)
+        response = evaluation_service().evaluate_answers(payload=payload)
         return {
             "payload": response,
             "message": "Answers Evaluated Successfully",
