@@ -27,12 +27,8 @@ class EvaluationService:
         # return the client class
         __client_response = Client().evaluate_answers(payload)
 
-        # remove escape sequences and parse JSON
-        formatted_json = json.loads(__client_response)
-
         # TODO: add response validation layer
-
-        return formatted_json
+        return __client_response
 
     def evaluate_answers(self, payload: Union[list, dict]):
         if control_panel_manager.get_setting("EVALUATE_ANSWERS_FROM_CLIENT"):
@@ -61,6 +57,3 @@ class EvaluationService:
 
 
 evaluation_service = EvaluationService
-# def evaluation_service_obj(payload: Union[list, dict]):
-#     evaluation_service_result = EvaluationService().evaluate_answers(payload)
-#     return evaluation_service_result

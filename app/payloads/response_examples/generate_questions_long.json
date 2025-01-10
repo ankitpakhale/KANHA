@@ -1,0 +1,284 @@
+[
+    {
+        "problem_description": "What is the time complexity of the binary search algorithm?",
+        "options": [
+            "O(n)",
+            "O(log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correct_answer": "O(log n)"
+    },
+    {
+        "problem_description": "When would you use a breadth-first search (BFS) algorithm over a depth-first search (DFS) algorithm?",
+        "options": [
+            "When finding the shortest path in an unweighted graph",
+            "When memory usage is a concern",
+            "When the graph is cyclic",
+            "When the graph is directed"
+        ],
+        "correct_answer": "When finding the shortest path in an unweighted graph"
+    },
+    {
+        "problem_description": "What is the purpose of the 'yield' keyword in Python?",
+        "options": [
+            "To return a value from a function",
+            "To define a generator function",
+            "To raise an exception",
+            "To break out of a loop"
+        ],
+        "correct_answer": "To define a generator function"
+    },
+    {
+        "problem_description": "How can you reverse a list in Python using slicing?",
+        "options": [
+            "list[::-1]",
+            "list.reverse()",
+            "reversed(list)",
+            "list.reverse(0, len(list))"
+        ],
+        "correct_answer": "list[::-1]"
+    },
+    {
+        "problem_description": "What is the output of '2' + '3' in Python?",
+        "options": [
+            "5",
+            "23",
+            "32",
+            "Error"
+        ],
+        "correct_answer": "23"
+    },
+    {
+        "problem_description": "What is the time complexity of the quicksort algorithm in the best case?",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(n^2)",
+            "O(log n)"
+        ],
+        "correct_answer": "O(n log n)"
+    },
+    {
+        "problem_description": "What is the purpose of using 'self' in Python class methods?",
+        "options": [
+            "To refer to the current instance of the class",
+            "To create a new instance of the class",
+            "To access class attributes",
+            "To define a static method"
+        ],
+        "correct_answer": "To refer to the current instance of the class"
+    },
+    {
+        "problem_description": "What does the 'pass' statement do in Python?",
+        "options": [
+            "Exits the loop",
+            "Continues to the next iteration of the loop",
+            "Does nothing",
+            "Raises an exception"
+        ],
+        "correct_answer": "Does nothing"
+    },
+    {
+        "problem_description": "How can you check if a key exists in a Python dictionary?",
+        "options": [
+            "Using the 'search' method",
+            "Using 'in' keyword",
+            "Using 'exists' function",
+            "Using 'has_key' method"
+        ],
+        "correct_answer": "Using 'in' keyword"
+    },
+    {
+        "problem_description": "What is the output of 'Hello, World!'[3:] in Python?",
+        "options": [
+            "Hello",
+            "World!",
+            "lo, World!",
+            "lo, World"
+        ],
+        "correct_answer": "lo, World!"
+    },
+    {
+        "problem_description": "What is the time complexity of the binary search algorithm?",
+        "options": [
+            "O(n)",
+            "O(log n)",
+            "O(n log n)",
+            "O(1)"
+        ],
+        "correct_answer": "O(log n)"
+    },
+    {
+        "problem_description": "Which data structure is typically used to implement a LIFO behavior?",
+        "options": [
+            "Queue",
+            "Heap",
+            "Stack",
+            "Linked List"
+        ],
+        "correct_answer": "Stack"
+    },
+    {
+        "problem_description": "In Python, what is the output of the following code snippet?\n\n```python\na = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)\n```",
+        "options": [
+            "[1, 2, 3]",
+            "[1, 2, 3, 4]",
+            "[1, 2, 4]",
+            "[1, 2, 3, 4, 4]"
+        ],
+        "correct_answer": "[1, 2, 3, 4]"
+    },
+    {
+        "problem_description": "What is the purpose of the 'pass' statement in Python?",
+        "options": [
+            "To exit a loop",
+            "To skip the current iteration in a loop",
+            "To define an empty function or class",
+            "To raise an exception"
+        ],
+        "correct_answer": "To define an empty function or class"
+    },
+    {
+        "problem_description": "Which sorting algorithm has the best worst-case time complexity?",
+        "options": [
+            "Bubble Sort",
+            "Insertion Sort",
+            "Merge Sort",
+            "Selection Sort"
+        ],
+        "correct_answer": "Merge Sort"
+    },
+    {
+        "problem_description": "What is the output of the following Python code?\n\n```python\nprint(2 ** 3 ** 2)\n```",
+        "options": [
+            "64",
+            "512",
+            "72",
+            "9"
+        ],
+        "correct_answer": "512"
+    },
+    {
+        "problem_description": "When is it appropriate to use a breadth-first search (BFS) algorithm over a depth-first search (DFS) algorithm?",
+        "options": [
+            "When finding the shortest path in an unweighted graph",
+            "When memory consumption is a concern",
+            "When the graph is cyclic",
+            "When the graph is sparse"
+        ],
+        "correct_answer": "When finding the shortest path in an unweighted graph"
+    },
+    {
+        "problem_description": "What is the time complexity of the quicksort algorithm in the best-case scenario?",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(n^2)",
+            "O(log n)"
+        ],
+        "correct_answer": "O(n log n)"
+    },
+    {
+        "problem_description": "In Python, what will be the output of the following code snippet?\n\n```python\nprint(' '.join([str(i) for i in range(5)]))\n```",
+        "options": [
+            "0 1 2 3 4",
+            "1 2 3 4 5",
+            "0 1 2 3",
+            "1 2 3 4"
+        ],
+        "correct_answer": "0 1 2 3 4"
+    },
+    {
+        "problem_description": "What is the key difference between a set and a frozenset in Python?",
+        "options": [
+            "A set is mutable while a frozenset is immutable",
+            "A set allows duplicate elements while a frozenset does not",
+            "A frozenset can be converted to a list but a set cannot",
+            "A set is ordered while a frozenset is unordered"
+        ],
+        "correct_answer": "A set is mutable while a frozenset is immutable"
+    },
+    {
+        "problem_description": "What is the time complexity of the binary search algorithm?",
+        "options": [
+            "O(n)",
+            "O(log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correct_answer": "O(log n)"
+    },
+    {
+        "problem_description": "Explain the difference between list and tuple in Python.",
+        "input_format": "N/A",
+        "output_format": "N/A",
+        "constraints": "N/A",
+        "examples": [
+            {
+                "input": "N/A",
+                "output": "N/A"
+            }
+        ],
+        "edge_cases": [
+            {
+                "input": "N/A",
+                "output": "N/A"
+            }
+        ]
+    },
+    {
+        "problem_description": "Write a Python function to check if a string is a palindrome.",
+        "input_format": "A string input.",
+        "output_format": "Return True if the string is a palindrome, False otherwise.",
+        "constraints": "Assume the input string contains only alphabetic characters and no spaces.",
+        "examples": [
+            {
+                "input": "'radar'",
+                "output": "True"
+            },
+            {
+                "input": "'hello'",
+                "output": "False"
+            }
+        ],
+        "edge_cases": [
+            {
+                "input": "'A man, a plan, a canal, Panama!'",
+                "output": "True"
+            },
+            {
+                "input": "'race a car'",
+                "output": "False"
+            }
+        ]
+    },
+    {
+        "problem_description": "What is the difference between '==' and 'is' in Python?",
+        "options": [
+            "Both are used for value comparison.",
+            "'==' is used for reference comparison, 'is' is used for value comparison.",
+            "'==' is used for value comparison, 'is' is used for reference comparison.",
+            "'==' and 'is' are interchangeable in Python."
+        ],
+        "correct_answer": "'==' is used for value comparison, 'is' is used for reference comparison."
+    },
+    {
+        "problem_description": "Explain the concept of list comprehension in Python with an example.",
+        "input_format": "N/A",
+        "output_format": "N/A",
+        "constraints": "N/A",
+        "examples": [
+            {
+                "input": "N/A",
+                "output": "N/A"
+            }
+        ],
+        "edge_cases": [
+            {
+                "input": "N/A",
+                "output": "N/A"
+            }
+        ]
+    }
+]
