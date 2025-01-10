@@ -183,4 +183,5 @@ class QuestionService:
         return self.__generate_questions(payload)
 
 
+# singleton instance of QuestionService
 question_service = QuestionService
