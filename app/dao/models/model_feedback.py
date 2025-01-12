@@ -12,7 +12,7 @@ class Feedback(BaseModel):
     # table name for the Feedback model
     __tablename__ = "feedback"
 
-    # Define fields using Mapped[] for SQLAlchemy 2.x
+    # define fields using Mapped[] for SQLAlchemy 2.x
     rating: Mapped[int] = Column(Integer)
     comments: Mapped[str] = Column(Text)
     frequency_of_use: Mapped[str] = Column(Text, nullable=True)

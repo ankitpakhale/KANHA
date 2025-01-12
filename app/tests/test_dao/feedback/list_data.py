@@ -26,9 +26,19 @@ for feedback in all_feedback:
     # convert UUID to string before formatting
     feedback_id_str = str(feedback.id)
 
+    # safely handle possible None values by using a conditional (ternary) expression
+    purpose_of_use = feedback.purpose_of_use[:18] if feedback.purpose_of_use else ""
+    ease_of_use = feedback.ease_of_use[:15] if feedback.ease_of_use else ""
+    specific_features = (
+        feedback.specific_features[:27] if feedback.specific_features else ""
+    )
+
+    # format and print the feedback entry
     print(
-        f"{feedback_id_str:<36} {feedback.rating:<8} {feedback.comments[:47]:<47} {feedback.frequency_of_use:<12} "
-        f"{feedback.purpose_of_use[:18]:<20} {feedback.ease_of_use:<15} {feedback.specific_features[:27]:<30} {str(feedback.created_at):<25}"
+        f"{feedback_id_str:<36} {feedback.rating:<8} {
+            feedback.comments[:47]:<47} {feedback.frequency_of_use:<12} "
+        f"{purpose_of_use:<20} {ease_of_use:<15} {
+            specific_features:<30} {str(feedback.created_at):<25}"
     )
 
 print("=" * 130)

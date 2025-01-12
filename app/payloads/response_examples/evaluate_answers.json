@@ -29,7 +29,7 @@
             "The code is clear and easy to understand.",
             "The function correctly calculates the maximum product of three numbers in most cases."
         ],
-        "points": 7
+        "points": 5
     },
     {
         "q_id": "psq0bf9c6ca0a46429ba32bb0051dcc8634",
@@ -53,6 +53,6 @@
             "It would be beneficial to provide a solution that addresses the problem statement."
         ],
         "strengths": [],
-        "points": 0
+        "points": 1
     }
 ]

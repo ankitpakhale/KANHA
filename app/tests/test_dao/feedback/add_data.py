@@ -11,7 +11,7 @@ import random  # noqa: E402
 # list of feedback entries
 feedback_entries = [
     {
-        "rating": 10,
+        "rating": 5,
         "comments": "Incredible tool for productivity!",
         "frequency_of_use": "Weekly",
         "purpose_of_use": "Personal",
@@ -19,7 +19,7 @@ feedback_entries = [
         "specific_features": "Task Management",
     },
     {
-        "rating": 9,
+        "rating": 4,
         "comments": "Great user interface and functionality.",
         "frequency_of_use": "Daily",
         "purpose_of_use": "Work",
@@ -27,7 +27,7 @@ feedback_entries = [
         "specific_features": "Reporting",
     },
     {
-        "rating": 10,
+        "rating": 5,
         "comments": "Best app I've used in a while!",
         "frequency_of_use": "Weekly",
         "purpose_of_use": "Study",
@@ -35,7 +35,7 @@ feedback_entries = [
         "specific_features": "Notes",
     },
     {
-        "rating": 8,
+        "rating": 3,
         "comments": "Very useful for tracking projects.",
         "frequency_of_use": "Daily",
         "purpose_of_use": "Work",
@@ -43,7 +43,7 @@ feedback_entries = [
         "specific_features": "Project Management",
     },
     {
-        "rating": 10,
+        "rating": 5,
         "comments": "Fantastic design and excellent features.",
         "frequency_of_use": "Daily",
         "purpose_of_use": "Work",
@@ -51,7 +51,7 @@ feedback_entries = [
         "specific_features": "Reporting",
     },
     {
-        "rating": 9,
+        "rating": 4,
         "comments": "App works seamlessly and is very efficient.",
         "frequency_of_use": "Weekly",
         "purpose_of_use": "Work",
@@ -59,7 +59,7 @@ feedback_entries = [
         "specific_features": "Dashboard",
     },
     {
-        "rating": 10,
+        "rating": 5,
         "comments": "User-friendly and intuitive. Perfect for my needs!",
         "frequency_of_use": "Daily",
         "purpose_of_use": "Personal",
@@ -67,7 +67,7 @@ feedback_entries = [
         "specific_features": "Task Management",
     },
     {
-        "rating": 9,
+        "rating": 4,
         "comments": "I love how customizable this app is.",
         "frequency_of_use": "Weekly",
         "purpose_of_use": "Personal",
@@ -75,7 +75,7 @@ feedback_entries = [
         "specific_features": "Customization",
     },
     {
-        "rating": 10,
+        "rating": 5,
         "comments": "Everything works perfectly, no bugs.",
         "frequency_of_use": "Daily",
         "purpose_of_use": "Work",
@@ -83,7 +83,7 @@ feedback_entries = [
         "specific_features": "Analytics",
     },
     {
-        "rating": 8,
+        "rating": 3,
         "comments": "A solid app with great support.",
         "frequency_of_use": "Weekly",
         "purpose_of_use": "Work",
