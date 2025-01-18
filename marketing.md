@@ -4,6 +4,7 @@
 3. **"From Custom Questions to Expert Solutions – Your Personalized Path to Mastery."**
 4. **"Hyperpersonalized Assessments. Real-Time Feedback. Real Results."**
 5. **"Unlock Your Potential with KANHA’s Intelligent Audits."**
+6. **"Your Learning, Tailored to Perfection."** (final)
 
 ### **Marketing Message:**
 - **"KANHA – Your personalized learning journey starts here. With AI-powered assessments tailored to your unique needs, KANHA adapts to your level of expertise, ensuring that you’re always challenged and improving. From easy MCQs to high-level programming challenges, KANHA provides optimized feedback and solutions to help you master your skills faster."**
