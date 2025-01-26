@@ -3,6 +3,7 @@ from .service_types import (
     question_service,
     evaluation_service,
     feedback_service,
+    contact_service,
 )
 
 __all__ = [
@@ -11,4 +12,5 @@ __all__ = [
     "question_service",
     "evaluation_service",
     "feedback_service",
+    "contact_service",
 ]

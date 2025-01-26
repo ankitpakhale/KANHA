@@ -5,6 +5,7 @@ class ROUTES:
     DB_HEALTHCHECK_ROUTE = "/db-healthcheck"
     QUESTION_ROUTE = "/generate-questions"
     FEEDBACK_ROUTE = "/feedback"
+    CONTACT_ROUTE = "/contact"
 
 
 class PATH:
