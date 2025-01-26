@@ -1,6 +1,5 @@
 ### TODO
 
-
 - #### Tasklist 9.2
 - [ ] Implement required time for each question in QuestionService.
 
@@ -137,3 +136,10 @@
 
 - #### Tasklist 9
 - [x] Save feedback in postgres.
+
+- #### Tasklist 9.1
+- [x] Design contact model.
+- [x] Save contact in postgres.
+- [x] Write testcases for contact.
+- [x] Implement contact route.
+- [x] Implement contact service.
