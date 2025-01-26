@@ -1,6 +1,7 @@
 [
     {
         "q_id": "psq5e2f07771b1349b6926464042efdd128",
+        "required_time": "10",
         "problem_description": "Write a Python function that takes a list of integers as input and returns the maximum product that can be obtained by multiplying any three integers from the list. The function should handle both positive and negative integers.",
         "input_format": "A list of integers.",
         "output_format": "An integer representing the maximum product of three integers.",
@@ -23,87 +24,6 @@
             {
                 "input": "[-2, -1, 0, 1, 2]",
                 "output": "4"
-            }
-        ]
-    },
-    {
-        "q_id": "psq8a6afad63d53455b83110932acaf41d1",
-        "problem_description": "Implement a Python function that takes a string as input and returns the length of the longest substring without repeating characters. For example, given the input 'abcabcbb', the function should return 3 ('abc' is the longest substring without repeating characters).",
-        "input_format": "A string containing only ASCII characters.",
-        "output_format": "An integer representing the length of the longest substring without repeating characters.",
-        "constraints": "The length of the input string will be at most 10^5.",
-        "examples": [
-            {
-                "input": "'abcabcbb'",
-                "output": "3"
-            },
-            {
-                "input": "'bbbbb'",
-                "output": "1"
-            }
-        ],
-        "edge_cases": [
-            {
-                "input": "'pwwkew'",
-                "output": "3"
-            },
-            {
-                "input": "' '",
-                "output": "1"
-            }
-        ]
-    },
-    {
-        "q_id": "psq0bf9c6ca0a46429ba32bb0051dcc8634",
-        "problem_description": "Implement a Python function that takes a string as input and returns the length of the longest substring without repeating characters. For example, given the input 'abcabcbb', the function should return 3 ('abc' is the longest substring without repeating characters).",
-        "input_format": "A string containing only ASCII characters.",
-        "output_format": "An integer representing the length of the longest substring without repeating characters.",
-        "constraints": "The length of the input string will be at most 10^5.",
-        "examples": [
-            {
-                "input": "'abcabcbb'",
-                "output": "3"
-            },
-            {
-                "input": "'bbbbb'",
-                "output": "1"
-            }
-        ],
-        "edge_cases": [
-            {
-                "input": "'pwwkew'",
-                "output": "3"
-            },
-            {
-                "input": "' '",
-                "output": "1"
-            }
-        ]
-    },
-    {
-        "q_id": "psqa5bfda85d756400ebae73d9bb66cad69",
-        "problem_description": "Implement a Python function that takes a string as input and returns the length of the longest substring without repeating characters. For example, given the input 'abcabcbb', the function should return 3 ('abc' is the longest substring without repeating characters).",
-        "input_format": "A string containing only ASCII characters.",
-        "output_format": "An integer representing the length of the longest substring without repeating characters.",
-        "constraints": "The length of the input string will be at most 10^5.",
-        "examples": [
-            {
-                "input": "'abcabcbb'",
-                "output": "3"
-            },
-            {
-                "input": "'bbbbb'",
-                "output": "1"
-            }
-        ],
-        "edge_cases": [
-            {
-                "input": "'pwwkew'",
-                "output": "3"
-            },
-            {
-                "input": "' '",
-                "output": "1"
             }
         ]
     }
