@@ -44,25 +44,24 @@ KANHA                                  # Root directory of the project
 ├── requirements.txt                   # Python dependencies
 ├── setup.py                           # Setup script for the project
 ├── app                                # Application code of the project
-│   ├── dao                            # Data Access Object, to handle database operations
-│   │   ├── base
-│   │   │   ├── base_dao.py
-│   │   │   └── __init__.py
-│   │   ├── feedback
-│   │   │   ├── feedback_dao.py
-│   │   │   └── __init__.py
-│   │   ├── helpers
-│   │   │   ├── db_helpers.py
-│   │   │   └── __init__.py
-│   │   ├── __init__.py
-│   │   ├── tests
-│   │   │   ├── __init__.py
-│   │   │   ├── test_base_dao.py
-│   │   │   ├── test_feedback_dao.py
-│   │   │   └── test_user_dao.py
-│   │   └── user
-│   │       ├── __init__.py
-│   │       └── user_dao.py
+│   ├── dao                            # Data Access Object layer, handles DB interactions
+│   │   ├── database                   # DB connection, session handling, and utilities
+│   │   │   ├── database_manager.py    # Manages DB connections and lifecycle
+│   │   │   ├── database_session.py    # Handles DB sessions (transactions)
+│   │   │   └── __init__.py            # Initializes the database package
+│   │   ├── database_config.py         # DB configuration settings
+│   │   ├── __init__.py                # Initializes the DAO package
+│   │   ├── migrations                 # DB migrations (schema changes, versioning)
+│   │   │   └── migration_handler.py   # Manages applying and rolling back migrations
+│   │   ├── models                     # DB models (defines schema and structure)
+│   │   │   ├── base.py                # Base model class with common functionality
+│   │   │   ├── __init__.py            # Initializes the models package
+│   │   │   ├── model_contact.py       # Model for contact-related data
+│   │   │   ├── model_feedback.py      # Model for feedback data
+│   │   │   ├── model_multiple_choice_question.py  # Model for multiple choice questions
+│   │   │   └── model_problem_solving_question.py  # Model for problem-solving questions
+│   │   ├── setup  # Initialization and setup tasks
+│   │   │   └── register_models.py     # Registers models with ORM
 │   ├── clients                        # Client-related code
 │   │   ├── base.py                    # Base class for clients
 │   │   ├── client_types               # Different types of clients
@@ -247,19 +246,17 @@ KANHA                                  # Root directory of the project
 
 ---
 
-### Setup Database
+### **Database Setup and Migration Workflow**
 
-#### Step 1: Configure Database Connection
+#### **1. Configure Database Connection**
+
+##### **Step 1: Configure Database Connection**
 
 1.  Open the `alembic.ini` file in the project directory and set the **SQLAlchemy database URL**:
-
     ```ini
     sqlalchemy.url = postgresql://postgres:pgpass@localhost:5432/kanha
-
     ```
-
     Replace the following values:
-
     - **postgres**: Your PostgreSQL username.
     - **pgpass**: Your PostgreSQL password.
     - **localhost**: The host where PostgreSQL is running (use `localhost` if it's on your local machine).
@@ -268,114 +265,207 @@ KANHA                                  # Root directory of the project
 
 ---
 
-#### Step 2: Set Up Alembic and Migrations
+#### **2. Set Up Alembic and Migrations**
+
+##### **Step 2: Set Up Alembic**
 
 1.  **Initialize Alembic** (if you haven’t initialized Alembic already):
-
     ```bash
-    alembic init alembic
-
+    alembic init migrations
     ```
-
     This will create the necessary `alembic.ini` file and the `alembic/` directory structure for managing migrations.
-
 2.  **Ensure All Models Are Registered**:  
     Alembic uses SQLAlchemy’s metadata to detect table changes. Make sure all models (like `Feedback`, `MultipleChoiceQuestion`, `ProblemSolvingQuestion`) are imported in the `env.py` file inside the `alembic/` folder.
-
     - Open `alembic/env.py` and import your models at the top:
-
       ```python
       from app.dao.models import BaseModel, Feedback, MultipleChoiceQuestion, ProblemSolvingQuestion
-
       ```
-
     - Ensure `target_metadata` is set to the base metadata:
-
       ```python
       target_metadata = BaseModel.metadata  # or Base.metadata if using a different base class
-
       ```
 
 ---
 
-#### Step 3: Create and Apply Migrations
+#### **3. Workaround for Migration Issues**
 
-1.  **Generate Migration Script**:
+##### **Step 3: Resolve Migration Issues (if required)**
 
-    Run the following command to generate a new migration script. This will detect changes in your models and create the corresponding migration:
+In case you encounter migration issues like **NotNullViolation** errors or similar, you may need to reset your migrations and the database. Here’s how to do it safely:
 
-    ```bash
-    alembic revision --autogenerate -m "Initial migration to create tables"
+###### **Step 3.1: Take a Backup of the Database**
 
-    ```
+Before performing any destructive operations like wiping the database, **always take a backup** to ensure no data is lost in case something goes wrong.
 
-    - Alembic will compare your models to the current state of the database and generate the necessary SQL to create the tables.
-    - The migration script will be saved in the `alembic/versions/` directory.
+- Command to take a backup:
+  ```bash
+  PGPASSWORD=pgpass pg_dump -U postgres -h localhost -p 5432 kanha > backup_file.sql
+  ```
+  - `PGPASSWORD=pgpass`: Passes the PostgreSQL password.
+  - `pg_dump`: Command to take a database backup.
+  - `-U postgres`: Specifies the PostgreSQL user.
+  - `-h localhost`: The host address of the PostgreSQL server (change if needed).
+  - `-p 5432`: The PostgreSQL port (default is 5432).
+  - `kanha`: The name of the database to be backed up.
+  - `> backup_file.sql`: Redirects the backup to a file named `backup_file.sql`.
 
-2.  **Review the Migration Script**:
+###### **Step 3.2: Wipe the Database**
 
-    - Navigate to `alembic/versions/` and open the generated migration script.
-    - Make sure that all the tables (`feedback`, `multiple_choice_question`, `problem_solving_questions`) are being created as per your models.
-    - If everything looks correct, you can apply the migration.
+After the backup is taken, wipe the database to start fresh.
 
-3.  **Apply the Migration**:
+- Command to drop the database:
+  ```bash
+  psql -U postgres -h localhost -p 5432 -c "DROP DATABASE kanha;"
+  ```
+  This command will delete the database, which is necessary for creating a clean slate.
 
-    Run the following command to apply the migration and create the tables in your database:
+###### **Step 3.3: Wipe All Migration Scripts**
 
-    ```bash
-    alembic upgrade head
+Next, remove all previous migration files from the `migrations/versions/` folder.
 
-    ```
+- Command to remove migration files:
+  ```bash
+  rm -rf migrations/versions/*
+  ```
+  This ensures that no outdated or incorrect migration scripts remain.
 
-    - This command will apply the migration and create the necessary tables in your PostgreSQL database.
+###### **Step 3.4: Create New Migrations**
 
----
+Once the database and old migrations are wiped, generate fresh migration scripts based on your current models.
 
-#### Step 4: Verify the Database
+- Command to generate new migrations:
+  ```bash
+  alembic revision --autogenerate -m "Initial migration to create tables"
+  ```
+  - `--autogenerate`: Automatically generates migration scripts based on the differences between the current state of the models and the current database schema.
 
-Once the migration has been applied, you can verify the database schema using PostgreSQL commands:
+###### **Step 3.5: Apply the Migrations**
 
-1.  Connect to your PostgreSQL database:
+Finally, apply the new migrations to update the database schema.
 
-    ```bash
-    psql -U postgres -d kanha
-
-    ```
-
-2.  Check the tables in the database:
-
-    ```sql
-    \d feedback;
-    \d multiple_choice_question;
-    \d problem_solving_questions;
-
-    ```
-
-    - The above commands will show the details of the `feedback`, `multiple_choice_question`, and `problem_solving_questions` tables.
-
----
-
-#### Step 5: Adding Future Migrations
-
-If you modify your models (e.g., adding new fields or tables), you can regenerate a new migration file by running:
-
-```bash
-alembic revision --autogenerate -m "Added new fields to feedback model"
-
-```
-
-Then, apply the new migration using:
-
-```bash
-alembic upgrade head
-
-```
-
-This will update the database schema to reflect the new changes.
+- Command to apply the migration:
+  ```bash
+  alembic upgrade head
+  ```
+  This will apply all migrations up to the latest version and create the necessary tables in your PostgreSQL database.
 
 ---
 
-## Troubleshooting
+#### **4. Register New Models and Migrate Them**
+
+##### **Step 4: Register and Migrate New Models**
+
+Whenever you create new models, you need to register them for Alembic migrations and apply the migrations to update your database schema.
+
+###### **Step 4.1: Add New Models to the Project**
+
+1.  **Define your new model** in the `models.py` file (or wherever your models are located).
+    Example:
+    ```python
+    from sqlalchemy import Column, Integer, String
+    from sqlalchemy.ext.declarative import declarative_base
+    Base = declarative_base()
+    class NewModel(Base):
+        __tablename__ = 'new_model'
+        name = Column(String, nullable=False)
+    ```
+
+###### **Step 4.2: Update Alembic Configuration**
+
+Ensure that the new model is part of the metadata for Alembic. This is usually done by making sure the model is imported in the `alembic/env.py` file.
+
+1.  Find the section in `env.py` where models are being imported and ensure your new model is included:
+
+    ```python
+    from app.dao.models import BaseModel, NewModel
+    ```
+
+2.  Ensure `target_metadata` is set to the base metadata:
+    ```python
+    target_metadata = BaseModel.metadata
+    ```
+
+###### **Step 4.3: Create Migrations for the New Model**
+
+Now that the model is added and registered, you can create a migration for it.
+
+- Command to create a migration:
+  ```bash
+  alembic revision --autogenerate -m "Add NewModel"
+  ```
+  This will generate a migration script that includes the creation of the `NewModel` table.
+
+###### **Step 4.4: Apply the New Migrations**
+
+Finally, apply the migration to update the database schema with the new model.
+
+- Command to apply the migration:
+
+  ```bash
+  alembic upgrade head
+  ```
+
+  ```
+
+  ```
+
+---
+
+#### **5. Verifying and Testing the Database Schema**
+
+##### **Step 5: Verify the Database**
+
+Once the migration has been applied, verify that the tables have been created as expected.
+
+###### **Step 5.1: Connect to Your PostgreSQL Database**
+
+- Command to connect to your PostgreSQL database:
+  ```bash
+  psql -U postgres -d kanha
+  ```
+
+###### **Step 5.2: Check the Tables in the Database**
+
+- Use the following commands to list and check the details of your tables:
+  ```sql
+  \d feedback;
+  \d multiple_choice_question;
+  \d problem_solving_questions;
+  ```
+  These commands will show the details of the `feedback`, `multiple_choice_question`, and `problem_solving_questions` tables.
+
+---
+
+#### **6. Adding Future Migrations**
+
+If you modify your models in the future (e.g., adding new fields or tables), you can generate new migration files by running:
+
+- Command to generate new migrations:
+  ```bash
+  alembic revision --autogenerate -m "Added new fields to feedback model"
+  ```
+- Command to apply the new migrations:
+
+  ```bash
+  alembic upgrade head
+  ```
+
+---
+
+#### **7. Registering a New Model**
+
+- To register any new model in the system, ensure that it is imported into your application and migrate accordingly.
+- For registering the model programmatically (for custom workflows):
+
+  ```bash
+  py -m app.dao.init.register_models
+  ```
+
+This will register and ensure your models are correctly initialized for further operations.
+
+---
+
+### Troubleshooting
 
 - **Error: Can't load plugin: sqlalchemy.dialects:driver**  
   This error occurs if the database URL is incorrectly configured in the `alembic.ini` file. Make sure your connection URL is correct (e.g., `postgresql://postgres:pgpass@localhost:5432/kanha`).
@@ -397,7 +487,7 @@ This will update the database schema to reflect the new changes.
 
 ---
 
-### **Scalability and Performance**
+#### **Scalability and Performance**
 
 1.  **AWS Lambda**
 
@@ -413,7 +503,7 @@ This will update the database schema to reflect the new changes.
 
 ---
 
-### **Security and Privacy**
+#### **Security and Privacy**
 
 1.  **Data Encryption**
 
@@ -429,7 +519,7 @@ This will update the database schema to reflect the new changes.
 
 ---
 
-### **Future Enhancements**
+#### **Future Enhancements**
 
 1.  **Dynamic Difficulty Adjustment**
 
@@ -449,7 +539,7 @@ This will update the database schema to reflect the new changes.
 
 ---
 
-### **Conclusion**
+#### **Conclusion**
 
 **KANHA** is a powerful, AI-driven assessment platform designed to deliver tailored evaluation experiences. It offers two key services:
 

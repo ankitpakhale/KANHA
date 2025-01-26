@@ -1,8 +1,8 @@
-"""Added multiple choice and problem-solving questions models
+"""Initial migration
 
-Revision ID: 1448656fe102
-Revises: 876df396e897
-Create Date: 2024-12-28 18:55:55.424783
+Revision ID: 932d7528d5a2
+Revises:
+Create Date: 2025-01-26 19:54:19.177503
 
 """
 
@@ -13,8 +13,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "1448656fe102"
-down_revision: Union[str, None] = "876df396e897"
+revision: str = "932d7528d5a2"
+down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
