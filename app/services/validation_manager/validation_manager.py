@@ -5,6 +5,7 @@ from app.services.validation_manager.strategy import (
     evaluate_answers_request,
     evaluate_answers_response,
     feedback_request,
+    contact_request,
 )
 from app.utils import logger
 
@@ -14,6 +15,7 @@ STRATEGY_MAP = {
     "evaluate_answers_request": evaluate_answers_request,
     "evaluate_answers_response": evaluate_answers_response,
     "feedback_request": feedback_request,
+    "contact_request": contact_request,
 }
 
 

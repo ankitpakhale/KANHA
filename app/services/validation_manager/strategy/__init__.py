@@ -3,6 +3,7 @@ from .generate_questions_response import generate_questions_response
 from .evaluate_answers_request import evaluate_answers_request
 from .evaluate_answers_response import evaluate_answers_response
 from .feedback_request import feedback_request
+from .contact_request import contact_request
 
 
 __all__ = [
@@ -11,4 +12,5 @@ __all__ = [
     "evaluate_answers_request",
     "evaluate_answers_response",
     "feedback_request",
+    "contact_request",
 ]

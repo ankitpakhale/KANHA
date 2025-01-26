@@ -5,5 +5,6 @@ CONTROL_PANEL_SETTINGS = {
     "VALIDATE_RESPONSE_DATA": True,
     "SAVE_CLIENT_RESPONSE_IN_DB": True,
     "SAVE_FEEDBACK_IN_DB": True,
+    "SAVE_CONTACT_IN_DB": True,
     # Add more toggle settings as required
 }

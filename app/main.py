@@ -5,6 +5,7 @@ from app.routes import (
     evaluation_route_obj,
     cache_route_obj,
     feedback_route_obj,
+    contact_route_obj,
 )
 from app.config.general_config import GeneralConfig
 from app.config.openai_config import OpenAIConfig
@@ -17,6 +18,7 @@ question_route_obj.register()
 evaluation_route_obj.register()
 cache_route_obj.register()
 feedback_route_obj.register()
+contact_route_obj.register()
 
 
 if __name__ == "__main__":

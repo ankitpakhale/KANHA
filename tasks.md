@@ -1,10 +1,5 @@
 ### TODO
 
-- #### Tasklist 9.1
-- [ ] Design contact model.
-- [ ] implement contact route.
-- [ ] Save contact in postgres.
-- [ ] Write testcases for contact.
 
 - #### Tasklist 9.2
 - [ ] Implement required time for each question in QuestionService.

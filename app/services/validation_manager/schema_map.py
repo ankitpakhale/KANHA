@@ -215,4 +215,34 @@ SCHEMA_MAP = {
             "required": ["rating"],
         },
     },
+    "CONTACT": {
+        "REQUEST": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+                "full_name": {
+                    "type": "string",
+                    "description": "The full name of the user",
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "The email address of the user",
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "The phone number of the user",
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "The subject of the message",
+                },
+                "message": {
+                    "type": "string",
+                    "description": "The content of the message",
+                },
+            },
+            "required": ["full_name", "message"],
+        },
+    },
 }
