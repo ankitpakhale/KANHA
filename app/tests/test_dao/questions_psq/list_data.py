@@ -25,6 +25,7 @@ for psq in all_psq:
     print(f"➡ constraints: {psq.constraints}")
     print(f"➡ examples: {psq.examples}")
     print(f"➡ edge_cases: {psq.edge_cases}")
+    print(f"➡ required_time: {psq.required_time}")
     print(" ======== ======== ======== ======== ======== ======== ======== ======== ")
 
 print("-" * 130)

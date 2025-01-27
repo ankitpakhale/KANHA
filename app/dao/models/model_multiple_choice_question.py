@@ -18,6 +18,7 @@ class MultipleChoiceQuestion(BaseModel):
     option_3: Mapped[str] = Column(Text, nullable=False)
     option_4: Mapped[str] = Column(Text, nullable=False)
     correct_answer: Mapped[str] = Column(Text, nullable=False)
+    required_time: Mapped[str] = Column(Text, nullable=False)
 
     def __repr__(self) -> str:
         """
@@ -34,5 +35,6 @@ class MultipleChoiceQuestion(BaseModel):
             option_2={self.option_2!r},
             option_3={self.option_3!r},
             option_4={self.option_4!r},
-            correct_answer={self.correct_answer!r}
+            correct_answer={self.correct_answer!r},
+            required_time={self.required_time!r}
         )"""

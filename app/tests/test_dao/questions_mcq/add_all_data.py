@@ -7,7 +7,7 @@ sys.path.append(__path)
 
 from app.dao import MultipleChoiceQuestion, db_session  # noqa: E402
 
-# list of feedback entries
+# list of MCQ entries
 multiple_choice_question_entries = [
     {
         "difficulty_level": "easy",
@@ -17,6 +17,7 @@ multiple_choice_question_entries = [
         "option_3": "variable-1",
         "option_4": "variable.1",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -26,6 +27,7 @@ multiple_choice_question_entries = [
         "option_3": "<class 'str'>",
         "option_4": "<class 'bool'>",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -35,6 +37,7 @@ multiple_choice_question_entries = [
         "option_3": "Dictionary",
         "option_4": "Tuple",
         "correct_answer": "option_4",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -44,6 +47,7 @@ multiple_choice_question_entries = [
         "option_3": "d = {1: 'a', 2: 'b'}",
         "option_4": "d = [1: 'a', 2: 'b']",
         "correct_answer": "option_3",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -53,6 +57,7 @@ multiple_choice_question_entries = [
         "option_3": "length()",
         "option_4": "len()",
         "correct_answer": "option_4",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -62,6 +67,7 @@ multiple_choice_question_entries = [
         "option_3": "5",
         "option_4": "9",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -71,6 +77,7 @@ multiple_choice_question_entries = [
         "option_3": "%",
         "option_4": "*",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -80,6 +87,7 @@ multiple_choice_question_entries = [
         "option_3": "Hello",
         "option_4": "Error",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -89,6 +97,7 @@ multiple_choice_question_entries = [
         "option_3": "{}",
         "option_4": "empty()",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -98,6 +107,7 @@ multiple_choice_question_entries = [
         "option_3": "append()",
         "option_4": "extend()",
         "correct_answer": "option_3",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -107,6 +117,7 @@ multiple_choice_question_entries = [
         "option_3": "Both of the above",
         "option_4": "None of the above",
         "correct_answer": "option_3",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -116,6 +127,7 @@ multiple_choice_question_entries = [
         "option_3": "do-while loop",
         "option_4": "loop",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -125,6 +137,7 @@ multiple_choice_question_entries = [
         "option_3": "Error",
         "option_4": "None",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -134,6 +147,7 @@ multiple_choice_question_entries = [
         "option_3": "0",
         "option_4": "2",
         "correct_answer": "option_4",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -143,6 +157,7 @@ multiple_choice_question_entries = [
         "option_3": "del()",
         "option_4": "clear()",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -152,6 +167,7 @@ multiple_choice_question_entries = [
         "option_3": "9",
         "option_4": "Error",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -161,6 +177,7 @@ multiple_choice_question_entries = [
         "option_3": "{}",
         "option_4": "None",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -170,6 +187,7 @@ multiple_choice_question_entries = [
         "option_3": "/*",
         "option_4": "--",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -179,6 +197,7 @@ multiple_choice_question_entries = [
         "option_3": "from module_name import *",
         "option_4": "import module_name()",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -188,6 +207,7 @@ multiple_choice_question_entries = [
         "option_3": "func",
         "option_4": "declare",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -197,6 +217,7 @@ multiple_choice_question_entries = [
         "option_3": "regexpr",
         "option_4": "re.regex",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -206,6 +227,7 @@ multiple_choice_question_entries = [
         "option_3": "string.includes('substring')",
         "option_4": "substring.contains(string)",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -215,6 +237,7 @@ multiple_choice_question_entries = [
         "option_3": "*",
         "option_4": "|",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -224,6 +247,7 @@ multiple_choice_question_entries = [
         "option_3": "[1, 2, 3, 4, 5, 6, 7]",
         "option_4": "[1, 2, 5, 6, 7, 4]",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -233,6 +257,7 @@ multiple_choice_question_entries = [
         "option_3": "{1, 2}",
         "option_4": "Error",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -242,6 +267,7 @@ multiple_choice_question_entries = [
         "option_3": "raise CustomError()",
         "option_4": "throw CustomError()",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -251,6 +277,7 @@ multiple_choice_question_entries = [
         "option_3": "Error",
         "option_4": "[4]",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -260,231 +287,7 @@ multiple_choice_question_entries = [
         "option_3": "my_gen = {x for x in range(5)}",
         "option_4": "my_gen = list(range(5))",
         "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "What is the result of the following code?\nprint(5 / 2)",
-        "option_1": "2",
-        "option_2": "2.5",
-        "option_3": "3",
-        "option_4": "Error",
-        "correct_answer": "option_2",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following data types is mutable in Python?",
-        "option_1": "Tuple",
-        "option_2": "String",
-        "option_3": "List",
-        "option_4": "Integer",
-        "correct_answer": "option_3",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following methods is used to remove all elements from a list in Python?",
-        "option_1": "clear()",
-        "option_2": "pop()",
-        "option_3": "remove()",
-        "option_4": "del()",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "How do you comment multiple lines in Python?",
-        "option_1": "# Comment line 1\n# Comment line 2",
-        "option_2": "/* Comment line 1\nComment line 2 */",
-        "option_3": "' Comment line 1\nComment line 2",
-        "option_4": "''' Comment line 1\nComment line 2 '''",
-        "correct_answer": "option_4",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "What does the 'continue' statement do in a loop?",
-        "option_1": "Terminates the loop",
-        "option_2": "Skips the rest of the current iteration",
-        "option_3": "Exits the function",
-        "option_4": "Ends the program",
-        "correct_answer": "option_2",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which operator is used to check equality in Python?",
-        "option_1": "==",
-        "option_2": "=",
-        "option_3": "===",
-        "option_4": "!=",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following statements is used to create an infinite loop?",
-        "option_1": "while True:",
-        "option_2": "for i in range(0, -1):",
-        "option_3": "while False:",
-        "option_4": "repeat()",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "What is the result of the expression 3 + 4 * 2?",
-        "option_1": "14",
-        "option_2": "11",
-        "option_3": "7",
-        "option_4": "6",
-        "correct_answer": "option_2",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which function is used to find the maximum value in a list?",
-        "option_1": "max()",
-        "option_2": "min()",
-        "option_3": "sum()",
-        "option_4": "sort()",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following is used to declare a constant in Python?",
-        "option_1": "constant",
-        "option_2": "CONST",
-        "option_3": "Uppercase variable name",
-        "option_4": "There is no specific keyword for constants",
-        "correct_answer": "option_4",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which function is used to accept input from the user in Python?",
-        "option_1": "input()",
-        "option_2": "raw_input()",
-        "option_3": "scan()",
-        "option_4": "get_input()",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "What is the output of this code?\nprint(10 // 3)",
-        "option_1": "3",
-        "option_2": "3.33",
-        "option_3": "4",
-        "option_4": "Error",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "What does the 'break' statement do in Python?",
-        "option_1": "Exits the loop immediately",
-        "option_2": "Skips the rest of the current iteration",
-        "option_3": "Exits the function",
-        "option_4": "Raises an exception",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following functions is used to convert a string into a list of characters?",
-        "option_1": "split()",
-        "option_2": "list()",
-        "option_3": "join()",
-        "option_4": "convert()",
-        "correct_answer": "option_2",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following methods is used to join the elements of a list into a string?",
-        "option_1": "join()",
-        "option_2": "concat()",
-        "option_3": "combine()",
-        "option_4": "merge()",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "What is the output of this code?\nprint(2 ** 3)",
-        "option_1": "6",
-        "option_2": "8",
-        "option_3": "9",
-        "option_4": "Error",
-        "correct_answer": "option_2",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "How do you define a class in Python?",
-        "option_1": "class MyClass():",
-        "option_2": "MyClass = class()",
-        "option_3": "class = MyClass()",
-        "option_4": "def MyClass():",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following is used to import all functions from a module?",
-        "option_1": "import module_name",
-        "option_2": "import * from module_name",
-        "option_3": "from module_name import *",
-        "option_4": "from module_name all import *",
-        "correct_answer": "option_3",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "What is the output of the following code?\nprint('abc'.upper())",
-        "option_1": "ABC",
-        "option_2": "abc",
-        "option_3": "Abc",
-        "option_4": "Error",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "easy",
-        "question": "Which of the following functions is used to create a new empty set in Python?",
-        "option_1": "set()",
-        "option_2": "create()",
-        "option_3": "dict()",
-        "option_4": "empty()",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "medium",
-        "question": "What is the output of the following code?\nmy_list = [1, 2, 3]\nmy_list[1:2] = [4, 5]\nprint(my_list)",
-        "option_1": "[1, 4, 5, 3]",
-        "option_2": "[1, 4, 5]",
-        "option_3": "[4, 5, 3]",
-        "option_4": "[1, 2, 3, 4, 5]",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "medium",
-        "question": "What will be the output of the following code?\nx = [1, 2, 3]\ny = x\nx.append(4)\nprint(y)",
-        "option_1": "[1, 2, 3, 4]",
-        "option_2": "[1, 2, 3]",
-        "option_3": "Error",
-        "option_4": "[4]",
-        "correct_answer": "option_1",
-    },
-    {
-        "difficulty_level": "medium",
-        "question": "What is the result of the following code?\nprint('abc' == 'ABC')",
-        "option_1": "True",
-        "option_2": "False",
-        "option_3": "Error",
-        "option_4": "None",
-        "correct_answer": "option_2",
-    },
-    {
-        "difficulty_level": "medium",
-        "question": "What is the output of this code?\nnums = [1, 2, 3]\nnums.remove(2)\nprint(nums)",
-        "option_1": "[1, 2, 3]",
-        "option_2": "[1, 3]",
-        "option_3": "[2, 3]",
-        "option_4": "Error",
-        "correct_answer": "option_2",
-    },
-    {
-        "difficulty_level": "medium",
-        "question": "What will be the output of the following code?\na = [1, 2, 3]\nb = a.copy()\na.append(4)\nprint(b)",
-        "option_1": "[1, 2, 3, 4]",
-        "option_2": "[1, 2, 3]",
-        "option_3": "Error",
-        "option_4": "[1, 2, 3, 4]",
-        "correct_answer": "option_2",
+        "required_time": "2",
     },
 ]
 
@@ -508,6 +311,7 @@ for selected_mcq in multiple_choice_question_entries:
         option_3=selected_mcq["option_3"],
         option_4=selected_mcq["option_4"],
         correct_answer=selected_mcq["correct_answer"],
+        required_time=selected_mcq["required_time"],
     )
 
     # retrieve all feedback entries from the database and print them

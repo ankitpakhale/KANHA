@@ -7,7 +7,7 @@ sys.path.append(__path)
 
 from app.dao import ProblemSolvingQuestion, db_session  # noqa: E402
 
-# list of feedback entries
+# list of PSQ entries
 problem_solvinge_question_entries = [
     {
         "q_id": "psq00123456789",
@@ -23,6 +23,7 @@ problem_solvinge_question_entries = [
             {"input": "[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]", "output": "125"}
         ],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq00234567890",
@@ -39,6 +40,7 @@ problem_solvinge_question_entries = [
             {"input": " ", "output": "True"},
         ],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq00345678901",
@@ -58,6 +60,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "2\n[[0, 10], [10, 0]]\n0 1", "output": "10"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq00456789012",
@@ -71,6 +74,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "2", "output": "[]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq00567890123",
@@ -84,6 +88,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "A\nA", "output": "1"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq00678901234",
@@ -97,6 +102,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3, 4]\n[5, 6, 7, 8]", "output": "4.5"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq00789012345",
@@ -110,6 +116,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 1, 1, 1, 1]\n3", "output": "3"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq00890123456",
@@ -123,6 +130,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "a\nb", "output": "1"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq00901234567",
@@ -139,6 +147,7 @@ problem_solvinge_question_entries = [
             {"input": "2", "output": "True"},
         ],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq01012345678",
@@ -152,6 +161,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "a", "output": "['a']"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq01123456789",
@@ -165,6 +175,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "a\na", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq01234567890",
@@ -178,6 +189,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3]\n[4, 5, 6]", "output": "[]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq01345678901",
@@ -191,6 +203,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "pwwkew", "output": "3"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq01456789012",
@@ -204,6 +217,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3, 4]\n5", "output": "-1"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq01567890123",
@@ -217,6 +231,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1]", "output": "[1]"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq01678901234",
@@ -230,6 +245,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3]\n1", "output": "3"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq01789012345",
@@ -246,6 +262,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "{0: []}\n0", "output": "[0]"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq01890123456",
@@ -259,6 +276,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3, 4, 5]", "output": "5"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq01901234567",
@@ -272,6 +290,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1]", "output": "True"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq02012345678",
@@ -285,6 +304,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3]\n0", "output": "[1, 2, 3]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq02123456789",
@@ -298,6 +318,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[10, 10, 10, 10]", "output": "[]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq02234567890",
@@ -311,6 +332,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "1", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq02345678901",
@@ -327,6 +349,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 3, 5]\n[]", "output": "[1, 3, 5]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq02456789012",
@@ -340,6 +363,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "a", "output": "a"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq02567890123",
@@ -350,6 +374,7 @@ problem_solvinge_question_entries = [
         "examples": [{"input": "10", "output": "17"}, {"input": "5", "output": "10"}],
         "edge_cases": [{"input": "1", "output": "0"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq02678901234",
@@ -366,6 +391,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1]", "output": "[[1]]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq02789012345",
@@ -379,6 +405,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "a\na", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq02890123456",
@@ -395,6 +422,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3]", "output": "[1, 2, 3]"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq02901234567",
@@ -408,6 +436,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "a", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq03012345678",
@@ -421,6 +450,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3, 4, 5]", "output": "5"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq03123456789",
@@ -434,6 +464,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[5, 5, 5, 5, 5]\n1", "output": "5"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq03234567890",
@@ -450,6 +481,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "1", "output": "[[1]]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq03345678901",
@@ -463,6 +495,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "1", "output": "[]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq03456789012",
@@ -476,6 +509,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[-2, -3, 0, -2, -40]", "output": "240"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq03567890123",
@@ -489,6 +523,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 1, 1, 1, 1]\n3", "output": "3"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq03678901234",
@@ -502,6 +537,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "1", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq03789012345",
@@ -515,6 +551,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 3, 5, 7]\n3", "output": "1"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq03890123456",
@@ -528,6 +565,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "pwwkew", "output": "3"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq04012345678",
@@ -541,6 +579,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "3+5/2", "output": "5"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq04123456789",
@@ -554,6 +593,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "listen\nsilent", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq04234567890",
@@ -567,6 +607,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[2]", "output": "1"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq04345678901",
@@ -580,6 +621,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "   ", "output": "0"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq04456789012",
@@ -593,6 +635,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 1, 1]", "output": "[1]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq04567890123",
@@ -606,6 +649,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[2, 1]", "output": "[1, 2]"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq04678901234",
@@ -619,6 +663,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "pop()", "output": "Error: Stack is empty"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq04789012345",
@@ -640,6 +685,7 @@ problem_solvinge_question_entries = [
             {"input": "adjacency_list = {0: []}, start = 0", "output": "[0]"}
         ],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq04890123456",
@@ -661,6 +707,7 @@ problem_solvinge_question_entries = [
             {"input": "adjacency_list = {0: []}, start = 0", "output": "[0]"}
         ],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq04901234567",
@@ -680,6 +727,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[[1]]\n[[1]]", "output": "[[1]]"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq05012345678",
@@ -693,6 +741,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[10]\n[1]\n10", "output": "10"}],
         "difficulty_level": "High",
+        "required_time": "10",
     },
     {
         "q_id": "psq05123456789",
@@ -706,6 +755,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "1", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05234567890",
@@ -719,6 +769,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3]\n[]", "output": "[1, 2, 3]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05345678901",
@@ -732,6 +783,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "abcd", "output": "a"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05456789012",
@@ -742,6 +794,7 @@ problem_solvinge_question_entries = [
         "examples": [{"input": "5", "output": "5"}, {"input": "10", "output": "55"}],
         "edge_cases": [{"input": "1", "output": "1"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05567890123",
@@ -752,6 +805,7 @@ problem_solvinge_question_entries = [
         "examples": [{"input": "III", "output": "3"}, {"input": "IX", "output": "9"}],
         "edge_cases": [{"input": "M", "output": "1000"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05678901234",
@@ -765,6 +819,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "0", "output": "0"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05789012345",
@@ -778,6 +833,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "user@sub.domain.com", "output": "True"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05890123456",
@@ -791,6 +847,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2]", "output": "1"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq05901234567",
@@ -804,6 +861,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1]", "output": "1"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
     {
         "q_id": "psq06012345678",
@@ -817,6 +875,7 @@ problem_solvinge_question_entries = [
         ],
         "edge_cases": [{"input": "[1, 2, 3], 0", "output": "[1, 2, 3]"}],
         "difficulty_level": "Medium",
+        "required_time": "10",
     },
 ]
 
@@ -840,6 +899,7 @@ for selected_psq in problem_solvinge_question_entries:
         constraints=selected_psq["constraints"],
         examples=selected_psq["examples"],
         edge_cases=selected_psq["edge_cases"],
+        required_time=selected_psq["required_time"],
     )
 
     # retrieve all feedback entries from the database and print them

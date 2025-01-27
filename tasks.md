@@ -1,8 +1,5 @@
 ### TODO
 
-- #### Tasklist 9.2
-- [ ] Implement required time for each question in QuestionService.
-
 - #### Tasklist 10
 - [ ] Simplify routes package ex server healthcheck & db healthcheck.
 - [ ] Implement changes in DAO package to save mcq type of questions.
@@ -143,3 +140,8 @@
 - [x] Write testcases for contact.
 - [x] Implement contact route.
 - [x] Implement contact service.
+
+- #### Tasklist 9.2
+- [X] Add required_time field in MCQ & PSQ models.
+- [X] Apply SOLID Principles in Question Service.
+- [X] Make changes in MCQ & PSQ test files to implement required_time field.
