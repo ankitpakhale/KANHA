@@ -1,6 +1,10 @@
 ### TODO
 
 - #### Tasklist 10
+- [ ] Remove total number of questions to generate from system prompt & adjust this same thing in user prompt.
+- [ ] Prompts must be compatible with Pricing Page of KanhaUI.
+
+- #### Tasklist 10.1
 - [ ] Simplify routes package ex server healthcheck & db healthcheck.
 - [ ] Implement changes in DAO package to save mcq type of questions.
 - [ ] Implement changes in DAO package to save psq type of questions.
@@ -142,6 +146,6 @@
 - [x] Implement contact service.
 
 - #### Tasklist 9.2
-- [X] Add required_time field in MCQ & PSQ models.
-- [X] Apply SOLID Principles in Question Service.
-- [X] Make changes in MCQ & PSQ test files to implement required_time field.
+- [x] Add required_time field in MCQ & PSQ models.
+- [x] Apply SOLID Principles in Question Service.
+- [x] Make changes in MCQ & PSQ test files to implement required_time field.
