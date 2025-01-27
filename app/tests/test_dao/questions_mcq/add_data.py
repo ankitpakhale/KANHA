@@ -8,7 +8,7 @@ sys.path.append(__path)
 from app.dao import MultipleChoiceQuestion, db_session  # noqa: E402
 import random  # noqa: E402
 
-# list of feedback entries
+# list of MCQ entries
 multiple_choice_question_entries = [
     {
         "difficulty_level": "easy",
@@ -18,6 +18,7 @@ multiple_choice_question_entries = [
         "option_3": "variable-1",
         "option_4": "variable.1",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -27,6 +28,7 @@ multiple_choice_question_entries = [
         "option_3": "<class 'str'>",
         "option_4": "<class 'bool'>",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -36,6 +38,7 @@ multiple_choice_question_entries = [
         "option_3": "Dictionary",
         "option_4": "Tuple",
         "correct_answer": "option_4",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -45,6 +48,7 @@ multiple_choice_question_entries = [
         "option_3": "d = {1: 'a', 2: 'b'}",
         "option_4": "d = [1: 'a', 2: 'b']",
         "correct_answer": "option_3",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -54,6 +58,7 @@ multiple_choice_question_entries = [
         "option_3": "length()",
         "option_4": "len()",
         "correct_answer": "option_4",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -63,6 +68,7 @@ multiple_choice_question_entries = [
         "option_3": "5",
         "option_4": "9",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -72,6 +78,7 @@ multiple_choice_question_entries = [
         "option_3": "%",
         "option_4": "*",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -81,6 +88,7 @@ multiple_choice_question_entries = [
         "option_3": "Hello",
         "option_4": "Error",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -90,6 +98,7 @@ multiple_choice_question_entries = [
         "option_3": "{}",
         "option_4": "empty()",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -99,6 +108,7 @@ multiple_choice_question_entries = [
         "option_3": "append()",
         "option_4": "extend()",
         "correct_answer": "option_3",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -108,6 +118,7 @@ multiple_choice_question_entries = [
         "option_3": "Both of the above",
         "option_4": "None of the above",
         "correct_answer": "option_3",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -117,6 +128,7 @@ multiple_choice_question_entries = [
         "option_3": "do-while loop",
         "option_4": "loop",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -126,6 +138,7 @@ multiple_choice_question_entries = [
         "option_3": "Error",
         "option_4": "None",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -135,6 +148,7 @@ multiple_choice_question_entries = [
         "option_3": "0",
         "option_4": "2",
         "correct_answer": "option_4",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -144,6 +158,7 @@ multiple_choice_question_entries = [
         "option_3": "del()",
         "option_4": "clear()",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -153,6 +168,7 @@ multiple_choice_question_entries = [
         "option_3": "9",
         "option_4": "Error",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -162,6 +178,7 @@ multiple_choice_question_entries = [
         "option_3": "{}",
         "option_4": "None",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -171,6 +188,7 @@ multiple_choice_question_entries = [
         "option_3": "/*",
         "option_4": "--",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -180,6 +198,7 @@ multiple_choice_question_entries = [
         "option_3": "from module_name import *",
         "option_4": "import module_name()",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -189,6 +208,7 @@ multiple_choice_question_entries = [
         "option_3": "func",
         "option_4": "declare",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -198,6 +218,7 @@ multiple_choice_question_entries = [
         "option_3": "regexpr",
         "option_4": "re.regex",
         "correct_answer": "option_2",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -207,6 +228,7 @@ multiple_choice_question_entries = [
         "option_3": "string.includes('substring')",
         "option_4": "substring.contains(string)",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "easy",
@@ -216,6 +238,7 @@ multiple_choice_question_entries = [
         "option_3": "*",
         "option_4": "|",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -225,6 +248,7 @@ multiple_choice_question_entries = [
         "option_3": "[1, 2, 3, 4, 5, 6, 7]",
         "option_4": "[1, 2, 5, 6, 7, 4]",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -234,6 +258,7 @@ multiple_choice_question_entries = [
         "option_3": "{1, 2}",
         "option_4": "Error",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -243,6 +268,7 @@ multiple_choice_question_entries = [
         "option_3": "raise CustomError()",
         "option_4": "throw CustomError()",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -252,6 +278,7 @@ multiple_choice_question_entries = [
         "option_3": "Error",
         "option_4": "[4]",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
     {
         "difficulty_level": "medium",
@@ -261,6 +288,7 @@ multiple_choice_question_entries = [
         "option_3": "my_gen = {x for x in range(5)}",
         "option_4": "my_gen = list(range(5))",
         "correct_answer": "option_1",
+        "required_time": "2",
     },
 ]
 
@@ -279,6 +307,7 @@ mcq_entry = MultipleChoiceQuestion(
     option_3=selected_mcq["option_3"],
     option_4=selected_mcq["option_4"],
     correct_answer=selected_mcq["correct_answer"],
+    required_time=selected_mcq["required_time"],
 )
 
 # retrieve all feedback entries from the database and print them

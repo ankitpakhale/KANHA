@@ -25,6 +25,7 @@ for mcq in all_mcq:
     print(f"➡ option_3: {mcq.option_3}")
     print(f"➡ option_4: {mcq.option_4}")
     print(f"➡ correct_answer: {mcq.correct_answer}")
+    print(f"➡ required_time: {mcq.required_time}")
     print(" ======== ======== ======== ======== ======== ======== ======== ======== ")
 
 print("-" * 130)

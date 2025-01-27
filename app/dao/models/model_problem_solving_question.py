@@ -20,6 +20,7 @@ class ProblemSolvingQuestion(BaseModel):
     constraints: Mapped[Optional[str]] = Column(Text, nullable=True)
     examples: Mapped[Optional[List[dict]]] = Column(JSON, nullable=True)
     edge_cases: Mapped[Optional[List[dict]]] = Column(JSON, nullable=True)
+    required_time: Mapped[str] = Column(Text, nullable=False)
 
     def __repr__(self) -> str:
         """
@@ -36,5 +37,6 @@ class ProblemSolvingQuestion(BaseModel):
             output_format={self.output_format!r},
             constraints={self.constraints!r},
             examples={self.examples!r},
-            edge_cases={self.edge_cases!r}
+            edge_cases={self.edge_cases!r},
+            required_time={self.required_time!r}
         )"""
