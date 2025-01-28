@@ -15,7 +15,7 @@ from app.control_panel import control_panel_manager
 class QuestionClient:
     @staticmethod
     def generate_questions(
-        payload: Dict[str, Union[str, List[str]]]
+        payload: Dict[str, str]
     ) -> List[Dict[str, Union[str, List[Union[str, Dict[str, str]]]]]]:
         if control_panel_manager.get_setting("GENERATE_QUESTIONS_FROM_CLIENT"):
             client_response = Client().generate_questions(payload)
@@ -130,9 +130,7 @@ class TimeCalculator:
 
 class QuestionRepository:
     @staticmethod
-    def save(
-        payload: Dict[str, Union[str, List[str]]], response: List[Dict[str, str]]
-    ) -> None:
+    def save(payload: Dict[str, str], response: List[Dict[str, str]]) -> None:
         if not control_panel_manager.get_setting("SAVE_CLIENT_RESPONSE_IN_DB"):
             logger.warning(
                 """
@@ -205,7 +203,7 @@ class QuestionRepository:
 
 
 class QuestionService:
-    def __generate_questions(self, payload: Dict[str, Union[str, List[str]]]):
+    def __generate_questions(self, payload: Dict[str, str]):
         """
         Initializes the question client and generates questions based on the user input.
         """
@@ -232,7 +230,7 @@ class QuestionService:
         return response_with_required_time
 
     def generate_questions(
-        self, payload: Dict[str, Union[str, List[str]]]
+        self, payload: Dict[str, str]
     ) -> List[Dict[str, Union[str, List[Union[str, Dict[str, str]]]]]]:
         return self.__generate_questions(payload)
 

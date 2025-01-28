@@ -31,4 +31,3 @@
 
 ### **Brand Positioning:**
 - KANHA is positioned as the **ultimate learning companion** for anyone looking to enhance their programming skills through **hyperpersonalized assessments** and **real-time, actionable feedback**. It combines **AI-driven intelligence** with a scalable infrastructure to ensure continuous growth and mastery.
-

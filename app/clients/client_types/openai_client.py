@@ -212,7 +212,7 @@ class OpenAIClient(Base):
         """
         difficulty_level = payload["difficulty_level"]
         programming_language = payload["programming_language"]
-        topics = ", ".join(payload["topics"])
+        topics = payload["topics"]
         num_questions = payload.get("num_questions", 2)
 
         result = []
@@ -250,7 +250,7 @@ class OpenAIClient(Base):
             print("<" * 80)
         return result
 
-    def generate_questions(self, payload: Union[list, dict]) -> str:
+    def generate_questions(self, payload: Dict[str, str]) -> str:
         """
         core logic to generate questions from openai client
         """

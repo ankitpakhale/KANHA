@@ -6,7 +6,7 @@ SCHEMA_MAP = {
                 "num_questions": {"type": "integer"},
                 "difficulty_level": {"type": "string"},
                 "programming_language": {"type": "string"},
-                "topics": {"type": "array", "items": {"type": "string"}},
+                "topics": {"type": "string"},
             },
             "required": ["difficulty_level", "programming_language", "topics"],
             "additionalProperties": False,
