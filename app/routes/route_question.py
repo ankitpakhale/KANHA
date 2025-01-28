@@ -24,15 +24,14 @@ class QuestionRoute:
         """
         logger.debug("__generate_questions route called")
 
-        # parse the 'topics' field which was sent as a json string
-        topics = literal_eval(Request.forms.get("topics"))
-
         # retrieve data from request and make a dictionary object
+        # retrieve data from query params and make a dictionary object
         payload = dict(
-            difficulty_level=Request.forms.get("difficulty_level"),
-            programming_language=Request.forms.get("programming_language"),
-            topics=topics,
+            difficulty_level=Request.query.get("difficulty_level"),
+            programming_language=Request.query.get("programming_language"),
+            topics=Request.query.get("topics"),
         )
+        print(f"==>> payload: {payload}")
 
         # generate questions using the service
         response = question_service().generate_questions(payload=payload)
