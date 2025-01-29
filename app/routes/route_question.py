@@ -25,13 +25,12 @@ class QuestionRoute:
         logger.debug("__generate_questions route called")
 
         # retrieve data from request and make a dictionary object
-        # retrieve data from query params and make a dictionary object
         payload = dict(
-            difficulty_level=Request.query.get("difficulty_level"),
-            programming_language=Request.query.get("programming_language"),
-            topics=Request.query.get("topics"),
+            difficulty_level=Request.forms.get("difficulty_level"),
+            programming_language=Request.forms.get("programming_language"),
+            topics=Request.forms.get("topics"),
         )
-        print(f"==>> payload: {payload}")
+        logger.debug("Received payload:", payload)
 
         # generate questions using the service
         response = question_service().generate_questions(payload=payload)
