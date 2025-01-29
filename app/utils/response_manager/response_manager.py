@@ -101,13 +101,16 @@ class ResponseHandler:
         # set the response status
         self.set_status(exception_info["status_code"])
 
-        # return standardized error response
-        return {
+        # construct standardized error response
+        response = {
             "status": False,
             "payload": {},
             "message": f"{exception_info['message']}",
             "status_code": exception_info["status_code"],
         }
+        # log the error response
+        logger.critical(f"Response: {response}")
+        return response
 
     def handle_success(self, result: Dict[str, Any]) -> Dict[str, Any]:
         """
