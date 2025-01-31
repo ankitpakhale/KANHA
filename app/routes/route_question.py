@@ -30,7 +30,7 @@ class QuestionRoute:
             programming_language=Request.forms.get("programming_language"),
             topics=Request.forms.get("topics"),
         )
-        logger.debug("Received payload:", payload)
+        logger.debug(f"Received payload: {payload}")
 
         # generate questions using the service
         response = question_service().generate_questions(payload=payload)
