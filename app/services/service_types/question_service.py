@@ -220,9 +220,10 @@ class QuestionService:
 
         # add q_id in all the questions
         response_with_id = QuestionFormatter.add_ids(client_response)
-        response_with_required_time = TimeCalculator.calculate_time(
-            payload=payload, response=response_with_id
-        )
+        response_with_required_time = response_with_id
+        # response_with_required_time = TimeCalculator.calculate_time(
+        #     payload=payload, response=response_with_id
+        # )
         print(f"==>> response_with_required_time: {response_with_required_time}")
 
         # save client response in DB

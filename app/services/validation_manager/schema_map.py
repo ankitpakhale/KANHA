@@ -18,8 +18,14 @@ SCHEMA_MAP = {
                 "problem_description": {"type": "string"},
                 "options": {"type": "array", "items": {"type": "string"}},
                 "correct_answer": {"type": "string"},
+                "required_time": {"type": ["string", "number"]},
             },
-            "required": ["problem_description", "options", "correct_answer"],
+            "required": [
+                "problem_description",
+                "options",
+                "correct_answer",
+                "required_time",
+            ],
             "additionalProperties": False,
         },
         "PSQ_RESPONSE": {
@@ -52,15 +58,9 @@ SCHEMA_MAP = {
                         "required": ["input", "output"],
                     },
                 },
+                "required_time": {"type": ["string", "number"]},
             },
-            "required": [
-                "problem_description",
-                "input_format",
-                "output_format",
-                "constraints",
-                "examples",
-                "edge_cases",
-            ],
+            "required": ["problem_description", "required_time"],
         },
     },
     "EVALUATE_ANSWERS": {
